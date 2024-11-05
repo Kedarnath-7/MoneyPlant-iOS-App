@@ -5,20 +5,22 @@
 //  Created by admin86 on 05/11/24.
 //
 
+import UIKit
+
 struct Transactions{
-    var symbol: String
+    var symbol: UIImage
     var name: String
     var amount: Double
     var category: String
 }
 
 var transactions: [Transactions] = [
-    Transactions(symbol: "􀸹", name: "Dinner",
+    Transactions(symbol: UIImage(systemName: "fork.knife")!, name: "Dinner",
                  amount: 500.00, category: "Food"),
-    Transactions(symbol: "􀒭", name: "Dress",
+    Transactions(symbol: UIImage(systemName: "cart")!, name: "Dress",
                  amount: 1000.00, category: "Shopping"),
-    Transactions(symbol: "􀵠", name: "Car Petrol",
+    Transactions(symbol: UIImage(systemName: "fuelpump")!, name: "Car Petrol",
                  amount: 2500.00, category: "Fuel"),
-    Transactions(symbol: "􀭯", name: "Car",
+    Transactions(symbol: UIImage(systemName: "car")!, name: "Car",
                  amount: 6000.00, category: "Service")
 ]

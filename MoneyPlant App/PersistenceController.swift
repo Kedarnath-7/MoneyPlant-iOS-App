@@ -14,7 +14,7 @@ class PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "YourModelName") // Replace with the name of your .xcdatamodeld file
+        container = NSPersistentContainer(name: "MoneyPlant_App") // Replace with the name of your .xcdatamodeld file
         
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
