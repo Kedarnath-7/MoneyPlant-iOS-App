@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Records" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Na-j7-iaw">
-                                <rect key="frame" x="16" y="75" width="361" height="43"/>
+                                <rect key="frame" x="16" y="79" width="361" height="43"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -142,11 +143,10 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Transactions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqG-4U-Ssp">
-                                <rect key="frame" x="16" y="350" width="361" height="24"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Transactions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqG-4U-Ssp">
+                                <rect key="frame" x="16" y="350" width="361" height="21"/>
+                                <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -155,15 +155,15 @@
                                 <locale key="locale" localeIdentifier="en_IN"/>
                             </datePicker>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-OA-MOa">
-                                <rect key="frame" x="16" y="390" width="361" height="32"/>
+                                <rect key="frame" x="16" y="387" width="361" height="32"/>
                                 <segments>
                                     <segment title="Today"/>
-                                    <segment title="Weekly"/>
-                                    <segment title="Monthly"/>
+                                    <segment title="This Week"/>
+                                    <segment title="This Month"/>
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uXS-le-6m1">
-                                <rect key="frame" x="0.0" y="437" width="393" height="332"/>
+                                <rect key="frame" x="0.0" y="434" width="393" height="325"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="bBo-8I-7mL" customClass="TransactionsTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
@@ -242,6 +242,14 @@
                                     <outlet property="delegate" destination="VOc-6u-hBB" id="dnu-2V-4AV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="RRQ-X4-AUL">
+                                <rect key="frame" x="166" y="727" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h9l-Ih-GvN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -249,9 +257,9 @@
                             <constraint firstItem="JqG-4U-Ssp" firstAttribute="top" secondItem="7Ql-iH-jNS" secondAttribute="bottom" constant="16" id="5vf-vd-rVo"/>
                             <constraint firstItem="uXS-le-6m1" firstAttribute="top" secondItem="WYq-OA-MOa" secondAttribute="bottom" constant="16" id="6Gw-A3-zA6"/>
                             <constraint firstItem="7Ql-iH-jNS" firstAttribute="leading" secondItem="h9l-Ih-GvN" secondAttribute="leading" constant="16" id="6zW-Bi-a2K"/>
-                            <constraint firstItem="fL2-nL-EBi" firstAttribute="top" secondItem="1Na-j7-iaw" secondAttribute="bottom" constant="32" id="CEi-ds-KfA"/>
+                            <constraint firstItem="fL2-nL-EBi" firstAttribute="top" secondItem="1Na-j7-iaw" secondAttribute="bottom" constant="28" id="CEi-ds-KfA"/>
                             <constraint firstItem="WYq-OA-MOa" firstAttribute="top" secondItem="JqG-4U-Ssp" secondAttribute="bottom" constant="16" id="ECf-8v-hhu"/>
-                            <constraint firstItem="1Na-j7-iaw" firstAttribute="top" secondItem="h9l-Ih-GvN" secondAttribute="top" constant="16" id="Epd-vP-cYm"/>
+                            <constraint firstItem="1Na-j7-iaw" firstAttribute="top" secondItem="h9l-Ih-GvN" secondAttribute="top" constant="20" id="Epd-vP-cYm"/>
                             <constraint firstItem="7Ql-iH-jNS" firstAttribute="top" secondItem="k6N-nB-9Qc" secondAttribute="bottom" constant="16" id="Eul-4V-dsU"/>
                             <constraint firstItem="uXS-le-6m1" firstAttribute="trailing" secondItem="h9l-Ih-GvN" secondAttribute="trailing" id="IZK-ID-8qe"/>
                             <constraint firstItem="fL2-nL-EBi" firstAttribute="centerX" secondItem="AYU-yb-DOK" secondAttribute="centerX" id="KW2-SQ-bNq"/>
@@ -266,7 +274,7 @@
                             <constraint firstItem="k6N-nB-9Qc" firstAttribute="centerX" secondItem="AYU-yb-DOK" secondAttribute="centerX" id="k6V-Y6-LjI"/>
                             <constraint firstItem="uXS-le-6m1" firstAttribute="leading" secondItem="h9l-Ih-GvN" secondAttribute="leading" id="tLm-ui-ISU"/>
                             <constraint firstItem="h9l-Ih-GvN" firstAttribute="trailing" secondItem="WYq-OA-MOa" secondAttribute="trailing" constant="16" id="v2y-ue-diY"/>
-                            <constraint firstItem="uXS-le-6m1" firstAttribute="bottom" secondItem="h9l-Ih-GvN" secondAttribute="bottom" id="v3G-uC-J8Q"/>
+                            <constraint firstItem="uXS-le-6m1" firstAttribute="bottom" secondItem="h9l-Ih-GvN" secondAttribute="bottom" constant="-10" id="v3G-uC-J8Q"/>
                             <constraint firstItem="h9l-Ih-GvN" firstAttribute="trailing" secondItem="1Na-j7-iaw" secondAttribute="trailing" constant="16" id="wkD-tM-OoG"/>
                             <constraint firstItem="7Ql-iH-jNS" firstAttribute="centerX" secondItem="AYU-yb-DOK" secondAttribute="centerX" id="zdJ-tW-7j7"/>
                         </constraints>
@@ -356,6 +364,7 @@
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="medal" catalog="system" width="121" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tree" catalog="system" width="128" height="118"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
