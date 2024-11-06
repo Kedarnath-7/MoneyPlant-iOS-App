@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -250,7 +251,7 @@
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="stj-mW-S06" kind="show" id="7XM-qJ-ucx"/>
+                                    <segue destination="2Vi-U7-rUd" kind="show" id="eij-Ro-g7m"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="fL2-nL-EBi">
@@ -290,36 +291,52 @@
             </objects>
             <point key="canvasLocation" x="63.358778625954194" y="534.50704225352115"/>
         </scene>
-        <!--Add Record-->
-        <scene sceneID="c8a-ov-2jk">
+        <!--Add Records-->
+        <scene sceneID="NMZ-sq-Erj">
             <objects>
-                <viewController id="stj-mW-S06" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SJn-Fz-TKh">
+                <viewController title="Add Records" id="2Vi-U7-rUd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Wd-8w-r9C">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4a5-WK-I67">
-                                <rect key="frame" x="16" y="111" width="361" height="32"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-rs-MYG">
+                                <rect key="frame" x="76" y="294" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="va2-2F-1QH">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IQL-pe-4H6">
+                                        <rect key="frame" x="56" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YtX-wO-MdH">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FHV-3g-Cda">
+                                <rect key="frame" x="131" y="103" width="131" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="Expense" width="180"/>
-                                    <segment title="Income" width="180"/>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="D4k-PP-du3"/>
+                        <viewLayoutGuide key="safeArea" id="SIT-iL-XGu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="4a5-WK-I67" firstAttribute="top" secondItem="D4k-PP-du3" secondAttribute="top" constant="8" id="5hu-Nq-TvU"/>
-                            <constraint firstItem="4a5-WK-I67" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D4k-PP-du3" secondAttribute="leading" id="7c5-AM-KcX"/>
-                            <constraint firstItem="4a5-WK-I67" firstAttribute="centerX" secondItem="SJn-Fz-TKh" secondAttribute="centerX" id="I1Y-qR-lGh"/>
-                            <constraint firstItem="4a5-WK-I67" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="D4k-PP-du3" secondAttribute="trailing" id="pNJ-2H-Ll1"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Record" largeTitleDisplayMode="never" id="ZfS-bA-tDi"/>
+                    <navigationItem key="navigationItem" title="Add Record" largeTitleDisplayMode="never" id="0ST-d2-BQW"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rtg-tN-Q7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pOP-uf-eut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61.832061068702288" y="1295.7746478873239"/>
+            <point key="canvasLocation" x="63" y="1295"/>
         </scene>
         <!--Rewards-->
         <scene sceneID="rFu-o0-2AX">
