@@ -16,26 +16,6 @@
                     <view key="view" contentMode="scaleToFill" id="2hU-u6-cEt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSK-kA-GdI">
-                                <rect key="frame" x="39" y="262" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5r-s5-14X">
-                                <rect key="frame" x="159" y="409" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-7s-2dY">
-                                <rect key="frame" x="199" y="513" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="yaZ-8a-zD3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -160,7 +140,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="fL2-nL-EBi">
+                            <datePicker contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="fL2-nL-EBi">
                                 <rect key="frame" x="117" y="150" width="159" height="34.333333333333343"/>
                                 <locale key="locale" localeIdentifier="en_IN"/>
                             </datePicker>
@@ -275,6 +255,7 @@
                             <constraint firstItem="fL2-nL-EBi" firstAttribute="centerX" secondItem="AYU-yb-DOK" secondAttribute="centerX" id="KW2-SQ-bNq"/>
                             <constraint firstItem="h9l-Ih-GvN" firstAttribute="trailing" secondItem="k6N-nB-9Qc" secondAttribute="trailing" id="PWF-Fz-FQN"/>
                             <constraint firstItem="JqG-4U-Ssp" firstAttribute="leading" secondItem="h9l-Ih-GvN" secondAttribute="leading" constant="16" id="UKD-mA-vSF"/>
+                            <constraint firstItem="fL2-nL-EBi" firstAttribute="leading" secondItem="h9l-Ih-GvN" secondAttribute="leading" constant="117" id="UMQ-4O-ppl"/>
                             <constraint firstItem="h9l-Ih-GvN" firstAttribute="trailing" secondItem="JqG-4U-Ssp" secondAttribute="trailing" constant="16" id="ZTd-0n-KMt"/>
                             <constraint firstItem="h9l-Ih-GvN" firstAttribute="trailing" secondItem="7Ql-iH-jNS" secondAttribute="trailing" constant="16" id="ZTv-E5-O8S"/>
                             <constraint firstItem="k6N-nB-9Qc" firstAttribute="top" secondItem="fL2-nL-EBi" secondAttribute="bottom" constant="16" id="bzQ-pB-es7"/>
@@ -383,10 +364,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
