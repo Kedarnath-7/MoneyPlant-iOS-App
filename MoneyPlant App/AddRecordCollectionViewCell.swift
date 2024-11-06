@@ -9,4 +9,17 @@ import UIKit
 
 class AddRecordCollectionViewCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var categorySymbolLabel: UIImageView!
+    
+    
+    @IBOutlet weak var cateogryNameLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    
+    
 }

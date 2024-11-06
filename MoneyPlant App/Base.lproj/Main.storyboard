@@ -294,7 +294,7 @@
         <!--Add Records-->
         <scene sceneID="NMZ-sq-Erj">
             <objects>
-                <viewController title="Add Records" id="2Vi-U7-rUd" sceneMemberID="viewController">
+                <viewController title="Add Records" id="2Vi-U7-rUd" customClass="AddRecordCollectionViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Wd-8w-r9C">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,24 +306,54 @@
                                     <segment title="Income" width="180"/>
                                 </segments>
                             </segmentedControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-rs-MYG">
-                                <rect key="frame" x="16" y="158" width="361" height="611"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-rs-MYG">
+                                <rect key="frame" x="16" y="166" width="361" height="587"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="va2-2F-1QH">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="va2-2F-1QH">
+                                    <size key="itemSize" width="70" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IQL-pe-4H6" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="IQL-pe-4H6" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YtX-wO-MdH">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YtX-wO-MdH" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fork.knife.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KnF-55-koT">
+                                                    <rect key="frame" x="15" y="15" width="60" height="60"/>
+                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="61.333333333333321" id="FzY-Gh-zYR"/>
+                                                        <constraint firstAttribute="width" constant="60" id="RUT-sz-nD4"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtG-rJ-92r">
+                                                    <rect key="frame" x="15" y="69" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="NmJ-OY-bTK"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Pbb-Yl-Tv5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="AtG-rJ-92r" secondAttribute="bottom" id="5mn-uq-e1l"/>
+                                                <constraint firstItem="KnF-55-koT" firstAttribute="centerY" secondItem="YtX-wO-MdH" secondAttribute="centerY" id="O6G-mA-klY"/>
+                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="centerX" secondItem="YtX-wO-MdH" secondAttribute="centerX" id="kk9-3f-LSs"/>
+                                                <constraint firstItem="KnF-55-koT" firstAttribute="centerX" secondItem="YtX-wO-MdH" secondAttribute="centerX" id="lAe-k1-xM8"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="90" height="90"/>
+                                        <connections>
+                                            <outlet property="categorySymbolLabel" destination="KnF-55-koT" id="Odv-Aa-QcM"/>
+                                            <outlet property="cateogryNameLabel" destination="AtG-rJ-92r" id="bkp-5s-y27"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -331,7 +361,11 @@
                         <viewLayoutGuide key="safeArea" id="SIT-iL-XGu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hw3-rs-MYG" firstAttribute="leading" secondItem="SIT-iL-XGu" secondAttribute="leading" constant="16" id="Gia-sa-XPd"/>
+                            <constraint firstItem="hw3-rs-MYG" firstAttribute="top" secondItem="FHV-3g-Cda" secondAttribute="bottom" constant="16" id="IXZ-xE-zF4"/>
+                            <constraint firstItem="SIT-iL-XGu" firstAttribute="trailing" secondItem="hw3-rs-MYG" secondAttribute="trailing" constant="16" id="YIK-wJ-Y0N"/>
                             <constraint firstItem="FHV-3g-Cda" firstAttribute="leading" secondItem="SIT-iL-XGu" secondAttribute="leading" constant="16" id="cTH-Db-R1m"/>
+                            <constraint firstItem="SIT-iL-XGu" firstAttribute="bottom" secondItem="hw3-rs-MYG" secondAttribute="bottom" constant="16" id="eb0-sq-Yqd"/>
                             <constraint firstItem="SIT-iL-XGu" firstAttribute="trailing" secondItem="FHV-3g-Cda" secondAttribute="trailing" constant="16" id="ebr-sP-38o"/>
                             <constraint firstItem="FHV-3g-Cda" firstAttribute="top" secondItem="SIT-iL-XGu" secondAttribute="top" constant="16" id="nE2-BN-3bl"/>
                         </constraints>
@@ -441,6 +475,7 @@
         <image name="Garden" width="726" height="1322"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
+        <image name="fork.knife.circle.fill" catalog="system" width="128" height="123"/>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="medal" catalog="system" width="121" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
@@ -448,6 +483,9 @@
         <image name="tree" catalog="system" width="128" height="118"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
