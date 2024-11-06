@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="2744.2748091603053" y="534.50704225352115"/>
         </scene>
-        <!--Reccords-->
+        <!--Records-->
         <scene sceneID="SKb-GE-NPa">
             <objects>
-                <viewController title="Reccords" id="VOc-6u-hBB" customClass="ViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Records" id="VOc-6u-hBB" customClass="TransactionsViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AYU-yb-DOK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -297,14 +297,29 @@
                     <view key="view" contentMode="scaleToFill" id="SJn-Fz-TKh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4a5-WK-I67">
+                                <rect key="frame" x="16" y="111" width="361" height="32"/>
+                                <segments>
+                                    <segment title="Expense" width="180"/>
+                                    <segment title="Income" width="180"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="D4k-PP-du3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4a5-WK-I67" firstAttribute="top" secondItem="D4k-PP-du3" secondAttribute="top" constant="8" id="5hu-Nq-TvU"/>
+                            <constraint firstItem="4a5-WK-I67" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D4k-PP-du3" secondAttribute="leading" id="7c5-AM-KcX"/>
+                            <constraint firstItem="4a5-WK-I67" firstAttribute="centerX" secondItem="SJn-Fz-TKh" secondAttribute="centerX" id="I1Y-qR-lGh"/>
+                            <constraint firstItem="4a5-WK-I67" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="D4k-PP-du3" secondAttribute="trailing" id="pNJ-2H-Ll1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Record" largeTitleDisplayMode="never" id="ZfS-bA-tDi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rtg-tN-Q7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="1296"/>
+            <point key="canvasLocation" x="61.832061068702288" y="1295.7746478873239"/>
         </scene>
         <!--Rewards-->
         <scene sceneID="rFu-o0-2AX">
