@@ -15,11 +15,6 @@ class AddRecordCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cateogryNameLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     
     
 }

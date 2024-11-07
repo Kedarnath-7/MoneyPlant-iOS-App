@@ -23,7 +23,7 @@ class AddRecordCollectionViewController: UIViewController {
 
 }
 
-extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
