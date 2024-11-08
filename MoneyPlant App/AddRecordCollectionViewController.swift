@@ -13,14 +13,17 @@ class AddRecordCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
     }
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
@@ -37,6 +40,10 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected Category: \(categories[indexPath.row].name)")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 80)
     }
     
 }
