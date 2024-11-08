@@ -14,12 +14,12 @@ struct Categories {
 }
 
 var categories: [Categories] = [
-    Categories(name: "Food", symbol: UIImage(systemName: "fork.knife.circle.fill")!, type: "Expense"),
-    Categories(name: "Fuel", symbol: UIImage(systemName: "fuelpump.circle.fill")!, type: "Expense"),
-    Categories(name: "Medical", symbol: UIImage(systemName: "cross.case.circle.fill")!, type: "Expense"),
-    Categories(name: "Party", symbol: UIImage(systemName: "party.popper.circle.fill")!, type: "Expense"),
-    Categories(name: "Service", symbol: UIImage(systemName: "car.circle.fill")!, type: "Expense"),
-    Categories(name: "Shopping ", symbol: UIImage(systemName: "cart.circle.fill")!, type: "Expense"),
-    Categories(name: "Movie", symbol: UIImage(systemName: "cross.case.circle.fill")!, type: "Expense"),
-    Categories(name: "Tea", symbol: UIImage(systemName: "cup.and.saucer.circle.fill")!, type: "Expense"),
+    Categories(name: "Food", symbol: UIImage(systemName: "fork.knife")!, type: "Expense"),
+    Categories(name: "Fuel", symbol: UIImage(systemName: "fuelpump.fill")!, type: "Expense"),
+    Categories(name: "Medical", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
+    Categories(name: "Party", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
+    Categories(name: "Service", symbol: UIImage(systemName: "car.fill")!, type: "Expense"),
+    Categories(name: "Shopping ", symbol: UIImage(systemName: "cart.fill")!, type: "Expense"),
+    Categories(name: "Movie", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
+    Categories(name: "Tea", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
 ]

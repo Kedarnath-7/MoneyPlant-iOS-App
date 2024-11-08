@@ -15,6 +15,5 @@ class AddRecordCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cateogryNameLabel: UILabel!
     
-    
-    
+
 }
