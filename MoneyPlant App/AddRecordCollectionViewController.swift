@@ -32,7 +32,7 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
         cell.cateogryNameLabel.text = categories[indexPath.row].name
         cell.categorySymbolLabel.image = categories[indexPath.row].symbol
         
-        return UICollectionViewCell()
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
