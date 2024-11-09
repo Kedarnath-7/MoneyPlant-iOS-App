@@ -8,25 +8,22 @@
 import UIKit
 
 class AddRecordCollectionViewController: UIViewController {
-
+    
+    @IBOutlet weak var categoriesCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        
-
-        // Do any additional setup after loading the view.
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
     }
-
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
@@ -38,11 +35,15 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
         cell.cateogryNameLabel.text = categories[indexPath.row].name
         cell.categorySymbolLabel.image = categories[indexPath.row].symbol
         
-        return UICollectionViewCell()
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected Category: \(categories[indexPath.row].name)")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 80)
     }
     
 }
