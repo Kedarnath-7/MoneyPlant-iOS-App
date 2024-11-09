@@ -25,9 +25,9 @@ var expenseCategories: [Categories] = [
 ]
 
 var incomeCategories: [Categories] = [
-    Categories(name: "Base Salary", symbol: UIImage(systemName: "indianrupeesign")!, type: "Income"),
+    Categories(name: "Salary", symbol: UIImage(systemName: "indianrupeesign")!, type: "Income"),
     Categories(name: "Tutoring", symbol: UIImage(systemName: "book.fill")!, type: "Income"),
-    Categories(name: "Renting Assests", symbol: UIImage(systemName: "house.lodge.fill")!, type: "Income"),
+    Categories(name: "Rent", symbol: UIImage(systemName: "house.lodge.fill")!, type: "Income"),
     Categories(name: "Investment", symbol: UIImage(systemName: "indianrupeesign.gauge.chart.leftthird.topthird.rightthird")!, type: "Income"),
-    Categories(name: "Part Time Job", symbol: UIImage(systemName: "person.crop.circle.badge.clock.fill")!, type: "Income"),
+    Categories(name: "Part Time", symbol: UIImage(systemName: "person.crop.circle.badge.clock.fill")!, type: "Income"),
 ]

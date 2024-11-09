@@ -51,11 +51,17 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected Category: \(expenseCategories[indexPath.row].name)")
+        if collectionView == expenseCategoriesCollectionView{
+            print("Selected Category: \(expenseCategories[indexPath.row].name)")
+        }else{
+            print("Selected Category: \(incomeCategories[indexPath.row].name)")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: 90, height: 90)
+        
     }
     
 }
