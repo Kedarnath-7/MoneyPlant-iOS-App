@@ -17,9 +17,9 @@ var categories: [Categories] = [
     Categories(name: "Food", symbol: UIImage(systemName: "fork.knife")!, type: "Expense"),
     Categories(name: "Fuel", symbol: UIImage(systemName: "fuelpump.fill")!, type: "Expense"),
     Categories(name: "Medical", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
-    Categories(name: "Party", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
+    Categories(name: "Party", symbol: UIImage(systemName: "party.popper.fill")!, type: "Expense"),
     Categories(name: "Service", symbol: UIImage(systemName: "car.fill")!, type: "Expense"),
     Categories(name: "Shopping ", symbol: UIImage(systemName: "cart.fill")!, type: "Expense"),
-    Categories(name: "Movie", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
-    Categories(name: "Tea", symbol: UIImage(systemName: "cross.case.fill")!, type: "Expense"),
+    Categories(name: "Movie", symbol: UIImage(systemName: "movieclapper.fill")!, type: "Expense"),
+    Categories(name: "Tea", symbol: UIImage(systemName: "cup.and.saucer.fill")!, type: "Expense"),
 ]
