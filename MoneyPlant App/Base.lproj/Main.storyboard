@@ -366,7 +366,6 @@
                     <connections>
                         <outlet property="addExpenseView" destination="VvA-wZ-H5o" id="IOr-Fu-cBu"/>
                         <outlet property="addIncomeView" destination="ofc-c2-dhR" id="LFb-xK-Bua"/>
-                        <outlet property="categoriesCollectionView" destination="hw3-rs-MYG" id="l8a-VG-4p6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOP-uf-eut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -485,41 +484,31 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="IQL-pe-4H6" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expenseCollectionViewCell" id="IQL-pe-4H6" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YtX-wO-MdH">
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtG-rJ-92r">
-                                                    <rect key="frame" x="15" y="70" width="60" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="gd8-QD-KGy"/>
-                                                        <constraint firstAttribute="height" constant="20" id="rvu-c3-9UA"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="qOe-4a-eXS">
-                                                    <rect key="frame" x="15" y="8" width="60" height="60"/>
+                                                    <rect key="frame" x="15" y="6" width="60" height="58"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fork.knife" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KnF-55-koT">
-                                                            <rect key="frame" x="12.666666666666668" y="11" width="35" height="35"/>
+                                                            <rect key="frame" x="12.666666666666668" y="10.666666666666668" width="35" height="36"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="35" id="IYv-Oe-fg4"/>
-                                                                <constraint firstAttribute="height" constant="34" id="JRO-QW-IdP"/>
+                                                                <constraint firstAttribute="height" constant="35" id="JRO-QW-IdP"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="KnF-55-koT" firstAttribute="centerY" secondItem="qOe-4a-eXS" secondAttribute="centerY" constant="-1" id="1gj-Br-G65"/>
-                                                        <constraint firstAttribute="width" constant="60" id="Fjm-G7-il0"/>
-                                                        <constraint firstItem="KnF-55-koT" firstAttribute="centerX" secondItem="qOe-4a-eXS" secondAttribute="centerX" id="M6y-0f-3XM"/>
-                                                        <constraint firstAttribute="height" constant="60" id="iaU-Zs-LJF"/>
+                                                        <constraint firstAttribute="width" constant="60" id="HoX-zr-FoH"/>
+                                                        <constraint firstItem="KnF-55-koT" firstAttribute="centerY" secondItem="qOe-4a-eXS" secondAttribute="centerY" id="IQY-hj-Zzt"/>
+                                                        <constraint firstItem="KnF-55-koT" firstAttribute="centerX" secondItem="qOe-4a-eXS" secondAttribute="centerX" id="OIH-cT-Aiu"/>
+                                                        <constraint firstAttribute="height" constant="60" id="T8q-T3-lLB"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -528,17 +517,27 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtG-rJ-92r">
+                                                    <rect key="frame" x="15" y="70" width="60" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="TBP-zR-LUM"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="fQB-2Q-2nO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="AtG-rJ-92r" secondAttribute="bottom" id="0k4-OW-35s"/>
+                                                <constraint firstAttribute="trailing" secondItem="qOe-4a-eXS" secondAttribute="trailing" constant="15" id="18A-C2-UO0"/>
                                                 <constraint firstItem="AtG-rJ-92r" firstAttribute="centerX" secondItem="YtX-wO-MdH" secondAttribute="centerX" id="2FH-Lg-3vx"/>
-                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YtX-wO-MdH" secondAttribute="leading" id="Ct3-nm-qix"/>
-                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="top" secondItem="YtX-wO-MdH" secondAttribute="top" constant="8" id="FmS-ju-vHM"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AtG-rJ-92r" secondAttribute="trailing" id="UNd-tk-87j"/>
-                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="leading" secondItem="YtX-wO-MdH" secondAttribute="leading" constant="15" id="c6g-Po-v5T"/>
-                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="top" secondItem="qOe-4a-eXS" secondAttribute="bottom" constant="2" id="d24-0j-qX4"/>
-                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="centerX" secondItem="YtX-wO-MdH" secondAttribute="centerX" id="tvh-Lk-baC"/>
-                                                <constraint firstAttribute="trailing" secondItem="qOe-4a-eXS" secondAttribute="trailing" constant="15" id="ufn-3P-Ouy"/>
-                                                <constraint firstAttribute="bottom" secondItem="AtG-rJ-92r" secondAttribute="bottom" id="zgM-3y-uqi"/>
+                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="top" secondItem="YtX-wO-MdH" secondAttribute="top" constant="6" id="4Ld-tj-cQ8"/>
+                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YtX-wO-MdH" secondAttribute="leading" id="Gxe-eQ-dEn"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AtG-rJ-92r" secondAttribute="trailing" id="KPZ-iC-zUg"/>
+                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="leading" secondItem="YtX-wO-MdH" secondAttribute="leading" constant="15" id="OIE-SS-iBN"/>
+                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="centerX" secondItem="YtX-wO-MdH" secondAttribute="centerX" id="Y20-Qc-BUB"/>
+                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="top" secondItem="qOe-4a-eXS" secondAttribute="bottom" constant="6" id="mXJ-aM-bid"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="90" height="90"/>
@@ -548,8 +547,13 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="A7Y-im-Kz6" id="Ha4-qP-Epu"/>
+                                    <outlet property="delegate" destination="A7Y-im-Kz6" id="Kog-WX-mPq"/>
+                                </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="bok-11-56h"/>
                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
                             <constraint firstItem="hw3-rs-MYG" firstAttribute="leading" secondItem="wdm-8L-xws" secondAttribute="leading" constant="16" id="11b-r0-jYQ"/>
@@ -559,12 +563,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="categoriesCollectionView" destination="hw3-rs-MYG" id="eMy-2c-uXs"/>
+                        <outlet property="expenseCategoriesCollectionView" destination="hw3-rs-MYG" id="7Pc-bQ-tGe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHS-LN-fc0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-421" y="2097"/>
+            <point key="canvasLocation" x="-422.13740458015263" y="2096.1267605633802"/>
         </scene>
         <!--Add Record Collection View Controller-->
         <scene sceneID="XTf-Ub-Zqm">
@@ -584,7 +588,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="5aJ-Aq-RB4" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="incomeCollectionViewCell" id="5aJ-Aq-RB4" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fPc-NO-jnl">
@@ -605,11 +609,11 @@
                                                     <rect key="frame" x="15" y="8" width="60" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fork.knife" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Py0-Cp-Fjw">
-                                                            <rect key="frame" x="12.666666666666668" y="11" width="35" height="35"/>
+                                                            <rect key="frame" x="12.666666666666668" y="10.666666666666668" width="35" height="36"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="35" id="f3U-fM-Nsy"/>
-                                                                <constraint firstAttribute="height" constant="34" id="koT-st-Pam"/>
+                                                                <constraint firstAttribute="height" constant="35" id="koT-st-Pam"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -623,7 +627,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="30"/>
+                                                            <integer key="value" value="0"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -647,8 +651,13 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="M2l-eY-RSl" id="Myl-oO-Pn0"/>
+                                    <outlet property="delegate" destination="M2l-eY-RSl" id="bbx-hH-aqD"/>
+                                </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="7RX-s8-Y50"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0dx-Wm-AOu" firstAttribute="top" secondItem="fQs-6a-UCl" secondAttribute="top" id="09E-sr-Tzq"/>
@@ -658,7 +667,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="categoriesCollectionView" destination="0dx-Wm-AOu" id="cG7-Pw-Rvk"/>
+                        <outlet property="incomeCategoriesCollectionView" destination="0dx-Wm-AOu" id="Bj5-wU-am2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAr-gg-Wcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
