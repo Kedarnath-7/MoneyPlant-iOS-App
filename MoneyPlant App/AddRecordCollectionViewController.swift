@@ -17,6 +17,8 @@ class AddRecordCollectionViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -51,6 +53,7 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == expenseCategoriesCollectionView{
+            
             print("Selected Category: \(expenseCategories[indexPath.row].name)")
         }else{
             print("Selected Category: \(incomeCategories[indexPath.row].name)")
