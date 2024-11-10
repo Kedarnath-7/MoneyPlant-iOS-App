@@ -491,16 +491,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtG-rJ-92r">
-                                                    <rect key="frame" x="15" y="70" width="60" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtG-rJ-92r">
+                                                    <rect key="frame" x="15" y="72" width="60" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="TBP-zR-LUM"/>
+                                                        <constraint firstAttribute="height" constant="18" id="TBP-zR-LUM"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="fQB-2Q-2nO"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Food">
                                                             <attributes>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
+                                                                <font key="NSFont" size="16" name="SFPro-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -508,7 +508,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="qOe-4a-eXS">
-                                                    <rect key="frame" x="15" y="8" width="60" height="60"/>
+                                                    <rect key="frame" x="15" y="6" width="60" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fork.knife" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KnF-55-koT">
                                                             <rect key="frame" x="12.666666666666668" y="12.666666666666668" width="35" height="36"/>
@@ -542,8 +542,8 @@
                                                 <constraint firstItem="qOe-4a-eXS" firstAttribute="centerX" secondItem="6HT-mT-Aln" secondAttribute="centerX" id="NlN-bI-mgG"/>
                                                 <constraint firstItem="qOe-4a-eXS" firstAttribute="leading" secondItem="6HT-mT-Aln" secondAttribute="leading" constant="15" id="Oax-6K-d80"/>
                                                 <constraint firstAttribute="trailing" secondItem="qOe-4a-eXS" secondAttribute="trailing" constant="15" id="kXh-qy-dk1"/>
-                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="top" secondItem="6HT-mT-Aln" secondAttribute="top" constant="8" id="kdJ-Xf-l8W"/>
-                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="top" secondItem="qOe-4a-eXS" secondAttribute="bottom" constant="2" id="mXJ-aM-bid"/>
+                                                <constraint firstItem="qOe-4a-eXS" firstAttribute="top" secondItem="6HT-mT-Aln" secondAttribute="top" constant="6" id="kdJ-Xf-l8W"/>
+                                                <constraint firstItem="AtG-rJ-92r" firstAttribute="top" secondItem="qOe-4a-eXS" secondAttribute="bottom" constant="6" id="mXJ-aM-bid"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="90" height="90"/>
@@ -600,16 +600,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idL-8v-C3W">
-                                                    <rect key="frame" x="15" y="70" width="60" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idL-8v-C3W">
+                                                    <rect key="frame" x="15" y="72" width="60" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="UNM-Gg-rd6"/>
+                                                        <constraint firstAttribute="height" constant="18" id="UNM-Gg-rd6"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="XvX-ka-YeC"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Food">
                                                             <attributes>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="16" name="SFPro-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -617,7 +618,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-gX-ciy">
-                                                    <rect key="frame" x="15" y="8" width="60" height="60"/>
+                                                    <rect key="frame" x="15" y="6" width="60" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fork.knife" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Py0-Cp-Fjw">
                                                             <rect key="frame" x="12.666666666666668" y="10.666666666666668" width="35" height="36"/>
@@ -644,14 +645,14 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="idL-8v-C3W" firstAttribute="top" secondItem="6IW-gX-ciy" secondAttribute="bottom" constant="2" id="3F4-bO-IYT"/>
+                                                <constraint firstItem="idL-8v-C3W" firstAttribute="top" secondItem="6IW-gX-ciy" secondAttribute="bottom" constant="6" id="3F4-bO-IYT"/>
                                                 <constraint firstAttribute="trailing" secondItem="6IW-gX-ciy" secondAttribute="trailing" constant="15" id="8My-Lq-LfQ"/>
                                                 <constraint firstItem="6IW-gX-ciy" firstAttribute="leading" secondItem="fPc-NO-jnl" secondAttribute="leading" constant="15" id="9Kd-S4-iqt"/>
                                                 <constraint firstItem="idL-8v-C3W" firstAttribute="centerX" secondItem="fPc-NO-jnl" secondAttribute="centerX" id="OrW-G3-5jy"/>
                                                 <constraint firstItem="6IW-gX-ciy" firstAttribute="centerX" secondItem="fPc-NO-jnl" secondAttribute="centerX" id="QrO-rO-xpy"/>
                                                 <constraint firstAttribute="bottom" secondItem="idL-8v-C3W" secondAttribute="bottom" id="bKD-Rw-Ni9"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="idL-8v-C3W" secondAttribute="trailing" id="cNK-iv-CrF"/>
-                                                <constraint firstItem="6IW-gX-ciy" firstAttribute="top" secondItem="fPc-NO-jnl" secondAttribute="top" constant="8" id="f9t-FT-lwg"/>
+                                                <constraint firstItem="6IW-gX-ciy" firstAttribute="top" secondItem="fPc-NO-jnl" secondAttribute="top" constant="6" id="f9t-FT-lwg"/>
                                                 <constraint firstItem="idL-8v-C3W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fPc-NO-jnl" secondAttribute="leading" id="j4W-38-Qjn"/>
                                             </constraints>
                                         </collectionViewCellContentView>
