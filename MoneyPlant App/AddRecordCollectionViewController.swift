@@ -47,7 +47,6 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
             incomeCell!.categorySymbolLabel.image = incomeCategories[indexPath.row].symbol
             return incomeCell!
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
