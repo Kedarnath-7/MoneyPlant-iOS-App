@@ -23,6 +23,7 @@ var expenseCategories: [Categories] = [
     Categories(name: "Movie", symbol: UIImage(systemName: "movieclapper.fill")!, type: "Expense"),
     Categories(name: "Tea", symbol: UIImage(systemName: "cup.and.saucer.fill")!, type: "Expense"),
     Categories(name: "Add New", symbol: UIImage(systemName: "plus")!, type: "Expense"),
+
 ]
 
 var incomeCategories: [Categories] = [
