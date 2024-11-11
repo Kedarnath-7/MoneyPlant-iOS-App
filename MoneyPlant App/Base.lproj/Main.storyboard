@@ -571,29 +571,117 @@
         <!--Garden-->
         <scene sceneID="odF-hB-OFZ">
             <objects>
-                <viewController id="7Vm-aE-vmm" sceneMemberID="viewController">
+                <viewController id="7Vm-aE-vmm" customClass="ViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YfQ-mx-Prm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Garden" translatesAutoresizingMaskIntoConstraints="NO" id="GcC-8S-Att">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mf-9s-fxN">
+                                <rect key="frame" x="0.0" y="569" width="393" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbJ-gq-NP9">
+                                        <rect key="frame" x="16.999999999999993" y="36" width="109.33333333333331" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yxw-sI-d5e">
+                                        <rect key="frame" x="8" y="72.666666666666629" width="377" height="127.33333333333331"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskCell" id="xML-Ph-t5R">
+                                                <rect key="frame" x="0.0" y="50" width="377" height="43.666667938232422"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xML-Ph-t5R" id="OoL-PK-PRE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="377" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="indianrupeesign.bank.building" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mQG-wa-gdc">
+                                                            <rect key="frame" x="7" y="2" width="40" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5w-cC-SyY">
+                                                            <rect key="frame" x="55" y="2" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJw-RL-P2S">
+                                                            <rect key="frame" x="55" y="21" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="WbJ-gq-NP9" firstAttribute="leading" secondItem="9mf-9s-fxN" secondAttribute="leading" constant="17" id="2af-qT-7cU"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yxw-sI-d5e" secondAttribute="bottom" id="6zc-uU-CdS"/>
+                                    <constraint firstAttribute="height" constant="200" id="CQ8-zD-q1A"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yxw-sI-d5e" secondAttribute="trailing" constant="8" id="GfS-la-Xum"/>
+                                    <constraint firstItem="WbJ-gq-NP9" firstAttribute="top" secondItem="9mf-9s-fxN" secondAttribute="top" constant="36" id="jha-UL-bBY"/>
+                                    <constraint firstItem="Yxw-sI-d5e" firstAttribute="leading" secondItem="9mf-9s-fxN" secondAttribute="leading" constant="8" id="uKP-h7-8nc"/>
+                                    <constraint firstItem="Yxw-sI-d5e" firstAttribute="top" secondItem="WbJ-gq-NP9" secondAttribute="bottom" constant="8" id="vZR-yv-dIF"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="xQf-gP-JFC" appends="YES" id="96F-XY-EAZ"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, Sept 29 2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4j2-OP-dnb">
+                                <rect key="frame" x="22" y="90" width="230" height="28.666666666666671"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lke-wR-g5Q">
+                                <rect key="frame" x="309" y="86.666666666666629" width="35" height="35"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="WsU-CN-C7B">
+                                <rect key="frame" x="22" y="126.66666666666669" width="30" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHr-bz-i77">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="" cornerStyle="capsule"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RR8-oT-ozN"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RR8-oT-ozN" firstAttribute="bottom" secondItem="GcC-8S-Att" secondAttribute="bottom" id="2Mr-Rg-Sqo"/>
-                            <constraint firstItem="GcC-8S-Att" firstAttribute="leading" secondItem="RR8-oT-ozN" secondAttribute="leading" id="9EX-Qv-SCU"/>
-                            <constraint firstItem="RR8-oT-ozN" firstAttribute="trailing" secondItem="GcC-8S-Att" secondAttribute="trailing" id="BUu-uw-YUe"/>
-                            <constraint firstItem="GcC-8S-Att" firstAttribute="top" secondItem="RR8-oT-ozN" secondAttribute="top" id="Y8I-bv-mGD"/>
+                            <constraint firstItem="4j2-OP-dnb" firstAttribute="leading" secondItem="WsU-CN-C7B" secondAttribute="leading" id="A1a-IQ-a9i"/>
+                            <constraint firstItem="RR8-oT-ozN" firstAttribute="trailing" secondItem="9mf-9s-fxN" secondAttribute="trailing" id="BJ7-CS-s3t"/>
+                            <constraint firstItem="WsU-CN-C7B" firstAttribute="top" secondItem="4j2-OP-dnb" secondAttribute="bottom" constant="8" symbolic="YES" id="CUG-6L-1yN"/>
+                            <constraint firstItem="9mf-9s-fxN" firstAttribute="bottom" secondItem="RR8-oT-ozN" secondAttribute="bottom" id="Il8-pR-pMH"/>
+                            <constraint firstItem="4j2-OP-dnb" firstAttribute="centerY" secondItem="Lke-wR-g5Q" secondAttribute="centerY" id="Nd4-wa-iy8"/>
+                            <constraint firstItem="9mf-9s-fxN" firstAttribute="leading" secondItem="RR8-oT-ozN" secondAttribute="leading" id="Z27-Wd-7Eb"/>
+                            <constraint firstItem="4j2-OP-dnb" firstAttribute="top" secondItem="RR8-oT-ozN" secondAttribute="top" constant="31" id="dVT-bA-gTk"/>
+                            <constraint firstItem="Lke-wR-g5Q" firstAttribute="leading" secondItem="4j2-OP-dnb" secondAttribute="trailing" constant="57" id="tGk-Vk-vu1"/>
+                            <constraint firstItem="4j2-OP-dnb" firstAttribute="leading" secondItem="RR8-oT-ozN" secondAttribute="leading" constant="22" id="vjR-BH-ZOv"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Garden" image="tree" catalog="system" id="8t4-JR-77v"/>
+                    <connections>
+                        <outlet property="bottomSheetHeightConstraint" destination="CQ8-zD-q1A" id="q4L-xu-BKd"/>
+                        <outlet property="bottomSheetView" destination="9mf-9s-fxN" id="fRS-i1-zRA"/>
+                        <outlet property="taskTableView" destination="Yxw-sI-d5e" id="ctP-oq-0Bb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bls-rd-5Dx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="xQf-gP-JFC"/>
             </objects>
-            <point key="canvasLocation" x="-2164" y="535"/>
+            <point key="canvasLocation" x="-2164.1221374045799" y="534.50704225352115"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ogW-G7-1Vl">
@@ -666,11 +754,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Garden" width="726" height="1322"/>
         <image name="Robux_2019_Logo_Black.svg" width="800" height="873"/>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
         <image name="fork.knife.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="indianrupeesign.bank.building" catalog="system" width="128" height="112"/>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="medal" catalog="system" width="121" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
@@ -684,6 +773,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
