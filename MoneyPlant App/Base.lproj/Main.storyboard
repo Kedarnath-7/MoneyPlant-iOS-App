@@ -644,30 +644,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lke-wR-g5Q">
-                                <rect key="frame" x="309" y="86.666666666666629" width="35" height="35"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lke-wR-g5Q">
+                                <rect key="frame" x="314" y="91.666666666666629" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="WsU-CN-C7B">
-                                <rect key="frame" x="22" y="126.66666666666669" width="30" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHr-bz-i77">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="" cornerStyle="capsule"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RR8-oT-ozN"/>
                         <constraints>
-                            <constraint firstItem="4j2-OP-dnb" firstAttribute="leading" secondItem="WsU-CN-C7B" secondAttribute="leading" id="A1a-IQ-a9i"/>
                             <constraint firstItem="RR8-oT-ozN" firstAttribute="trailing" secondItem="9mf-9s-fxN" secondAttribute="trailing" id="BJ7-CS-s3t"/>
-                            <constraint firstItem="WsU-CN-C7B" firstAttribute="top" secondItem="4j2-OP-dnb" secondAttribute="bottom" constant="8" symbolic="YES" id="CUG-6L-1yN"/>
                             <constraint firstItem="9mf-9s-fxN" firstAttribute="bottom" secondItem="RR8-oT-ozN" secondAttribute="bottom" id="Il8-pR-pMH"/>
-                            <constraint firstItem="4j2-OP-dnb" firstAttribute="centerY" secondItem="Lke-wR-g5Q" secondAttribute="centerY" id="Nd4-wa-iy8"/>
                             <constraint firstItem="9mf-9s-fxN" firstAttribute="leading" secondItem="RR8-oT-ozN" secondAttribute="leading" id="Z27-Wd-7Eb"/>
                             <constraint firstItem="4j2-OP-dnb" firstAttribute="top" secondItem="RR8-oT-ozN" secondAttribute="top" constant="31" id="dVT-bA-gTk"/>
-                            <constraint firstItem="Lke-wR-g5Q" firstAttribute="leading" secondItem="4j2-OP-dnb" secondAttribute="trailing" constant="57" id="tGk-Vk-vu1"/>
                             <constraint firstItem="4j2-OP-dnb" firstAttribute="leading" secondItem="RR8-oT-ozN" secondAttribute="leading" constant="22" id="vjR-BH-ZOv"/>
                         </constraints>
                     </view>
@@ -769,7 +757,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -778,10 +766,10 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

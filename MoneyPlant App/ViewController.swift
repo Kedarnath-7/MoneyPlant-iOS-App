@@ -104,7 +104,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            content.text = dateText
            content.secondaryText = taskText
            content.image = UIImage(systemName: "indianrupeesign.bank.building")
+           content.imageProperties.maximumSize = CGSize(width: 35, height: 35)
+           content.imageProperties.tintColor = .black
            cell.contentConfiguration = content
+           cell.backgroundColor = UIColor.systemGray6
            
            return cell
        }
