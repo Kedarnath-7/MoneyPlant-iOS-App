@@ -18,6 +18,15 @@ class AddRecordCollectionViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedCategory = sender as? Categories else { return }
+        if segue.identifier == "addNewExpense" {
+            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+            destinationVC.selectedCategory = selectedCategory
+        }
+        
+    }
+    
     
 }
 
@@ -53,8 +62,9 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == expenseCategoriesCollectionView{
-            
-            print("Selected Category: \(expenseCategories[indexPath.row].name)")
+            let selectedCategory = expenseCategories[indexPath.row]
+            print("Selected Category: \(selectedCategory.name)")
+            self.performSegue(withIdentifier: "addNewExpense", sender: selectedCategory)
         }else{
             print("Selected Category: \(incomeCategories[indexPath.row].name)")
         }

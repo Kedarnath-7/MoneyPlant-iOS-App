@@ -10,13 +10,14 @@ import UIKit
 class AddNewRecordViewController: UIViewController {
     
     
+    @IBOutlet weak var categoryImage: UIImageView!
     
     
     var selectedCategory: Categories?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        categoryImage.image = selectedCategory?.symbol
         navigationItem.title = "Add New Record"
         // Do any additional setup after loading the view.
     }
