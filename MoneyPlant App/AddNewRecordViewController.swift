@@ -12,12 +12,18 @@ class AddNewRecordViewController: UIViewController {
     
     @IBOutlet weak var categoryImage: UIImageView!
     
+    @IBOutlet weak var categoryNameLabel: UILabel!
     
-    var selectedCategory: Categories?
+    var selectedExpenseCategory: Categories?
+    var selectedIncomeCategory: Categories?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoryImage.image = selectedCategory?.symbol
+        
+        categoryImage.image = selectedExpenseCategory?.symbol
+        categoryImage.image = selectedIncomeCategory?.symbol
+        categoryNameLabel.text = selectedExpenseCategory?.name
+        categoryNameLabel.text = selectedIncomeCategory?.name
         navigationItem.title = "Add New Record"
         // Do any additional setup after loading the view.
     }
