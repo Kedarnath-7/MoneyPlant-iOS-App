@@ -10,6 +10,116 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Garden-->
+        <scene sceneID="4l0-tx-2oW">
+            <objects>
+                <viewController id="R6H-sJ-dH9" customClass="ViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="opf-Yt-vHB">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Garden" translatesAutoresizingMaskIntoConstraints="NO" id="Q75-uh-EWm">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="840"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="852" id="Ayk-Sb-w7C"/>
+                                    <constraint firstAttribute="width" constant="393" id="CHK-hr-ouS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lyy-Zu-jgg">
+                                <rect key="frame" x="314" y="91" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, Sept 29 2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeZ-HD-Va6">
+                                <rect key="frame" x="22" y="90" width="230" height="28.666666666666671"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wS5-Ix-YIV">
+                                <rect key="frame" x="0.0" y="569" width="393" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kx-pR-u9c">
+                                        <rect key="frame" x="16.999999999999993" y="36" width="109.33333333333331" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xRd-8W-xHH">
+                                        <rect key="frame" x="8" y="72.666666666666629" width="377" height="127.33333333333331"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskCell" id="19J-oc-C7R">
+                                                <rect key="frame" x="0.0" y="50" width="377" height="43.666667938232422"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="19J-oc-C7R" id="q9c-Y7-Meg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="377" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="indianrupeesign.bank.building" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ffc-64-jvy">
+                                                            <rect key="frame" x="7" y="2" width="40" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zv-0E-dbw">
+                                                            <rect key="frame" x="55" y="2" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDy-A6-feu">
+                                                            <rect key="frame" x="55" y="21" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="xRd-8W-xHH" firstAttribute="leading" secondItem="wS5-Ix-YIV" secondAttribute="leading" constant="8" id="COC-yh-QSR"/>
+                                    <constraint firstAttribute="bottom" secondItem="xRd-8W-xHH" secondAttribute="bottom" id="IUu-cR-pOX"/>
+                                    <constraint firstAttribute="trailing" secondItem="xRd-8W-xHH" secondAttribute="trailing" constant="8" id="KdK-9C-zSL"/>
+                                    <constraint firstItem="xRd-8W-xHH" firstAttribute="top" secondItem="1kx-pR-u9c" secondAttribute="bottom" constant="8" id="dyv-g6-O1d"/>
+                                    <constraint firstAttribute="height" constant="200" id="g8C-rn-txe"/>
+                                    <constraint firstItem="1kx-pR-u9c" firstAttribute="leading" secondItem="wS5-Ix-YIV" secondAttribute="leading" constant="17" id="mfl-Vn-VQe"/>
+                                    <constraint firstItem="1kx-pR-u9c" firstAttribute="top" secondItem="wS5-Ix-YIV" secondAttribute="top" constant="36" id="vH7-lq-qUm"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VjI-FV-wWN" appends="YES" id="TXK-GS-BFI"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f7r-ET-xGi"/>
+                        <constraints>
+                            <constraint firstItem="ZeZ-HD-Va6" firstAttribute="leading" secondItem="f7r-ET-xGi" secondAttribute="leading" constant="22" id="81D-2W-e4Q"/>
+                            <constraint firstItem="wS5-Ix-YIV" firstAttribute="leading" secondItem="f7r-ET-xGi" secondAttribute="leading" id="VZH-Mf-Bed"/>
+                            <constraint firstItem="wS5-Ix-YIV" firstAttribute="bottom" secondItem="f7r-ET-xGi" secondAttribute="bottom" id="eUr-5N-5JV"/>
+                            <constraint firstItem="ZeZ-HD-Va6" firstAttribute="top" secondItem="f7r-ET-xGi" secondAttribute="top" constant="31" id="vQq-Q3-F1O"/>
+                            <constraint firstItem="f7r-ET-xGi" firstAttribute="trailing" secondItem="wS5-Ix-YIV" secondAttribute="trailing" id="y69-yj-2gu"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Garden" image="tree" catalog="system" id="QKa-9H-a7M"/>
+                    <connections>
+                        <outlet property="bottomSheetHeightConstraint" destination="g8C-rn-txe" id="wfB-NP-e1L"/>
+                        <outlet property="bottomSheetView" destination="wS5-Ix-YIV" id="ize-Zz-pvj"/>
+                        <outlet property="taskTableView" destination="xRd-8W-xHH" id="qcT-9C-XFf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQg-wf-9gN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="VjI-FV-wWN"/>
+            </objects>
+            <point key="canvasLocation" x="-1993" y="535"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="OO1-fa-MDz">
             <objects>
@@ -405,7 +515,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Garden" translatesAutoresizingMaskIntoConstraints="NO" id="GcC-8S-Att">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RR8-oT-ozN"/>
@@ -421,7 +531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bls-rd-5Dx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2164" y="535"/>
+            <point key="canvasLocation" x="-2857" y="1708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ogW-G7-1Vl">
@@ -433,10 +543,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="7Vm-aE-vmm" kind="relationship" relationship="viewControllers" id="hs2-Hm-47m"/>
-                        <segue destination="8Dy-eP-BmV" kind="relationship" relationship="viewControllers" id="pP5-fA-syt"/>
-                        <segue destination="RIX-WS-ssv" kind="relationship" relationship="viewControllers" id="t7f-kd-UcY"/>
-                        <segue destination="DUZ-qe-WKW" kind="relationship" relationship="viewControllers" id="LMs-SA-3bm"/>
+                        <segue destination="R6H-sJ-dH9" kind="relationship" relationship="viewControllers" id="BN3-Tt-0Wk"/>
+                        <segue destination="8Dy-eP-BmV" kind="relationship" relationship="viewControllers" id="vfv-M6-FDE"/>
+                        <segue destination="RIX-WS-ssv" kind="relationship" relationship="viewControllers" id="XUJ-aP-0j5"/>
+                        <segue destination="DUZ-qe-WKW" kind="relationship" relationship="viewControllers" id="Zrd-td-MQZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcC-ZB-tMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -748,24 +858,29 @@
     </scenes>
     <resources>
         <image name="Garden" width="726" height="1322"/>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
+        <image name="indianrupeesign.bank.building" catalog="system" width="128" height="112"/>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="medal" catalog="system" width="121" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tree" catalog="system" width="128" height="118"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
