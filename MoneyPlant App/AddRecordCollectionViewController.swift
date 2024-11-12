@@ -17,6 +17,24 @@ class AddRecordCollectionViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let selectedCategory = sender as? Categories else { return }
+        if segue.identifier == "addNewExpense" {
+            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+            destinationVC.selectedExpenseCategory = selectedCategory
+        }else if segue.identifier == "addNewIncome"{
+            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+            destinationVC.selectedIncomeCategory = selectedCategory
+        }
+        
+//        guard let selectedIncomeCategory = sender as? Categories else { return }
+//        if segue.identifier == "addNewIncome" {
+//            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+//            destinationVC.selectedIncomeCategory = selectedIncomeCategory
+//        }
+    }
+    
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -51,9 +69,13 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == expenseCategoriesCollectionView{
-            print("Selected Category: \(expenseCategories[indexPath.row].name)")
+            let selectedExpenseCategory = expenseCategories[indexPath.row]
+            print("Selected Category: \(selectedExpenseCategory.name)")
+            self.performSegue(withIdentifier: "addNewExpense", sender: selectedExpenseCategory)
         }else{
-            print("Selected Category: \(incomeCategories[indexPath.row].name)")
+            let selectedIncomeCategory = incomeCategories[indexPath.row]
+            self.performSegue(withIdentifier: "addNewIncome", sender: selectedIncomeCategory)
+            print("Selected Category: \(selectedIncomeCategory.name)")
         }
     }
     
@@ -62,5 +84,4 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
         return CGSize(width: 90, height: 90)
         
     }
-    
 }

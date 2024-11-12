@@ -21,7 +21,9 @@ var expenseCategories: [Categories] = [
     Categories(name: "Service", symbol: UIImage(systemName: "car.fill")!, type: "Expense"),
     Categories(name: "Shopping ", symbol: UIImage(systemName: "cart.fill")!, type: "Expense"),
     Categories(name: "Movie", symbol: UIImage(systemName: "movieclapper.fill")!, type: "Expense"),
-    Categories(name: "Tea", symbol: UIImage(systemName: "cup.and.saucer.fill")!, type: "Expense")
+    Categories(name: "Tea", symbol: UIImage(systemName: "cup.and.saucer.fill")!, type: "Expense"),
+    Categories(name: "Add New", symbol: UIImage(systemName: "plus")!, type: "Expense"),
+
 ]
 
 var incomeCategories: [Categories] = [
@@ -30,4 +32,5 @@ var incomeCategories: [Categories] = [
     Categories(name: "Rent", symbol: UIImage(systemName: "house.lodge.fill")!, type: "Income"),
     Categories(name: "Investment", symbol: UIImage(systemName: "indianrupeesign.gauge.chart.leftthird.topthird.rightthird")!, type: "Income"),
     Categories(name: "Part Time", symbol: UIImage(systemName: "person.crop.circle.badge.clock.fill")!, type: "Income"),
+    Categories(name: "Add New", symbol: UIImage(systemName: "plus")!, type: "Income"),
 ]
