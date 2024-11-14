@@ -774,8 +774,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="393" height="666"/>
                     <connections>
-                        <outlet property="addNewCategoryTabelView" destination="L9T-C0-AMI" id="WbI-QB-zhY"/>
-                        <outlet property="addNewRecordTableView" destination="e39-YV-UVK" id="QF3-Pr-VeQ"/>
+                        <outlet property="addNewCategoryView" destination="L9T-C0-AMI" id="aOc-7J-1yh"/>
+                        <outlet property="addNewRecordView" destination="e39-YV-UVK" id="6EV-nk-kKP"/>
                         <outlet property="categoryImage" destination="b4c-ng-DPY" id="MJR-yY-5oo"/>
                     </connections>
                 </viewController>
@@ -1005,7 +1005,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hhb-VH-KI4"/>
+        <segue reference="oBr-Ey-rmV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Garden" width="726" height="1322"/>

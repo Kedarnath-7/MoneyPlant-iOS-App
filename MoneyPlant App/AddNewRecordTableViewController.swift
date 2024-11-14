@@ -37,8 +37,10 @@ extension AddNewRecordTableViewController: UITableViewDataSource, UITableViewDel
         3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "amountCell", for: indexPath) as? AddNewRecordTableViewCell else { return UITableViewCell()}
-        cell1.amountTextField.placeholder = "Enter amount"
-        return cell1
+        guard let amountCell = tableView.dequeueReusableCell(withIdentifier: "amountCell", for: indexPath) as? AddNewRecordTableViewCell else { return UITableViewCell()}
+        amountCell.amountTextField.placeholder = "Enter amount"
+        guard let datePickerCell = tableView.dequeueReusableCell(withIdentifier: "datePickerCell", for: indexPath) as? AddNewRecordTableViewCell else { return UITableViewCell()}
+        
+        return amountCell
     }
 }
