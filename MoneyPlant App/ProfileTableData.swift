@@ -13,7 +13,7 @@ struct ProfileTable{
 }
 
 var profileTable: [ProfileTable] = [
-    ProfileTable(symbol: UIImage(systemName: "wallet.bifold")!, title: "Profile"),
+    ProfileTable(symbol: UIImage(systemName: "wallet.bifold")!, title: "Account"),
     ProfileTable(symbol: UIImage(systemName: "gearshape.2")!, title: "Settings"),
     ProfileTable(symbol: UIImage(systemName: "questionmark")!, title: "Help & Support"),
     ProfileTable(symbol: UIImage(systemName: "iphone.and.arrow.right.outward")!, title: "Logout")

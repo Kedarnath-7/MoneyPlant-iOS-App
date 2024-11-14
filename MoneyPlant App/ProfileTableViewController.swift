@@ -35,7 +35,7 @@ extension ProfileTableViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? ProfileTableViewCell else { return UITableViewCell() }
         
-        cell.imageOutlet = profileTable[indexPath.row].symbol
+        cell.imageOutlet.image = profileTable[indexPath.row].symbol
         cell.titleLabel.text = profileTable[indexPath.row].title
         
         return cell
