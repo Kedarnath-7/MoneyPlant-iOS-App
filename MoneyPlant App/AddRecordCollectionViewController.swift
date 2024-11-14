@@ -17,6 +17,7 @@ class AddRecordCollectionViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let selectedCategory = sender as? Categories else { return }
@@ -71,8 +72,9 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
         if collectionView == expenseCategoriesCollectionView{
             let selectedExpenseCategory = expenseCategories[indexPath.row]
             print("Selected Category: \(selectedExpenseCategory.name)")
-            self.performSegue(withIdentifier: "addNewExpense", sender: selectedExpenseCategory)
-        }else{
+            self.performSegue(withIdentifier: "addNewExpense", sender:  selectedExpenseCategory)
+            
+        }else if collectionView == incomeCategoriesCollectionView {
             let selectedIncomeCategory = incomeCategories[indexPath.row]
             self.performSegue(withIdentifier: "addNewIncome", sender: selectedIncomeCategory)
             print("Selected Category: \(selectedIncomeCategory.name)")
