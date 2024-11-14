@@ -12,7 +12,10 @@ class AddNewRecordViewController: UIViewController {
     
     @IBOutlet weak var categoryImage: UIImageView!
     
-    @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet weak var addNewRecordTableView: UIView!
+    
+    @IBOutlet weak var addNewCategoryTabelView: UIView!
+    
     
     var selectedExpenseCategory: Categories?
     var selectedIncomeCategory: Categories?
@@ -22,12 +25,13 @@ class AddNewRecordViewController: UIViewController {
         
         if let expenceCategory = selectedExpenseCategory {
             categoryImage.image = expenceCategory.symbol
-            categoryNameLabel.text = expenceCategory.name
-
+            addNewRecordTableView.alpha = 1
+            addNewCategoryTabelView.alpha = 0
         }
          if let incomeCategory = selectedIncomeCategory {
              categoryImage.image = incomeCategory.symbol
-             categoryNameLabel.text = incomeCategory.name
+             addNewRecordTableView.alpha = 0
+             addNewCategoryTabelView.alpha = 1
         }
         
         navigationItem.title = "Add New Record"
