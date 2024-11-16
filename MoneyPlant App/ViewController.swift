@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var taskTableView: UITableView!
     
     var originalHeight: CGFloat = 200
-       var expandedHeight: CGFloat = 750
+       var expandedHeight: CGFloat = 650
        let grabberLayer = CALayer() // Layer for the grabber
        
        // Sample Data for Daily Tasks

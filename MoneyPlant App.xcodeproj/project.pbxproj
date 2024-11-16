@@ -6,6 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXCopyFilesBuildPhase section */
+		348A273E2CE5F2DF00225744 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		786254322CD68662003A668A /* MoneyPlant App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoneyPlant App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,10 +81,13 @@
 				7862542E2CD68662003A668A /* Sources */,
 				7862542F2CD68662003A668A /* Frameworks */,
 				786254302CD68662003A668A /* Resources */,
+				348A273E2CE5F2DF00225744 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				348A27402CE5F32500225744 /* PBXTargetDependency */,
+				348A27422CE5F32500225744 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				786254342CD68662003A668A /* MoneyPlant App */,
@@ -107,6 +123,9 @@
 			);
 			mainGroup = 786254292CD68662003A668A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786254332CD68662003A668A /* Products */;
 			projectDirPath = "";
@@ -137,6 +156,17 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		348A27402CE5F32500225744 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 348A273F2CE5F32500225744 /* DGCharts */;
+		};
+		348A27422CE5F32500225744 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 348A27412CE5F32500225744 /* DGChartsDynamic */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		786254492CD68663003A668A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -150,6 +180,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -177,6 +208,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,6 +365,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		348A273F2CE5F32500225744 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		348A27412CE5F32500225744 /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7862542A2CD68662003A668A /* Project object */;
 }
