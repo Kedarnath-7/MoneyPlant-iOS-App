@@ -21,19 +21,17 @@ class AddRecordCollectionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let selectedCategory = sender as? Categories else { return }
-        if segue.identifier == "addNewExpense" {
+        if segue.identifier == "addNewExpenseRecord" {
             guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
             destinationVC.selectedExpenseCategory = selectedCategory
-        }else if segue.identifier == "addNewIncome"{
+        }else if segue.identifier == "addNewIncomeRecord"{
+            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+            destinationVC.selectedIncomeCategory = selectedCategory
+        }else if segue.identifier == "addNewExpenseCategory" || segue.identifier == "addNewIncomeCategory" {
             guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
             destinationVC.selectedIncomeCategory = selectedCategory
         }
         
-//        guard let selectedIncomeCategory = sender as? Categories else { return }
-//        if segue.identifier == "addNewIncome" {
-//            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
-//            destinationVC.selectedIncomeCategory = selectedIncomeCategory
-//        }
     }
     
 }
@@ -71,13 +69,23 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == expenseCategoriesCollectionView{
             let selectedExpenseCategory = expenseCategories[indexPath.row]
-            print("Selected Category: \(selectedExpenseCategory.name)")
-            self.performSegue(withIdentifier: "addNewExpense", sender:  selectedExpenseCategory)
+            if selectedExpenseCategory.name == "Add New"{
+                self.performSegue(withIdentifier: "addNewExpenseCategory", sender: selectedExpenseCategory)
+                print("Add New Category Cell Clicked")
+            }else{
+                print("Selected Category: \(selectedExpenseCategory.name)")
+                self.performSegue(withIdentifier: "addNewExpenseRecord", sender:  selectedExpenseCategory)
+            }
             
         }else if collectionView == incomeCategoriesCollectionView {
             let selectedIncomeCategory = incomeCategories[indexPath.row]
-            self.performSegue(withIdentifier: "addNewIncome", sender: selectedIncomeCategory)
-            print("Selected Category: \(selectedIncomeCategory.name)")
+            if selectedIncomeCategory.name == "Add New"{
+                self.performSegue(withIdentifier: "addNewIncomeCategory", sender: selectedIncomeCategory)
+                print("Add New Category Cell Clicked")
+            }else{
+                self.performSegue(withIdentifier: "addNewIncomeRecord", sender: selectedIncomeCategory)
+                print("Selected Category: \(selectedIncomeCategory.name)")
+            }
         }
     }
     
