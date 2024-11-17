@@ -6,45 +6,43 @@
 //
 
 import UIKit
+import SceneKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let scene = SCNScene()
+        
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 5)
+        
+        scene.rootNode.addChildNode(cameraNode)
+        
+        let lightNode = SCNNode()
+        lightNode.light = SCNLight()
+        lightNode.light?.type = .omni
+        lightNode.position = SCNVector3(x: 0, y: 10, z: 0)
+        
+        scene.rootNode.addChildNode(lightNode)
+        
+       let stars = SCNParticleSystem(named: "stars.swift", inDirectory: nil)!
+        scene.rootNode.addParticleSystem(stars)
+        
+        let earthNode = EarthNode()
+        scene.rootNode.addChildNode(earthNode)
+        
+        let sceneView = self.view as? SCNView
+        sceneView?.scene = scene
+        
+        sceneView?.showsStatistics = true
+        sceneView?.backgroundColor = .black
+        sceneView?.allowsCameraControl = true
+        
     }
 
 
 }
-
-//extension ViewController: UITableViewDelegate, UITableViewDataSource {
-//    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return transactions.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TransactionsTableViewCell else { return UITableViewCell() }
-//        
-//        cell.recordNameLabel.text = transactions[indexPath.row].name
-//        cell.recordImageView.image = transactions[indexPath.row].symbol
-//        cell.recordAmountLabel.text = "₹\( transactions[indexPath.row].amount)"
-//        cell.recordCategoryLabel.text = transactions[indexPath.row].category
-//        
-//        return cell
-//    }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        90
-//    }
-//    
-////    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-////        "Today's Transactions"
-////    }
-//    
-//}
