@@ -9,10 +9,19 @@ import UIKit
 
 class AddNewCategoryTableViewController: UITableViewController {
     
+    var addNewCategory: Categories?
     
     @IBOutlet weak var addNewCategoryImage: UIImageView!
     
-    var addNewCategory: Categories?
+    @IBOutlet weak var categoryNameTextField: UITextField!
+    
+    @IBOutlet weak var categoryTypeTextField: UITextField!
+    
+    @IBOutlet weak var categoryIsRegular: UITextField!
+    
+    @IBOutlet weak var categoryDescriptionTextField: UITextField!
+    
+    @IBOutlet weak var saveNewCategoryButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +29,8 @@ class AddNewCategoryTableViewController: UITableViewController {
         if let newCategory = addNewCategory {
             addNewCategoryImage.image = newCategory.symbol
         }
+        
+        updateSaveButtonState()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,6 +38,34 @@ class AddNewCategoryTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    func updateSaveButtonState() {
+        let categoryNameText = categoryNameTextField.text ?? ""
+        let categoryTypeText = categoryTypeTextField.text ?? ""
+        let categoryIsRegularText = categoryIsRegular.text ?? ""
+        let categoryDescritpionText = categoryDescriptionTextField.text ?? ""
+        saveNewCategoryButton.isEnabled = !categoryNameText.isEmpty && !categoryTypeText.isEmpty && addNewCategoryImage.image != nil
+    }
+    
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateSaveButtonState()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "saveUnwind" else { return }
+        
+        let destinationVC = segue.destination as! AddRecordCollectionViewController
+        
+        let image = addNewCategoryImage.image ?? UIImage(systemName: "plus")
+        let name = categoryNameTextField.text ?? ""
+        let type = categoryTypeTextField.text ?? ""
+        let regular = categoryIsRegular.text ?? ""
+        let description = categoryDescriptionTextField.text ?? ""
+        
+        addNewCategory = Categories(name: name, symbol: image!, type: type)
+    }
+    
+    
 
     // MARK: - Table view data source
 

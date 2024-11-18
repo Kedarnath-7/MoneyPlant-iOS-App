@@ -18,39 +18,85 @@ class AddRecordCollectionViewController: UIViewController {
         
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let selectedCategory = sender as? Categories else { return }
         if segue.identifier == "addNewExpenseRecord" {
-            
             if let navController = segue.destination as? UINavigationController {
                 if let addVC = navController.topViewController as? AddNewRecordTableViewController {
                     addVC.selectedExpenseCategory = selectedCategory
                 }
             }
-            
-//            guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
-//            destinationVC.selectedExpenseCategory = selectedCategory
         }else if segue.identifier == "addNewIncomeRecord"{
-            guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
-            destinationVC.selectedIncomeCategory = selectedCategory
+            if let navController = segue.destination as? UINavigationController {
+                if let addVC = navController.topViewController as? AddNewRecordTableViewController {
+                    addVC.selectedIncomeCategory = selectedCategory
+                }
+            }
         }else if segue.identifier == "addNewExpenseCategory" || segue.identifier == "addNewIncomeCategory" {
-            guard let destinationVC = segue.destination as? AddNewCategoryTableViewController else { return }
-            destinationVC.addNewCategory = selectedCategory
+            if let navController = segue.destination as? UINavigationController {
+                if let addVC = navController.topViewController as? AddNewCategoryTableViewController {
+                    addVC.addNewCategory = selectedCategory
+                }
+            }
         }
         
     }
     
-    
-    
-    @IBSegueAction func selectedExpenseCategory(_ coder: NSCoder, sender: Any?) -> AddNewRecordTableViewController? {
-        if let category = sender as? UICollectionViewCell, let indexPath = expenseCategoriesCollectionView.indexPath(for: category) {
-            let selectedCategory = expenseCategories[indexPath.row]
-            return AddNewRecordTableViewController(coder: coder, category: selectedCategory)
-        }else{
-            return AddNewRecordTableViewController(coder: coder, category: nil)
-        }
+    @IBAction func unwindToCategoriesCollectionView(segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveUnwind",
+                  let sourceViewController = segue.source as? AddNewCategoryTableViewController,
+                  let category = sourceViewController.addNewCategory else { return }
+            if category.type == "Expense"{
+                
+                expenseCategories.append(category)
+                
+                let newIndexPath = IndexPath(row: expenseCategories.count - 1, section: 0)
+
+                print("Inserting new item at indexPath: \(newIndexPath)")
+                 
+                if let collectionView = expenseCategoriesCollectionView {
+                    collectionView.reloadData()
+                } else {
+                    print("expenseCategoriesCollectionView is nil!")
+                }
+                
+               // let newIndexPath = IndexPath(row: expenseCategories.count, section: 0)
+               // print("Inserting new item at indexPath: \(newIndexPath)")
+                print("New Expense Category Inserted: \(category.name)")
+                //expenseCategoriesCollectionView.insertItems(at: [newIndexPath])
+                
+            }else{
+                incomeCategories.append(category)
+                
+                let newIndexPath = IndexPath(row: incomeCategories.count - 1, section: 0)
+
+                print("Inserting new item at indexPath: \(newIndexPath)")
+                
+                if let collectionView = incomeCategoriesCollectionView {
+                    collectionView.reloadData()
+                } else {
+                    print("incomeCategoriesCollectionView is nil!")
+                }
+                
+                //let newIndexPath = IndexPath(row: incomeCategories.count, section: 0)
+                //print("Inserting new item at indexPath: \(newIndexPath)")
+                print("New Income Category Inserted: \(category.name)")
+                //incomeCategoriesCollectionView.insertItems(at: [newIndexPath])
+                
+            }
     }
+    
+    
+//    @IBSegueAction func selectedExpenseCategory(_ coder: NSCoder, sender: Any?) -> AddNewRecordTableViewController? {
+//        if let category = sender as? UICollectionViewCell, let indexPath = expenseCategoriesCollectionView.indexPath(for: category) {
+//            let selectedCategory = expenseCategories[indexPath.row]
+//            return AddNewRecordTableViewController(coder: coder, category: selectedCategory)
+//        }else{
+//            return AddNewRecordTableViewController(coder: coder, category: nil)
+//        }
+//    }
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -71,14 +117,18 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
         
         if collectionView == expenseCategoriesCollectionView{
             let expenseCell = expenseCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "expenseCollectionViewCell", for: indexPath) as? AddRecordCollectionViewCell
-            expenseCell?.cateogryNameLabel.text = expenseCategories[indexPath.row].name
-            expenseCell?.categorySymbolLabel.image = expenseCategories[indexPath.row].symbol
+            let expenseCategory = expenseCategories[indexPath.item]
+            expenseCell?.update(with: expenseCategory)
+//            expenseCell?.cateogryNameLabel.text = expenseCategories[indexPath.row].name
+//            expenseCell?.categorySymbolLabel.image = expenseCategories[indexPath.row].symbol
             return expenseCell!
         }
         else{
             let incomeCell = incomeCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "incomeCollectionViewCell", for: indexPath) as? AddRecordCollectionViewCell
-            incomeCell!.cateogryNameLabel.text = incomeCategories[indexPath.row].name
-            incomeCell!.categorySymbolLabel.image = incomeCategories[indexPath.row].symbol
+            let incomeCategory = incomeCategories[indexPath.item]
+            incomeCell?.update(with: incomeCategory)
+//            incomeCell!.cateogryNameLabel.text = incomeCategories[indexPath.row].name
+//            incomeCell!.categorySymbolLabel.image = incomeCategories[indexPath.row].symbol
             return incomeCell!
         }
     }
