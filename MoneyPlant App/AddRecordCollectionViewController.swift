@@ -50,9 +50,9 @@ class AddRecordCollectionViewController: UIViewController {
                   let category = sourceViewController.addNewCategory else { return }
             if category.type == "Expense"{
                 
-                expenseCategories.append(category)
+                expenseCategories.insert(category, at: expenseCategories.count - 1)
                 
-                let newIndexPath = IndexPath(row: expenseCategories.count - 1, section: 0)
+                let newIndexPath = IndexPath(row: expenseCategories.count - 2, section: 0)
 
                 print("Inserting new item at indexPath: \(newIndexPath)")
                  
@@ -68,9 +68,9 @@ class AddRecordCollectionViewController: UIViewController {
                 //expenseCategoriesCollectionView.insertItems(at: [newIndexPath])
                 
             }else{
-                incomeCategories.append(category)
+                incomeCategories.insert(category, at: incomeCategories.count - 1)
                 
-                let newIndexPath = IndexPath(row: incomeCategories.count - 1, section: 0)
+                let newIndexPath = IndexPath(row: incomeCategories.count - 2, section: 0)
 
                 print("Inserting new item at indexPath: \(newIndexPath)")
                 
