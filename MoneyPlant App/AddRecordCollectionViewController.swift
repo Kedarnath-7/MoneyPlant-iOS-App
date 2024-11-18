@@ -22,8 +22,15 @@ class AddRecordCollectionViewController: UIViewController {
         
         guard let selectedCategory = sender as? Categories else { return }
         if segue.identifier == "addNewExpenseRecord" {
-            guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
-            destinationVC.selectedExpenseCategory = selectedCategory
+            
+            if let navController = segue.destination as? UINavigationController {
+                if let addVC = navController.topViewController as? AddNewRecordTableViewController {
+                    addVC.selectedExpenseCategory = selectedCategory
+                }
+            }
+            
+//            guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
+//            destinationVC.selectedExpenseCategory = selectedCategory
         }else if segue.identifier == "addNewIncomeRecord"{
             guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
             destinationVC.selectedIncomeCategory = selectedCategory
