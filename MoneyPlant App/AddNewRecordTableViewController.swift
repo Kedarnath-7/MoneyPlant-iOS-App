@@ -8,43 +8,68 @@
 import UIKit
 
 class AddNewRecordTableViewController: UITableViewController {
-
     
-    @IBOutlet weak var selectedCategoryImage: UIImageView!
-    
+    var transaction: Transactions?
+    var selectedCategory: Categories?
     var selectedExpenseCategory: Categories?
     var selectedIncomeCategory: Categories?
+    
+    @IBOutlet weak var selectedCategoryImage: UIImageView!
+
+    @IBOutlet weak var selectedCategoryName: UITextField!
+    
+    @IBOutlet weak var selectedCategoryAmount: UITextField!
+    
+    @IBOutlet weak var selectedCategoryDate: UITextField!
+    
+    @IBOutlet weak var selectedCategoryNote: UITextField!
+    
+    @IBOutlet weak var saveRecordButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let expenceCategory = selectedExpenseCategory {
+            selectedCategory = expenceCategory
             print("selectedExpenseCategory Data passed")
             selectedCategoryImage.image = expenceCategory.symbol
             navigationItem.title = "Add New Expense Record"
         }
          if let incomeCategory = selectedIncomeCategory {
+             selectedCategory = incomeCategory
              print("selectedIncomeCategory Data passed")
              selectedCategoryImage.image = incomeCategory.symbol
              navigationItem.title = "Add New Income Record"
         }
-        navigationItem.title = "Add New Record"
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        updateSaveButtonState()
     }
     
-//    init?(coder: NSCoder, category: Categories?) {
-//        self.selectedExpenseCategory = category
-//        self.selectedIncomeCategory = category
-//        super.init(coder: coder)
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    func updateSaveButtonState() {
+        let categoryAmount = selectedCategoryAmount.text ?? ""
+        let categoryDate = selectedCategoryDate.text ?? ""
+        let categoryNote = selectedCategoryNote.text ?? ""
+        saveRecordButton.isEnabled = !categoryAmount.isEmpty && !categoryDate.isEmpty && selectedCategoryImage.image != nil
+    }
+    
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateSaveButtonState()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "saveUnwind" else { return }
+        
+        let destinationVC = segue.destination as! TransactionsViewController
+        
+        let name = selectedCategoryName?.text
+        let category = selectedCategory?.name
+        let image = selectedCategoryImage.image ?? nil
+        let amount = selectedCategoryAmount.text ?? ""
+        let date = selectedCategoryDate.text ?? ""
+        let note = selectedCategoryNote.text ?? ""
+        
+        transaction = Transactions(symbol: image!, name: name!, amount: Double(amount)!, category: category!)
+    }
+
     
 
     // MARK: - Table view data source

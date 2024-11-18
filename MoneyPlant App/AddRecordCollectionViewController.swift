@@ -18,20 +18,17 @@ class AddRecordCollectionViewController: UIViewController {
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let selectedCategory = sender as? Categories else { return }
-        if segue.identifier == "addNewExpenseRecord" {
+        if segue.identifier == "addNewExpenseRecord" || segue.identifier == "addNewIncomeRecord"{
             if let navController = segue.destination as? UINavigationController {
                 if let addVC = navController.topViewController as? AddNewRecordTableViewController {
-                    addVC.selectedExpenseCategory = selectedCategory
-                }
-            }
-        }else if segue.identifier == "addNewIncomeRecord"{
-            if let navController = segue.destination as? UINavigationController {
-                if let addVC = navController.topViewController as? AddNewRecordTableViewController {
-                    addVC.selectedIncomeCategory = selectedCategory
+                    if segue.identifier == "addNewExpenseRecord" {
+                        addVC.selectedExpenseCategory = selectedCategory
+                    }else if segue.identifier == "addNewIncomeRecord" {
+                        addVC.selectedIncomeCategory = selectedCategory
+                    }
                 }
             }
         }else if segue.identifier == "addNewExpenseCategory" || segue.identifier == "addNewIncomeCategory" {
@@ -48,24 +45,19 @@ class AddRecordCollectionViewController: UIViewController {
         guard segue.identifier == "saveUnwind",
                   let sourceViewController = segue.source as? AddNewCategoryTableViewController,
                   let category = sourceViewController.addNewCategory else { return }
+        
             if category.type == "Expense"{
-                
                 expenseCategories.insert(category, at: expenseCategories.count - 1)
-                
                 let newIndexPath = IndexPath(row: expenseCategories.count - 2, section: 0)
-
                 print("Inserting new item at indexPath: \(newIndexPath)")
                  
                 if let collectionView = expenseCategoriesCollectionView {
                     collectionView.reloadData()
+                    
                 } else {
                     print("expenseCategoriesCollectionView is nil!")
                 }
-                
-               // let newIndexPath = IndexPath(row: expenseCategories.count, section: 0)
-               // print("Inserting new item at indexPath: \(newIndexPath)")
                 print("New Expense Category Inserted: \(category.name)")
-                //expenseCategoriesCollectionView.insertItems(at: [newIndexPath])
                 
             }else{
                 incomeCategories.insert(category, at: incomeCategories.count - 1)
@@ -79,24 +71,10 @@ class AddRecordCollectionViewController: UIViewController {
                 } else {
                     print("incomeCategoriesCollectionView is nil!")
                 }
-                
-                //let newIndexPath = IndexPath(row: incomeCategories.count, section: 0)
-                //print("Inserting new item at indexPath: \(newIndexPath)")
                 print("New Income Category Inserted: \(category.name)")
-                //incomeCategoriesCollectionView.insertItems(at: [newIndexPath])
                 
             }
     }
-    
-    
-//    @IBSegueAction func selectedExpenseCategory(_ coder: NSCoder, sender: Any?) -> AddNewRecordTableViewController? {
-//        if let category = sender as? UICollectionViewCell, let indexPath = expenseCategoriesCollectionView.indexPath(for: category) {
-//            let selectedCategory = expenseCategories[indexPath.row]
-//            return AddNewRecordTableViewController(coder: coder, category: selectedCategory)
-//        }else{
-//            return AddNewRecordTableViewController(coder: coder, category: nil)
-//        }
-//    }
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {

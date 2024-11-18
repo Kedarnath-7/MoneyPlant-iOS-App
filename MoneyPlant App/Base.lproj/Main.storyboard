@@ -55,16 +55,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="k6N-nB-9Qc">
-                                <rect key="frame" x="0.0" y="223.33333333333334" width="393" height="66.666666666666657"/>
+                                <rect key="frame" x="0.0" y="225.33333333333334" width="393" height="64.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfH-3g-NA9">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="26"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="₹ 50,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm5-O3-rjw">
-                                        <rect key="frame" x="0.0" y="25.999999999999996" width="393" height="40.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="23.999999999999996" width="393" height="40.666666666666657"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -97,16 +97,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsb-N9-Syb">
-                                                    <rect key="frame" x="266" y="30" width="107" height="30"/>
+                                                    <rect key="frame" x="233" y="30" width="140" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="107" id="1wY-aP-iEs"/>
+                                                        <constraint firstAttribute="width" constant="140" id="1wY-aP-iEs"/>
                                                         <constraint firstAttribute="height" constant="30" id="gva-Fc-zft"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="₹500.00">
                                                             <attributes>
                                                                 <font key="NSFont" size="24" name="SFPro-Bold"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -139,7 +139,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2j-GN-zvU">
-                                                    <rect key="frame" x="90" y="20" width="168" height="30"/>
+                                                    <rect key="frame" x="90" y="20" width="135" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="50o-ym-p72"/>
                                                     </constraints>
@@ -148,7 +148,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8b-nb-ZaA">
-                                                    <rect key="frame" x="90" y="50" width="168" height="20"/>
+                                                    <rect key="frame" x="90" y="50" width="135" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="yPQ-vb-GQG"/>
                                                     </constraints>
@@ -158,7 +158,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Xsb-N9-Syb" firstAttribute="leading" secondItem="y8b-nb-ZaA" secondAttribute="trailing" constant="8" symbolic="YES" id="26t-bZ-Eb3"/>
+                                                <constraint firstItem="Xsb-N9-Syb" firstAttribute="leading" secondItem="y8b-nb-ZaA" secondAttribute="trailing" constant="8" id="26t-bZ-Eb3"/>
                                                 <constraint firstItem="Xsb-N9-Syb" firstAttribute="leading" secondItem="Y2j-GN-zvU" secondAttribute="trailing" constant="8" id="8dZ-GQ-Vtz"/>
                                                 <constraint firstItem="Y2j-GN-zvU" firstAttribute="leading" secondItem="PLq-Er-i5J" secondAttribute="trailing" constant="16" id="ClA-DV-79s"/>
                                                 <constraint firstItem="y8b-nb-ZaA" firstAttribute="top" secondItem="Y2j-GN-zvU" secondAttribute="bottom" id="LCJ-Qu-A67"/>
@@ -195,7 +195,7 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="fL2-nL-EBi">
-                                <rect key="frame" x="117" y="173" width="159" height="34.333333333333343"/>
+                                <rect key="frame" x="117" y="173" width="159" height="36.333333333333343"/>
                                 <locale key="locale" localeIdentifier="en_IN"/>
                             </datePicker>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="zLL-RY-W6P">
@@ -335,6 +335,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Records" largeTitleDisplayMode="always" id="3bG-Zn-Zw6"/>
+                    <connections>
+                        <outlet property="transactionsTableView" destination="uXS-le-6m1" id="8kM-HE-BLE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLd-iJ-wTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -991,24 +994,46 @@
                             </tableViewSection>
                             <tableViewSection id="nEN-K8-J6Q">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="cC7-3E-UGh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="yjd-hq-cRN">
                                         <rect key="frame" x="20" y="334" width="353" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yjd-hq-cRN" id="5eJ-PV-sRZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="njr-Vg-3ay">
+                                                    <rect key="frame" x="20" y="7" width="313" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="gg4-oN-03g" eventType="editingDidEnd" id="8BP-9x-PAs"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="cC7-3E-UGh">
+                                        <rect key="frame" x="20" y="382" width="353" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cC7-3E-UGh" id="5k7-6D-sC2">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kyk-si-zyP">
-                                                    <rect key="frame" x="20" y="4" width="313" height="34"/>
+                                                    <rect key="frame" x="20" y="7" width="313" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="gg4-oN-03g" eventType="editingDidEnd" id="FRl-Lt-bFf"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="o9D-W1-kz6">
-                                        <rect key="frame" x="20" y="382" width="353" height="48"/>
+                                        <rect key="frame" x="20" y="430" width="353" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o9D-W1-kz6" id="hvx-Ve-azV">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
@@ -1019,12 +1044,15 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="gg4-oN-03g" eventType="editingDidEnd" id="V4Q-iS-jY0"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="hky-ea-ha8">
-                                        <rect key="frame" x="20" y="430" width="353" height="72"/>
+                                        <rect key="frame" x="20" y="478" width="353" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hky-ea-ha8" id="azp-gm-6zo">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="72"/>
@@ -1035,6 +1063,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="gg4-oN-03g" eventType="editingDidEnd" id="gU4-k4-hql"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1048,14 +1079,28 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add New Record" id="kPd-DO-ARI">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H4l-14-sm6"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="i1d-iq-bgg"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H4l-14-sm6">
+                            <connections>
+                                <segue destination="5nF-qV-TXy" kind="unwind" unwindAction="unwindToCategoriesCollectionViewWithSegue:" id="6la-sz-xst"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="i1d-iq-bgg">
+                            <connections>
+                                <segue destination="5nF-qV-TXy" kind="unwind" identifier="saveUnwind" unwindAction="unwindToTransactionsTableViewWithSegue:" id="raq-0Z-YsS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="saveRecordButton" destination="i1d-iq-bgg" id="0pK-at-EIa"/>
+                        <outlet property="selectedCategoryAmount" destination="kyk-si-zyP" id="DAU-q7-4dd"/>
+                        <outlet property="selectedCategoryDate" destination="zr3-jP-r12" id="luC-Tn-Ljs"/>
                         <outlet property="selectedCategoryImage" destination="DqR-QB-7NZ" id="smL-vD-9VL"/>
+                        <outlet property="selectedCategoryName" destination="njr-Vg-3ay" id="CxN-1k-1Yj"/>
+                        <outlet property="selectedCategoryNote" destination="BYL-vh-PcB" id="qjH-3W-tlB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2P-G2-cQp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="5nF-qV-TXy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-272.51908396946561" y="2918.6619718309862"/>
         </scene>
@@ -1193,7 +1238,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add New Category" id="olp-qQ-Os8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HAs-ZP-R1Q"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HAs-ZP-R1Q">
+                            <connections>
+                                <segue destination="20F-g4-Xip" kind="unwind" unwindAction="unwindToCategoriesCollectionViewWithSegue:" id="NGz-af-hF7"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Dre-5s-Chm">
                             <connections>
                                 <segue destination="20F-g4-Xip" kind="unwind" identifier="saveUnwind" unwindAction="unwindToCategoriesCollectionViewWithSegue:" id="Rx0-56-SmH"/>
