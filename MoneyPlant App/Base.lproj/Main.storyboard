@@ -1312,7 +1312,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="gg4-oN-03g" kind="relationship" relationship="rootViewController" id="3wG-8e-rDc"/>
+                        <segue destination="gg4-oN-03g" kind="relationship" relationship="rootViewController" destinationCreationSelector="selectedExpenseCategory:sender:" id="3wG-8e-rDc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AQd-Ji-9nR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

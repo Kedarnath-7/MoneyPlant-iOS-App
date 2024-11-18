@@ -34,6 +34,16 @@ class AddRecordCollectionViewController: UIViewController {
         
     }
     
+    
+    
+    @IBSegueAction func selectedExpenseCategory(_ coder: NSCoder, sender: Any?) -> AddNewRecordTableViewController? {
+        if let category = sender as? UICollectionViewCell, let indexPath = expenseCategoriesCollectionView.indexPath(for: category) {
+            let selectedCategory = expenseCategories[indexPath.row]
+            return AddNewRecordTableViewController(coder: coder, category: selectedCategory)
+        }else{
+            return AddNewRecordTableViewController(coder: coder, category: nil)
+        }
+    }
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {

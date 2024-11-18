@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Foundation
 
-struct Categories {
+struct Categories: Codable {
     var name: String
     var symbol: UIImage
     var type : String
