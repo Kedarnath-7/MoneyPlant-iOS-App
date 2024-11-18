@@ -22,14 +22,14 @@ class AddRecordCollectionViewController: UIViewController {
         
         guard let selectedCategory = sender as? Categories else { return }
         if segue.identifier == "addNewExpenseRecord" {
-            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+            guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
             destinationVC.selectedExpenseCategory = selectedCategory
         }else if segue.identifier == "addNewIncomeRecord"{
-            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
+            guard let destinationVC = segue.destination as? AddNewRecordTableViewController else { return }
             destinationVC.selectedIncomeCategory = selectedCategory
         }else if segue.identifier == "addNewExpenseCategory" || segue.identifier == "addNewIncomeCategory" {
-            guard let destinationVC = segue.destination as? AddNewRecordViewController else { return }
-            destinationVC.selectedIncomeCategory = selectedCategory
+            guard let destinationVC = segue.destination as? AddNewCategoryTableViewController else { return }
+            destinationVC.addNewCategory = selectedCategory
         }
         
     }

@@ -1,5 +1,5 @@
 //
-//  AddNewRecordTableViewController.swift
+//  AddNewCategoryTableViewController.swift
 //  MoneyPlant App
 //
 //  Created by admin86 on 14/11/24.
@@ -7,9 +7,8 @@
 
 import UIKit
 
-class AddNewRecordTableViewController: UIViewController {
-    
-    
+class AddNewCategoryViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,19 +27,21 @@ class AddNewRecordTableViewController: UIViewController {
     */
 
 }
-
-extension AddNewRecordTableViewController: UITableViewDataSource, UITableViewDelegate {
+extension AddNewCategoryViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        4
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let amountCell = tableView.dequeueReusableCell(withIdentifier: "amountCell", for: indexPath) as? AddNewRecordTableViewCell else { return UITableViewCell()}
-        amountCell.amountTextField.placeholder = "Enter amount"
-        guard let datePickerCell = tableView.dequeueReusableCell(withIdentifier: "datePickerCell", for: indexPath) as? AddNewRecordTableViewCell else { return UITableViewCell()}
+        guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "categoryNameCell", for: indexPath) as? AddNewCategoryTableViewCell else { return UITableViewCell() }
+        cell1.addNewCategoryName.placeholder = "Category Name"
+//        cell1.addNewCategoryType.placeholder = "Category Type"
+//        cell1.addNewCategoryRegular.placeholder = "Regular Record"
+//        cell1.addNewCategoryTags.text = "Tags"
         
-        return amountCell
+        return cell1
     }
+    
 }
