@@ -71,7 +71,7 @@ class ViewController2: UIViewController,UICollectionViewDataSource,UICollectionV
         
         let layout1 = UICollectionViewFlowLayout()
             layout1.scrollDirection = .horizontal
-            layout1.itemSize = CGSize(width: 175, height: 175) // Adjust size as needed
+            layout1.itemSize = CGSize(width: 200, height:200) // Adjust size as needed
             collectionView1.collectionViewLayout = layout1
             
             // Configure layout for collectionView2

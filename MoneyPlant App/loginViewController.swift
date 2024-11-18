@@ -8,10 +8,8 @@
 import UIKit
 
 class loginViewController: UIViewController {
-    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var confirmPasswordField: UITextField!
     
     let defaultUsername = "arthur morgan".lowercased()
     let defaultEmail = "abcd@gmail.com".lowercased()
@@ -21,25 +19,35 @@ class loginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+    @IBAction func signinButtonTapped(_ sender: UIButton) {
         // Get text from fields in lowercase to ensure case-insensitivity
-        let enteredUsername = usernameField.text?.lowercased() ?? ""
         let enteredEmail = emailField.text?.lowercased() ?? ""
-        let enteredPassword = passwordField.text?.lowercased() ?? ""
-        let enteredConfirmPassword = confirmPasswordField.text?.lowercased() ?? ""
-        // Validate the entered values
-        if enteredUsername == defaultUsername &&
-            enteredEmail == defaultEmail &&
-            enteredPassword == defaultPassword &&
-            enteredPassword == enteredConfirmPassword {
-            
-            // Successful signup - navigate to the next view controller
-            if let nextViewController = storyboard?.instantiateViewController(withIdentifier: "successfulSignupSegue") {
-                navigationController?.pushViewController(nextViewController, animated: true)
-            }
-        } else {
-            // Show error if values do not match
-            print("Sign up failed: Invalid credentials or passwords do not match")
-        }
-    }
-}
+             let enteredPassword = passwordField.text ?? ""
+             
+             // Validate that email and password fields are not empty
+             if enteredEmail.isEmpty || enteredPassword.isEmpty {
+                 showAlert(message: "All fields must be filled.")
+                 return
+             }
+             
+             // Check if the entered email and password match the default ones
+             if enteredEmail == defaultEmail.lowercased() && enteredPassword == defaultPassword {
+                 // Navigate to the TabBarController if credentials are correct
+                 if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController {
+                     tabBarController.selectedIndex = 0
+                     view.window?.rootViewController = tabBarController
+                     view.window?.makeKeyAndVisible()
+                 } else {
+                     print("Tab Bar Controller not found.")
+                 }
+             } else {
+                 showAlert(message: "Incorrect Password")
+             }
+         }
+         
+         func showAlert(message: String) {
+             let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+             present(alert, animated: true, completion: nil)
+         }
+     }
