@@ -94,4 +94,6 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
         return CGSize(width: 90, height: 90)
         
     }
+    
+    
 }

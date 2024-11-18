@@ -28,7 +28,7 @@ class AddNewRecordTableViewController: UITableViewController {
              selectedCategoryImage.image = incomeCategory.symbol
              navigationItem.title = "Add New Income Record"
         }
-
+        navigationItem.title = "Add New Record"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,23 +40,24 @@ class AddNewRecordTableViewController: UITableViewController {
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
-//        return 2
+//        return 1
 //    }
-
+//
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        // #warning Incomplete implementation, return the number of rows
-//        return 0
+//        return 1
 //    }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "selectedCategoryImageCell", for: indexPath) as? AddNewRecordTableViewCell else{return UITableViewCell()}
+//        
+//        cell.
+//        // Configure the cell...
+//
+//        return cell
+//    }
 
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -102,5 +103,7 @@ class AddNewRecordTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
+    
 }
