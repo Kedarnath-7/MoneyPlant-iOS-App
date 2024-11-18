@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		787804102CEB0BCB0008EE07 /* Main Scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 7878040F2CEB0BCB0008EE07 /* Main Scene.scn */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		786254322CD68662003A668A /* MoneyPlant App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoneyPlant App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7878040F2CEB0BCB0008EE07 /* Main Scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Main Scene.scn"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +50,7 @@
 		786254292CD68662003A668A = {
 			isa = PBXGroup;
 			children = (
+				7878040F2CEB0BCB0008EE07 /* Main Scene.scn */,
 				786254342CD68662003A668A /* MoneyPlant App */,
 				786254332CD68662003A668A /* Products */,
 			);
@@ -122,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787804102CEB0BCB0008EE07 /* Main Scene.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
