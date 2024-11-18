@@ -188,7 +188,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
-                                    <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="2Vi-U7-rUd" kind="show" id="eij-Ro-g7m"/>
@@ -743,7 +743,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHQ-BP-DJb">
-                                <rect key="frame" x="96" y="115" width="200" height="200"/>
+                                <rect key="frame" x="96" y="115" width="201" height="200"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b4c-ng-DPY">
                                         <rect key="frame" x="25" y="25" width="150" height="150"/>
@@ -764,7 +764,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e39-YV-UVK">
-                                <rect key="frame" x="15.666666666666657" y="381" width="361" height="320"/>
+                                <rect key="frame" x="16" y="381" width="361" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="361" id="2g6-Te-EFQ"/>
                                     <constraint firstAttribute="height" constant="320" id="gIj-eH-MZo"/>
@@ -774,7 +774,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5c0-Kp-uG0">
-                                <rect key="frame" x="136" y="333" width="120" height="36"/>
+                                <rect key="frame" x="136" y="333" width="121" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="62h-sh-doV"/>
                                     <constraint firstAttribute="width" constant="120" id="6cq-ee-xua"/>
@@ -783,7 +783,7 @@
                                 <buttonConfiguration key="configuration" style="gray" title="Edit" cornerStyle="capsule"/>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9T-C0-AMI">
-                                <rect key="frame" x="15.666666666666657" y="381" width="361" height="320"/>
+                                <rect key="frame" x="16" y="381" width="361" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="2mh-em-5zq"/>
                                     <constraint firstAttribute="width" constant="361" id="WOI-zJ-Ka2"/>
@@ -967,7 +967,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DqR-QB-7NZ">
-                                                            <rect key="frame" x="25" y="25" width="150" height="150"/>
+                                                            <rect key="frame" x="40" y="40" width="120" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         </imageView>
@@ -1126,7 +1126,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gEN-yJ-LvY">
-                                                            <rect key="frame" x="25" y="25" width="150" height="150"/>
+                                                            <rect key="frame" x="40" y="40" width="120" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         </imageView>
