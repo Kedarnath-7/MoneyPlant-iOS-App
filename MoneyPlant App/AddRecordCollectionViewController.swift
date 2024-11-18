@@ -71,9 +71,9 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
             let selectedExpenseCategory = expenseCategories[indexPath.row]
             if selectedExpenseCategory.name == "Add New"{
                 self.performSegue(withIdentifier: "addNewExpenseCategory", sender: selectedExpenseCategory)
-                print("Add New Category Cell Clicked")
+                print("Add New Expense Category Cell Clicked")
             }else{
-                print("Selected Category: \(selectedExpenseCategory.name)")
+                print("Selected Expense Category: \(selectedExpenseCategory.name)")
                 self.performSegue(withIdentifier: "addNewExpenseRecord", sender:  selectedExpenseCategory)
             }
             
@@ -81,10 +81,10 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
             let selectedIncomeCategory = incomeCategories[indexPath.row]
             if selectedIncomeCategory.name == "Add New"{
                 self.performSegue(withIdentifier: "addNewIncomeCategory", sender: selectedIncomeCategory)
-                print("Add New Category Cell Clicked")
+                print("Add New Income Category Cell Clicked")
             }else{
                 self.performSegue(withIdentifier: "addNewIncomeRecord", sender: selectedIncomeCategory)
-                print("Selected Category: \(selectedIncomeCategory.name)")
+                print("Selected Income Category: \(selectedIncomeCategory.name)")
             }
         }
     }

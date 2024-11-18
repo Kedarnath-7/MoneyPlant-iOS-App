@@ -97,9 +97,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsb-N9-Syb">
-                                                    <rect key="frame" x="160.66666666666663" y="30" width="212.33333333333337" height="30"/>
+                                                    <rect key="frame" x="266" y="30" width="107" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="107" id="1wY-aP-iEs"/>
+                                                        <constraint firstAttribute="width" constant="107" id="1wY-aP-iEs"/>
                                                         <constraint firstAttribute="height" constant="30" id="gva-Fc-zft"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
@@ -139,7 +139,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2j-GN-zvU">
-                                                    <rect key="frame" x="90" y="20" width="62.666666666666657" height="30"/>
+                                                    <rect key="frame" x="90" y="20" width="168" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="50o-ym-p72"/>
                                                     </constraints>
@@ -148,7 +148,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8b-nb-ZaA">
-                                                    <rect key="frame" x="90" y="50" width="62.666666666666657" height="20"/>
+                                                    <rect key="frame" x="90" y="50" width="168" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="yPQ-vb-GQG"/>
                                                     </constraints>
@@ -1058,7 +1058,7 @@
             </objects>
             <point key="canvasLocation" x="-272.51908396946561" y="2918.6619718309862"/>
         </scene>
-        <!--Add New Category Table View Controller-->
+        <!--Add New Category-->
         <scene sceneID="VkG-vV-4nw">
             <objects>
                 <tableViewController id="jAZ-w5-S3M" customClass="AddNewCategoryTableViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -1178,7 +1178,7 @@
                             <outlet property="delegate" destination="jAZ-w5-S3M" id="1Yq-p8-he3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="olp-qQ-Os8">
+                    <navigationItem key="navigationItem" title="Add New Category" id="olp-qQ-Os8">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HAs-ZP-R1Q"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Dre-5s-Chm"/>
                     </navigationItem>
