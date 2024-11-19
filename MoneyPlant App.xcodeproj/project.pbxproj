@@ -6,13 +6,21 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		787804102CEB0BCB0008EE07 /* Main Scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 7878040F2CEB0BCB0008EE07 /* Main Scene.scn */; };
-/* End PBXBuildFile section */
+/* Begin PBXCopyFilesBuildPhase section */
+		340EE7132CEB3813006A60DF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		786254322CD68662003A668A /* MoneyPlant App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoneyPlant App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7878040F2CEB0BCB0008EE07 /* Main Scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Main Scene.scn"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,7 +58,6 @@
 		786254292CD68662003A668A = {
 			isa = PBXGroup;
 			children = (
-				7878040F2CEB0BCB0008EE07 /* Main Scene.scn */,
 				786254342CD68662003A668A /* MoneyPlant App */,
 				786254332CD68662003A668A /* Products */,
 			);
@@ -74,6 +81,7 @@
 				7862542E2CD68662003A668A /* Sources */,
 				7862542F2CD68662003A668A /* Frameworks */,
 				786254302CD68662003A668A /* Resources */,
+				340EE7132CEB3813006A60DF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -113,6 +121,8 @@
 			);
 			mainGroup = 786254292CD68662003A668A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786254332CD68662003A668A /* Products */;
 			projectDirPath = "";
@@ -128,7 +138,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				787804102CEB0BCB0008EE07 /* Main Scene.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,13 +157,19 @@
 		786254492CD68663003A668A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"/Users/admin15/Desktop/MoneyPlant-iOS-App/MoneyPlant/**",
+					"App/Charts/**",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MoneyPlant App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -167,6 +182,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"/Users/admin15/Desktop/MoneyPlant-iOS-App/MoneyPlant/**",
+					"App/Charts/**",
+				);
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -174,13 +193,19 @@
 		7862544A2CD68663003A668A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"/Users/admin15/Desktop/MoneyPlant-iOS-App/MoneyPlant/**",
+					"App/Charts/**",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MoneyPlant App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
