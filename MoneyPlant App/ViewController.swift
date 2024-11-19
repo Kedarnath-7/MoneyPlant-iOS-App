@@ -17,17 +17,34 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScene()
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
+        // setupScene()
         
     }
     
-    func setupScene() {
-        sceneView = self.view as? SCNView
-        sceneView.allowsCameraControl = true
-        scene = SCNScene(named: "MainScene.scn")
-        sceneView.scene = scene
-        
+    @objc func changeVC(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
+        vc.modalPresentationStyle = .automatic
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func unwindToGardenViewController(segue: UIStoryboardSegue) {
+        guard segue.identifier == "continueUnwind",
+              let sourceViewController = segue.source as? OnboardingViewController else{return}
+        segue.source.modalPresentationStyle = .automatic
+        segue.source.modalTransitionStyle = .coverVertical
+    }
+    
+//    func setupScene() {
+//        sceneView = self.view as? SCNView
+//        sceneView.allowsCameraControl = true
+//        scene = SCNScene(named: "MainScene.scn")
+//        sceneView.scene = scene
+//        
+//    }
     
     
 }
