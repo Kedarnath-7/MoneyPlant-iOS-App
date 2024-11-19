@@ -24,7 +24,7 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var graphContainerView: UIView!
     
-    var graphView: UIView!
+
     
     var categoryData: [(name: String, value: Double, color: UIColor, symbol: UIImage)] = [
         ("Food", 500.0, .systemOrange, UIImage(systemName: "fork.knife.circle.fill")!),
@@ -49,14 +49,14 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
               pieChartContainerView.isHidden = false
               graphContainerView.isHidden = true
 
-              setupGraph()
               pageControl.numberOfPages = 2
               pageControl.currentPage = 0
               pageControl.addTarget(self, action: #selector(pageControlChanged), for: .valueChanged)
-           let graphView = LineGraphView()
-           graphView.backgroundColor = .green // Set background color
+           
+              let graphView = LineGraphView()
 
        }
+    
        let collapsedHeight: CGFloat = 0 // Height when collapsed
        let expandedHeight: CGFloat = 544 // Height when expanded
        let grabberLayer = CALayer()
@@ -72,31 +72,9 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
                 pieChartContainerView.isHidden = true
                 graphContainerView.isHidden = false
 
-                // Redraw the graph to ensure it's visible
-                setupGraph()
             }
        }
 
-       // MARK: - Graph View Setup
-    func setupGraph() {
-        // Remove any existing subviews to avoid overlap
-        graphContainerView.subviews.forEach { $0.removeFromSuperview() }
-
-          // Create the graph view
-          let graphView = LineGraphView()
-          graphView.dataPoints = [2000, 5000, 3000, 7000, 10000, 8000, 4000]
-          graphView.labels = ["23 Mo", "24 Tu", "25 We", "26 Th", "27 Fr", "28 Sa", "29 Su"]
-
-          // Set the frame of the graph view to match the container
-          graphView.frame = graphContainerView.bounds
-          graphView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-          // Add the graph view to the container
-          graphContainerView.addSubview(graphView)
-        print("Graph Container View Bounds: \(graphContainerView.bounds)") // Check if bounds are correct
-        print("Graph Container View Subviews: \(graphContainerView.subviews)") // Ensure graphView is added
-    }
-   
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
             // Slide the bottom sheet up
