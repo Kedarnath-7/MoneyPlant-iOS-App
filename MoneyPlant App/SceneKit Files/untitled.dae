@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2024-11-19T16:47:34Z</created>
-  <modified>2024-11-19T16:47:34Z</modified>
+  <created>2024-11-19T17:27:46Z</created>
+  <modified>2024-11-19T17:27:46Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -44,19 +44,19 @@
  </library_lights>
  <library_images>
   <image id="image1">
-   <init_from>grasses_basecolor.png</init_from>
+   <init_from>../grasses_basecolor.png</init_from>
   </image>
   <image id="image2">
-   <init_from>grasses_ambientocclusion.png</init_from>
+   <init_from>../grasses_ambientocclusion.png</init_from>
   </image>
   <image id="image3">
-   <init_from>grasses_metallic.png</init_from>
+   <init_from>../grasses_metallic.png</init_from>
   </image>
   <image id="image4">
-   <init_from>grasses_normal.png</init_from>
+   <init_from>../grasses_normal.png</init_from>
   </image>
   <image id="image5">
-   <init_from>grasses_roughness.png</init_from>
+   <init_from>../grasses_roughness.png</init_from>
   </image>
  </library_images>
  <library_materials>
