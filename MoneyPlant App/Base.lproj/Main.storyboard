@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wd0-TN-TOD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e1F-ht-ZfM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -1228,7 +1228,7 @@
         <!--Login View Controller-->
         <scene sceneID="uoJ-KG-ZxJ">
             <objects>
-                <viewController id="e1F-ht-ZfM" customClass="loginViewController" customModule="App7" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e1F-ht-ZfM" customClass="loginViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Ar-Gm-Pzv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1436,7 +1436,7 @@
         <!--Visualise-->
         <scene sceneID="AfX-O4-awC">
             <objects>
-                <viewController id="CzJ-yW-7TR" customClass="pieChartViewController" customModule="App7" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CzJ-yW-7TR" customClass="pieChartViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GQL-sq-Fa3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1483,7 +1483,7 @@
                                         <rect key="frame" x="19" y="458" width="366" height="233"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryCell" rowHeight="76" id="lZA-W5-ff0" customClass="CategoryTableViewCell" customModule="App7" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryCell" rowHeight="76" id="lZA-W5-ff0" customClass="CategoryTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="366" height="76"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lZA-W5-ff0" id="bOL-2X-GY8">
@@ -1600,7 +1600,7 @@
                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAr-Ok-ygM" customClass="LineGraphView" customModule="App7" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAr-Ok-ygM" customClass="LineGraphView" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="105" width="398" height="230"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
@@ -1671,7 +1671,7 @@
         <!--Store-->
         <scene sceneID="eOZ-A2-DhZ">
             <objects>
-                <viewController id="sPg-2I-5Tu" customClass="ViewController2" customModule="App7" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sPg-2I-5Tu" customClass="ViewController2" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TFM-md-lbf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1687,7 +1687,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell1" id="JSB-qJ-eH9" customClass="CollectionViewCell1" customModule="App7" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell1" id="JSB-qJ-eH9" customClass="CollectionViewCell1" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="23.666666666666668" y="0.0" width="314" height="208"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yh7-pO-Wed">
@@ -1730,7 +1730,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="OQT-lG-0cD" customClass="CollectionViewCell2" customModule="App7" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="OQT-lG-0cD" customClass="CollectionViewCell2" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="18" y="0.0" width="308" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RUA-jJ-b3o">
@@ -1803,6 +1803,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="hd1-Zt-6Sz"/>
         <segue reference="3st-tX-gaV"/>
         <segue reference="DSX-HG-RHp"/>
     </inferredMetricsTieBreakers>

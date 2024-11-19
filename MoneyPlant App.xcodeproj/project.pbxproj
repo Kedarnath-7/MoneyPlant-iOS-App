@@ -6,8 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-<<<<<<< HEAD
-=======
 /* Begin PBXCopyFilesBuildPhase section */
 		340EE7132CEB3813006A60DF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -21,7 +19,6 @@
 		};
 /* End PBXCopyFilesBuildPhase section */
 
->>>>>>> 8b024b291c2615929befacbd86fb6e9a154e50e3
 /* Begin PBXFileReference section */
 		786254322CD68662003A668A /* MoneyPlant App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoneyPlant App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
