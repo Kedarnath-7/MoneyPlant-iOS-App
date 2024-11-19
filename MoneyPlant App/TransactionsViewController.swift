@@ -9,6 +9,8 @@ import UIKit
 
 class TransactionsViewController: UIViewController {
     
+    @IBOutlet weak var transactionsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +20,45 @@ class TransactionsViewController: UIViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    @IBAction func unwindToTransactionsTableView(segue: UIStoryboardSegue){
+        guard segue.identifier == "saveUnwind",
+              let sourceViewController = segue.source as? AddNewRecordTableViewController,
+              let transaction = sourceViewController.transaction else { return }
+        
+        transactions.insert(transaction, at: 0)
+        transactionsTableView.reloadData()
+        
+//            if category.type == "Expense"{
+//                expenseCategories.insert(category, at: expenseCategories.count - 1)
+//                let newIndexPath = IndexPath(row: expenseCategories.count - 2, section: 0)
+//                print("Inserting new item at indexPath: \(newIndexPath)")
+//                 
+//                if let collectionView = expenseCategoriesCollectionView {
+//                    collectionView.reloadData()
+//                    
+//                } else {
+//                    print("expenseCategoriesCollectionView is nil!")
+//                }
+//                print("New Expense Category Inserted: \(category.name)")
+//                
+//            }else{
+//                incomeCategories.insert(category, at: incomeCategories.count - 1)
+//                
+//                let newIndexPath = IndexPath(row: incomeCategories.count - 2, section: 0)
+//
+//                print("Inserting new item at indexPath: \(newIndexPath)")
+//                
+//                if let collectionView = incomeCategoriesCollectionView {
+//                    collectionView.reloadData()
+//                } else {
+//                    print("incomeCategoriesCollectionView is nil!")
+//                }
+//                print("New Income Category Inserted: \(category.name)")
+//                
+//            }
+    }
+    
 }
 
     // MARK: - Table view data source

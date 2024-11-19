@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 struct Categories {
     var name: String
