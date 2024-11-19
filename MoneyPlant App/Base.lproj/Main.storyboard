@@ -1350,7 +1350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRX-gD-wcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2344" y="-902"/>
+            <point key="canvasLocation" x="-2332" y="-928"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="rsB-WM-xe1">
@@ -1431,7 +1431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UF-MJ-duE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1584" y="-902"/>
+            <point key="canvasLocation" x="-1503" y="-928"/>
         </scene>
         <!--Visualise-->
         <scene sceneID="AfX-O4-awC">
@@ -1444,8 +1444,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIo-Gz-vEE">
                                 <rect key="frame" x="-5" y="52" width="393" height="748"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jg9-3l-CTl">
-                                        <rect key="frame" x="19" y="70" width="104" height="26"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jg9-3l-CTl">
+                                        <rect key="frame" x="19" y="65.333333333333329" width="104" height="34.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="104" id="PdZ-7y-iBf"/>
                                         </constraints>
@@ -1527,11 +1527,11 @@
                                             <outlet property="delegate" destination="CzJ-yW-7TR" id="aLR-5l-25m"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-hi-wdv">
-                                        <rect key="frame" x="19" y="123" width="366" height="236"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-hi-wdv">
+                                        <rect key="frame" x="27" y="123" width="358" height="215"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRD-lC-xLl">
-                                        <rect key="frame" x="345" y="70" width="24" height="26"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRD-lC-xLl">
+                                        <rect key="frame" x="345" y="65.333333333333329" width="24" height="34.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="wKg-H1-CZf"/>
                                         </constraints>
@@ -1803,7 +1803,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hd1-Zt-6Sz"/>
         <segue reference="3st-tX-gaV"/>
         <segue reference="DSX-HG-RHp"/>
     </inferredMetricsTieBreakers>
