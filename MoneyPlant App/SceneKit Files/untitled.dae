@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+ <asset>
+  <contributor>
+   <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
+  </contributor>
+  <created>2024-11-19T17:27:46Z</created>
+  <modified>2024-11-19T17:27:46Z</modified>
+  <unit meter="1.000000"/>
+  <up_axis>Y_UP</up_axis>
+ </asset>
+ <library_cameras>
+  <camera id="Camera-camera" name="Camera">
+   <optics>
+    <technique_common>
+     <perspective>
+      <xfov>39.5978</xfov>
+      <znear>0.1</znear>
+      <zfar>100</zfar>
+     </perspective>
+    </technique_common>
+   </optics>
+  </camera>
+ </library_cameras>
+ <library_lights>
+  <light id="Light-light" name="Light">
+   <technique_common>
+    <point>
+     <color>1000 1000 1000</color>
+     <constant_attenuation>1</constant_attenuation>
+     <linear_attenuation>0</linear_attenuation>
+     <quadratic_attenuation>0</quadratic_attenuation>
+    </point>
+   </technique_common>
+   <extra>
+    <technique profile="SceneKit">
+     <attenuationStart>0</attenuationStart>
+     <attenuationEnd>0</attenuationEnd>
+     <attenuationFalloffExponent>0</attenuationFalloffExponent>
+     <intensity>1000</intensity>
+    </technique>
+   </extra>
+  </light>
+ </library_lights>
+ <library_images>
+  <image id="image1">
+   <init_from>../grasses_basecolor.png</init_from>
+  </image>
+  <image id="image2">
+   <init_from>../grasses_ambientocclusion.png</init_from>
+  </image>
+  <image id="image3">
+   <init_from>../grasses_metallic.png</init_from>
+  </image>
+  <image id="image4">
+   <init_from>../grasses_normal.png</init_from>
+  </image>
+  <image id="image5">
+   <init_from>../grasses_roughness.png</init_from>
+  </image>
+ </library_images>
+ <library_materials>
+  <material id="lambert1-material" name="lambert1">
+   <instance_effect url="#effect_lambert1-material"/>
+  </material>
+ </library_materials>
+ <library_effects>
+  <effect id="effect_lambert1-material">
+   <profile_COMMON>
+    <newparam sid="ID6_image1_surface">
+     <surface type="2D">
+      <init_from>image1</init_from>
+     </surface>
+    </newparam>
+    <newparam sid="ID6_image1">
+     <sampler2D>
+      <source>ID6_image1_surface</source>
+      <wrap_s>CLAMP</wrap_s>
+      <wrap_t>CLAMP</wrap_t>
+      <minfilter>LINEAR</minfilter>
+      <magfilter>LINEAR</magfilter>
+      <mipfilter>NONE</mipfilter>
+     </sampler2D>
+    </newparam>
+    <newparam sid="ID6_image2_surface">
+     <surface type="2D">
+      <init_from>image2</init_from>
+     </surface>
+    </newparam>
+    <newparam sid="ID6_image2">
+     <sampler2D>
+      <source>ID6_image2_surface</source>
+      <wrap_s>CLAMP</wrap_s>
+      <wrap_t>CLAMP</wrap_t>
+      <minfilter>LINEAR</minfilter>
+      <magfilter>LINEAR</magfilter>
+      <mipfilter>NONE</mipfilter>
+     </sampler2D>
+    </newparam>
+    <newparam sid="ID6_image3_surface">
+     <surface type="2D">
+      <init_from>image3</init_from>
+     </surface>
+    </newparam>
+    <newparam sid="ID6_image3">
+     <sampler2D>
+      <source>ID6_image3_surface</source>
+      <wrap_s>CLAMP</wrap_s>
+      <wrap_t>CLAMP</wrap_t>
+      <minfilter>LINEAR</minfilter>
+      <magfilter>LINEAR</magfilter>
+      <mipfilter>NONE</mipfilter>
+     </sampler2D>
+    </newparam>
+    <newparam sid="ID6_image4_surface">
+     <surface type="2D">
+      <init_from>image4</init_from>
+     </surface>
+    </newparam>
+    <newparam sid="ID6_image4">
+     <sampler2D>
+      <source>ID6_image4_surface</source>
+      <wrap_s>CLAMP</wrap_s>
+      <wrap_t>CLAMP</wrap_t>
+      <minfilter>LINEAR</minfilter>
+      <magfilter>LINEAR</magfilter>
+      <mipfilter>NONE</mipfilter>
+     </sampler2D>
+    </newparam>
+    <technique sid="common">
+     <constant>
+      <emission>
+       <texture texture="ID6_image1" texcoord="CHANNEL0"/>
+      </emission>
+      <reflective>
+       <texture texture="ID6_image3" texcoord="CHANNEL4"/>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+     </constant>
+     <extra>
+      <technique profile="SceneKit">
+       <constant_ambient>
+        <texture texture="ID6_image2" texcoord="CHANNEL1"/>
+       </constant_ambient>
+       <constant_diffuse>
+        <texture texture="ID6_image1" texcoord="CHANNEL2"/>
+       </constant_diffuse>
+       <bump>
+        <texture texture="ID6_image4" texcoord="CHANNEL7"/>
+       </bump>
+      </technique>
+     </extra>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>0</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+ </library_effects>
+ <library_geometries>
+  <geometry id="geometry7">
+   <mesh>
+    <source id="Mesh-mesh-positions">
+     <float_array id="ID8-array" count="18">0.5 0.5 -0 -0.5 -0.5 -0 -0.5 0.5 -0 0.5 0.5 -0 0.5 -0.5 -0 -0.5 -0.5 -0 </float_array>
+     <technique_common>
+      <accessor source="#ID8-array" count="6" stride="3">
+       <param name="X" type="float"/>
+       <param name="Y" type="float"/>
+       <param name="Z" type="float"/>
+      </accessor>
+     </technique_common>
+    </source>
+    <source id="Mesh-mesh-normals">
+     <float_array id="ID9-array" count="18">0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 </float_array>
+     <technique_common>
+      <accessor source="#ID9-array" count="6" stride="3">
+       <param name="X" type="float"/>
+       <param name="Y" type="float"/>
+       <param name="Z" type="float"/>
+      </accessor>
+     </technique_common>
+    </source>
+    <source id="Mesh-mesh-map-0">
+     <float_array id="ID10-array" count="12">1 0 0 1 0 0 1 0 1 1 0 1 </float_array>
+     <technique_common>
+      <accessor source="#ID10-array" count="6" stride="2">
+       <param name="S" type="float"/>
+       <param name="T" type="float"/>
+      </accessor>
+     </technique_common>
+    </source>
+    <source id="geometrySource11">
+     <float_array id="ID12-array" count="24">0.999994 0 0 -1 0.999994 0 0 -1 0.999994 0 0 -1 0.999994 0 0 -1 0.999994 0 0 -1 0.999994 0 0 -1 </float_array>
+     <technique_common>
+      <accessor source="#ID12-array" count="6" stride="4">
+       <param name="A" type="float"/>
+       <param name="B" type="float"/>
+       <param name="C" type="float"/>
+       <param name="D" type="float"/>
+      </accessor>
+     </technique_common>
+    </source>
+    <vertices id="Mesh-mesh-positions-vertices">
+     <input semantic="POSITION" source="#Mesh-mesh-positions"/>
+    </vertices>
+    <triangles count="2" material="geometryElement13">
+     <input semantic="VERTEX" offset="0" source="#Mesh-mesh-positions-vertices"/>
+     <input semantic="NORMAL" offset="0" source="#Mesh-mesh-normals"/>
+     <input semantic="TEXCOORD" offset="0" source="#Mesh-mesh-map-0" set="1"/>
+     <input semantic="TEXTANGENT" offset="0" source="#geometrySource11"/>
+     <p>0 1 2 3 4 5 </p>
+    </triangles>
+   </mesh>
+  </geometry>
+ </library_geometries>
+ <library_visual_scenes>
+  <visual_scene id="scene14">
+   <node id="grass001" name="grass001">
+    <matrix>16 0 0 0 0 2.682209e-06 -0.16 0 -0 15 2.861023e-08 0 0 0 0 1 </matrix>
+    <instance_geometry url="#geometry7">
+     <bind_material>
+      <technique_common>
+       <instance_material symbol="geometryElement13" target="#lambert1-material">
+        <bind_vertex_input semantic="CHANNEL0" input_semantic="TEXCOORD" input_set="1"/>
+        <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+        <bind_vertex_input semantic="CHANNEL2" input_semantic="TEXCOORD" input_set="1"/>
+        <bind_vertex_input semantic="CHANNEL4" input_semantic="TEXCOORD" input_set="0"/>
+        <bind_vertex_input semantic="CHANNEL7" input_semantic="TEXCOORD" input_set="1"/>
+       </instance_material>
+      </technique_common>
+     </bind_material>
+    </instance_geometry>
+   </node>
+   <node id="Camera" name="Camera">
+    <matrix>0.6854898 -0.3249238 0.6515582 22.1055 0.00118868 0.8953947 0.4452715 15.03609 -0.7280811 -0.3044545 0.6141703 20.82622 0 0 0 1 </matrix>
+    <instance_camera url="#Camera-camera"/>
+   </node>
+   <node id="Light" name="Light">
+    <matrix>-0.2908647 0.5663932 0.7711008 4.076245 -0.05518901 0.7946723 -0.6045247 5.903862 -0.9551712 -0.2183912 -0.1998834 -1.005454 0 0 0 1 </matrix>
+    <instance_light url="#Light-light"/>
+   </node>
+  </visual_scene>
+ </library_visual_scenes>
+ <scene>
+  <instance_visual_scene url="#scene14"/>
+ </scene>
+</COLLADA>
