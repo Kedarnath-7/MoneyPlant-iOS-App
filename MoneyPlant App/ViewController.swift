@@ -27,13 +27,13 @@ class ViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
         vc.modalPresentationStyle = .automatic
-        vc.modalTransitionStyle = .crossDissolve
+        vc.modalTransitionStyle = .coverVertical
         self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func unwindToGardenViewController(segue: UIStoryboardSegue) {
         guard segue.identifier == "continueUnwind",
-              let sourceViewController = segue.source as? OnboardingViewController else{return}
+              let _ = segue.source as? OnboardingViewController else{return}
         segue.source.modalPresentationStyle = .automatic
         segue.source.modalTransitionStyle = .coverVertical
     }
