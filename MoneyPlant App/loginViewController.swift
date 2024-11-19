@@ -12,8 +12,8 @@ class loginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     let defaultUsername = "arthur morgan".lowercased()
-    let defaultEmail = "abcd@gmail.com".lowercased()
-    let defaultPassword = "xxxxxxx".lowercased()
+    let defaultEmail = "123".lowercased()
+    let defaultPassword = "x".lowercased()
     
     override func viewDidLoad() {
         super.viewDidLoad()

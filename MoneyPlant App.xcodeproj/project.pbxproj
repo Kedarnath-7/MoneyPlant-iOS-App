@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXCopyFilesBuildPhase section */
-		348A273E2CE5F2DF00225744 /* Embed Frameworks */ = {
+		340EE7132CEB3813006A60DF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -81,13 +81,11 @@
 				7862542E2CD68662003A668A /* Sources */,
 				7862542F2CD68662003A668A /* Frameworks */,
 				786254302CD68662003A668A /* Resources */,
-				348A273E2CE5F2DF00225744 /* Embed Frameworks */,
+				340EE7132CEB3813006A60DF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				348A27402CE5F32500225744 /* PBXTargetDependency */,
-				348A27422CE5F32500225744 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				786254342CD68662003A668A /* MoneyPlant App */,
@@ -124,7 +122,6 @@
 			mainGroup = 786254292CD68662003A668A;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786254332CD68662003A668A /* Products */;
@@ -156,21 +153,11 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		348A27402CE5F32500225744 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 348A273F2CE5F32500225744 /* DGCharts */;
-		};
-		348A27422CE5F32500225744 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 348A27412CE5F32500225744 /* DGChartsDynamic */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		786254492CD68663003A668A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -184,19 +171,21 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "in.edu.srmist.MoneyPlant-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"/Users/admin15/Desktop/MoneyPlant-iOS-App/MoneyPlant/**",
+					"App/Charts/**",
+				);
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -204,6 +193,7 @@
 		7862544A2CD68663003A668A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -217,13 +207,11 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "in.edu.srmist.MoneyPlant-App";
@@ -237,7 +225,7 @@
 		7862544B2CD68663003A668A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -300,7 +288,7 @@
 		7862544C2CD68663003A668A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -375,30 +363,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		348A273F2CE5F32500225744 /* DGCharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = DGCharts;
-		};
-		348A27412CE5F32500225744 /* DGChartsDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 341961D22CE5E41000FB0B69 /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = DGChartsDynamic;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7862542A2CD68662003A668A /* Project object */;
 }
