@@ -23,12 +23,6 @@ class LineGraphView: UIView {
     override func draw(_ rect: CGRect) {
         guard dataPoints.count > 1 else { return }
         
-        // Red background fill
-        
-        
-        // Debugging bounds
-        print("Bounds: \(bounds)")
-        
         let context = UIGraphicsGetCurrentContext()
         let maxValue = dataPoints.max() ?? 0
         let minValue = dataPoints.min() ?? 0
