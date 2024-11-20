@@ -22,7 +22,7 @@ class GardenViewController: UIViewController {
         scene.rootNode.addChildNode(camerNode)
         
         let sceneView = self.view as! SCNView
-        scene = SCNScene(named: "/MainScene.scn")!
+        scene = SCNScene(named: "Garden.scn")!
         sceneView.scene = scene
         // sceneView.scene = scene
         
@@ -37,7 +37,7 @@ class GardenViewController: UIViewController {
     func setupScene(){
         sceneView = self.view as? SCNView
         sceneView.allowsCameraControl = true
-        scene = SCNScene(named: "MainScene.scn")
+        scene = SCNScene(named: "Garden.scn")
         sceneView.scene = scene
     }
     
