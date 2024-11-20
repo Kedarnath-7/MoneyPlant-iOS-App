@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iDK-rs-hqY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wd0-TN-TOD">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -293,6 +293,18 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZG-Nj-Cb3">
+                                <rect key="frame" x="258" y="373" width="119" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="3HM-Br-fud"/>
+                                    <constraint firstAttribute="width" constant="119" id="udU-Fq-8uU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system" imagePlacement="trailing" title="Visualize "/>
+                                <connections>
+                                    <segue destination="CzJ-yW-7TR" kind="show" id="PtQ-j4-lAu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h9l-Ih-GvN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -300,6 +312,7 @@
                             <constraint firstItem="zLL-RY-W6P" firstAttribute="leading" secondItem="h9l-Ih-GvN" secondAttribute="leading" constant="16" id="0z2-wU-dio"/>
                             <constraint firstItem="uXS-le-6m1" firstAttribute="top" secondItem="WYq-OA-MOa" secondAttribute="bottom" constant="16" id="6Gw-A3-zA6"/>
                             <constraint firstItem="WYq-OA-MOa" firstAttribute="top" secondItem="JqG-4U-Ssp" secondAttribute="bottom" constant="16" id="ECf-8v-hhu"/>
+                            <constraint firstItem="WZG-Nj-Cb3" firstAttribute="top" secondItem="zLL-RY-W6P" secondAttribute="bottom" constant="8" symbolic="YES" id="EdZ-gs-mWt"/>
                             <constraint firstAttribute="bottom" secondItem="zLL-RY-W6P" secondAttribute="bottom" constant="487" id="G0x-ty-Ewx"/>
                             <constraint firstItem="uXS-le-6m1" firstAttribute="trailing" secondItem="h9l-Ih-GvN" secondAttribute="trailing" id="IZK-ID-8qe"/>
                             <constraint firstItem="fL2-nL-EBi" firstAttribute="centerX" secondItem="AYU-yb-DOK" secondAttribute="centerX" id="KW2-SQ-bNq"/>
@@ -310,6 +323,7 @@
                             <constraint firstItem="zLL-RY-W6P" firstAttribute="centerX" secondItem="fL2-nL-EBi" secondAttribute="centerX" id="cJh-gn-YZA"/>
                             <constraint firstItem="zLL-RY-W6P" firstAttribute="top" secondItem="Jm5-O3-rjw" secondAttribute="bottom" constant="8" id="dtg-no-C4w"/>
                             <constraint firstItem="WYq-OA-MOa" firstAttribute="leading" secondItem="h9l-Ih-GvN" secondAttribute="leading" constant="16" id="f3U-WB-BCy"/>
+                            <constraint firstItem="WZG-Nj-Cb3" firstAttribute="leading" secondItem="JqG-4U-Ssp" secondAttribute="trailing" constant="-119" id="h28-uj-5RR"/>
                             <constraint firstItem="fL2-nL-EBi" firstAttribute="top" secondItem="h9l-Ih-GvN" secondAttribute="top" constant="18" id="iMD-gW-NMr"/>
                             <constraint firstItem="zLL-RY-W6P" firstAttribute="top" secondItem="AYU-yb-DOK" secondAttribute="top" constant="298" id="ihb-gc-Swz"/>
                             <constraint firstItem="k6N-nB-9Qc" firstAttribute="centerX" secondItem="AYU-yb-DOK" secondAttribute="centerX" id="k6V-Y6-LjI"/>
@@ -321,13 +335,7 @@
                             <constraint firstItem="uXS-le-6m1" firstAttribute="bottom" secondItem="h9l-Ih-GvN" secondAttribute="bottom" constant="-10" id="v3G-uC-J8Q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Records" largeTitleDisplayMode="always" id="3bG-Zn-Zw6">
-                        <barButtonItem key="rightBarButtonItem" title="Visualise" id="eji-4g-NLB">
-                            <connections>
-                                <segue destination="CzJ-yW-7TR" kind="show" id="wTr-dQ-0HN"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Records" largeTitleDisplayMode="always" id="3bG-Zn-Zw6"/>
                     <connections>
                         <outlet property="transactionsTableView" destination="uXS-le-6m1" id="8kM-HE-BLE"/>
                     </connections>
@@ -421,45 +429,36 @@
             </objects>
             <point key="canvasLocation" x="2268" y="535"/>
         </scene>
-        <!--Garden View Controller-->
+        <!--Garden-->
         <scene sceneID="1dh-DH-Oqt">
             <objects>
                 <viewController id="iDK-rs-hqY" customClass="GardenViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="AvU-ew-reb">
+                    <view key="view" contentMode="scaleToFill" id="5e8-8j-Osv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </sceneKitView>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZqG-Qd-zbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4243.5114503816794" y="983.80281690140851"/>
-        </scene>
-        <!--Garden-->
-        <scene sceneID="odF-hB-OFZ">
-            <objects>
-                <viewController id="7Vm-aE-vmm" customClass="ViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YfQ-mx-Prm">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Garden" translatesAutoresizingMaskIntoConstraints="NO" id="GcC-8S-Att">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
-                            </imageView>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ep8-h9-BxS">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                            </sceneKitView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="RR8-oT-ozN"/>
+                        <viewLayoutGuide key="safeArea" id="ZUj-O0-Dek"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RR8-oT-ozN" firstAttribute="bottom" secondItem="GcC-8S-Att" secondAttribute="bottom" id="2Mr-Rg-Sqo"/>
-                            <constraint firstItem="GcC-8S-Att" firstAttribute="leading" secondItem="RR8-oT-ozN" secondAttribute="leading" id="9EX-Qv-SCU"/>
-                            <constraint firstItem="RR8-oT-ozN" firstAttribute="trailing" secondItem="GcC-8S-Att" secondAttribute="trailing" id="BUu-uw-YUe"/>
-                            <constraint firstItem="GcC-8S-Att" firstAttribute="top" secondItem="RR8-oT-ozN" secondAttribute="top" id="Y8I-bv-mGD"/>
+                            <constraint firstItem="Ep8-h9-BxS" firstAttribute="leading" secondItem="ZUj-O0-Dek" secondAttribute="leading" id="5wU-0C-2Dw"/>
+                            <constraint firstItem="Ep8-h9-BxS" firstAttribute="top" secondItem="5e8-8j-Osv" secondAttribute="top" id="Dfv-3c-J5C"/>
+                            <constraint firstItem="Ep8-h9-BxS" firstAttribute="bottom" secondItem="ZUj-O0-Dek" secondAttribute="bottom" id="Qci-6K-95h"/>
+                            <constraint firstItem="Ep8-h9-BxS" firstAttribute="trailing" secondItem="ZUj-O0-Dek" secondAttribute="trailing" id="beH-IW-cJL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Garden" image="tree" catalog="system" id="8t4-JR-77v"/>
+                    <tabBarItem key="tabBarItem" title="Garden" image="tree" catalog="system" id="nhG-Nh-OLH"/>
+                    <connections>
+                        <outlet property="sceneView" destination="Ep8-h9-BxS" id="HNr-wA-gyO"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bls-rd-5Dx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZqG-Qd-zbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="bgB-CT-Oo1"/>
             </objects>
-            <point key="canvasLocation" x="-2164" y="535"/>
+            <point key="canvasLocation" x="-1996.1832061068701" y="534.50704225352115"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="fcu-WC-5DS">
@@ -611,10 +610,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="7Vm-aE-vmm" kind="relationship" relationship="viewControllers" id="hs2-Hm-47m"/>
-                        <segue destination="8Dy-eP-BmV" kind="relationship" relationship="viewControllers" id="pP5-fA-syt"/>
-                        <segue destination="RIX-WS-ssv" kind="relationship" relationship="viewControllers" id="t7f-kd-UcY"/>
-                        <segue destination="DUZ-qe-WKW" kind="relationship" relationship="viewControllers" id="LMs-SA-3bm"/>
+                        <segue destination="iDK-rs-hqY" kind="relationship" relationship="viewControllers" id="ipb-Y9-qar"/>
+                        <segue destination="8Dy-eP-BmV" kind="relationship" relationship="viewControllers" id="DWG-4s-Ens"/>
+                        <segue destination="RIX-WS-ssv" kind="relationship" relationship="viewControllers" id="B9W-kp-El1"/>
+                        <segue destination="DUZ-qe-WKW" kind="relationship" relationship="viewControllers" id="rLH-On-bw6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcC-ZB-tMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1805,7 +1804,6 @@
         <segue reference="DSX-HG-RHp"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Garden" width="726" height="1322"/>
         <image name="Logo" width="120" height="120"/>
         <image name="Robux_2019_Logo_Black.svg" width="800" height="873"/>
         <image name="apple-removebg-preview" width="225" height="225"/>
@@ -1813,6 +1811,7 @@
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="90"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
         <image name="gog-removebg-preview" width="224" height="225"/>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
@@ -1822,28 +1821,28 @@
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="tree" catalog="system" width="128" height="118"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

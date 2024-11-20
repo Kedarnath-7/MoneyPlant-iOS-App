@@ -9,13 +9,13 @@ import UIKit
 
 class pieChartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var pieChartContainerView: UIView!  // A UIView to hold the pie chart
+    @IBOutlet weak var pieChartContainerView: UIView!
     
     @IBOutlet weak var categoryTableView: UITableView!
     
     @IBOutlet weak var bottomSheetView: UIView!
 
-    @IBOutlet weak var bottomSheetHeightConstraint: NSLayoutConstraint! // Connect the height constraint of the bottom sheet
+    @IBOutlet weak var bottomSheetHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var highestButton: UIButton!
     
     @IBOutlet weak var lowestButton: UIButton!
@@ -45,7 +45,6 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
               bottomSheetHeightConstraint.constant = UIScreen.main.bounds.height
               view.layoutIfNeeded()
 
-              // Initially show pie chart and hide graph
               pieChartContainerView.isHidden = false
               graphContainerView.isHidden = true
 
@@ -57,18 +56,18 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
 
        }
     
-       let collapsedHeight: CGFloat = 0 // Height when collapsed
-       let expandedHeight: CGFloat = 544 // Height when expanded
+       let collapsedHeight: CGFloat = 0
+       let expandedHeight: CGFloat = 544
        let grabberLayer = CALayer()
     
     
     @objc func pageControlChanged() {
         if pageControl.currentPage == 0 {
-                // Show pie chart and hide graph
+                
                 pieChartContainerView.isHidden = false
                 graphContainerView.isHidden = true
             } else {
-                // Hide pie chart and show graph
+                
                 pieChartContainerView.isHidden = true
                 graphContainerView.isHidden = false
 
@@ -77,7 +76,7 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
-            // Slide the bottom sheet up
+            
         if bottomSheetHeightConstraint.constant == collapsedHeight {
                    expandBottomSheet()
                } else {
@@ -86,7 +85,7 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         @IBAction func highestSortSelected(_ sender: UIButton) {
-            // Sort the data by highest
+            
             categoryData.sort { $0.value > $1.value }
             categoryTableView.reloadData()
             
@@ -94,7 +93,7 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
         }
 
         @IBAction func lowestSortSelected(_ sender: UIButton) {
-            // Sort the data by lowest
+            
             categoryData.sort { $0.value < $1.value }
             categoryTableView.reloadData()
            
@@ -102,7 +101,7 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
         }
 
         private func dismissBottomSheet() {
-            // Slide the bottom sheet back down
+            
             UIView.animate(withDuration: 0.3) {
                 self.bottomSheetView.transform = CGAffineTransform(translationX: 0, y: self.bottomSheetView.frame.height)
             }
@@ -124,13 +123,13 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
 
 
         private func setupBottomSheet() {
-            // Initially hide the bottom sheet below the visible area
+            
             bottomSheetView.transform = CGAffineTransform(translationX: 0, y: bottomSheetView.frame.height)
             bottomSheetView.layer.cornerRadius = 30 // Optional: Make it rounded
             bottomSheetView.layer.masksToBounds = true
         }
     func setupGrabber() {
-        // Configure the grabber layer
+        
         grabberLayer.backgroundColor = UIColor.lightGray.cgColor
         grabberLayer.cornerRadius = 2.5
         grabberLayer.frame = CGRect(x: (bottomSheetView.bounds.width - 40) / 2, y: 8, width: 40, height: 5)
@@ -173,7 +172,7 @@ class pieChartViewController: UIViewController, UITableViewDelegate, UITableView
            let category = categoryData[indexPath.row]
            let totalValue = categoryData.reduce(0) { $0 + $1.value }
            
-           // Configure the custom cell with category data and total value
+           
            cell.configure(with: category, totalValue: totalValue)
            return cell
        }
