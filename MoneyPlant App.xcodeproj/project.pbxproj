@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		78F1011F2D0EF17000FD5774 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78F1011E2D0EF17000FD5774 /* FirebaseAnalytics */; };
+		78F101212D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 78F101202D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion */; };
+		78F101232D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 78F101222D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		78F101252D0EF17000FD5774 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 78F101242D0EF17000FD5774 /* FirebaseAppCheck */; };
+		78F101272D0EF17000FD5774 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 78F101262D0EF17000FD5774 /* FirebaseAppDistribution-Beta */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		340EE7132CEB3813006A60DF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -49,6 +57,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78F101252D0EF17000FD5774 /* FirebaseAppCheck in Frameworks */,
+				78F1011F2D0EF17000FD5774 /* FirebaseAnalytics in Frameworks */,
+				78F101272D0EF17000FD5774 /* FirebaseAppDistribution-Beta in Frameworks */,
+				78F101232D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				78F101212D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +105,11 @@
 			);
 			name = "MoneyPlant App";
 			packageProductDependencies = (
+				78F1011E2D0EF17000FD5774 /* FirebaseAnalytics */,
+				78F101202D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion */,
+				78F101222D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				78F101242D0EF17000FD5774 /* FirebaseAppCheck */,
+				78F101262D0EF17000FD5774 /* FirebaseAppDistribution-Beta */,
 			);
 			productName = "MoneyPlant App";
 			productReference = 786254322CD68662003A668A /* MoneyPlant App.app */;
@@ -122,6 +140,7 @@
 			mainGroup = 786254292CD68662003A668A;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786254332CD68662003A668A /* Products */;
@@ -162,6 +181,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
 					"/Users/admin15/Desktop/MoneyPlant-iOS-App/MoneyPlant/**",
 					"App/Charts/**",
@@ -178,7 +198,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "in.edu.srmist.MoneyPlant-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.moneyplant.MoneyPlant-iOS-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -198,6 +218,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
 					"/Users/admin15/Desktop/MoneyPlant-iOS-App/MoneyPlant/**",
 					"App/Charts/**",
@@ -214,7 +235,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "in.edu.srmist.MoneyPlant-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.moneyplant.MoneyPlant-iOS-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -363,6 +384,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		78F1011E2D0EF17000FD5774 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		78F101202D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		78F101222D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		78F101242D0EF17000FD5774 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		78F101262D0EF17000FD5774 /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7862542A2CD68662003A668A /* Project object */;
 }

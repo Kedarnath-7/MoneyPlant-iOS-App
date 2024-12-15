@@ -27,11 +27,11 @@
                         <viewLayoutGuide key="safeArea" id="yaZ-8a-zD3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle" catalog="system" id="obM-z9-kZH"/>
+                    <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="v7s-hb-7HP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kz-du-IbT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4237.4045801526718" y="534.50704225352115"/>
+            <point key="canvasLocation" x="5164.1221374045799" y="534.50704225352115"/>
         </scene>
         <!--Records-->
         <scene sceneID="SKb-GE-NPa">
@@ -586,7 +586,7 @@
                         <segue destination="iDK-rs-hqY" kind="relationship" relationship="viewControllers" id="ipb-Y9-qar"/>
                         <segue destination="8Dy-eP-BmV" kind="relationship" relationship="viewControllers" id="DWG-4s-Ens"/>
                         <segue destination="8yZ-EG-kj6" kind="relationship" relationship="viewControllers" id="3Dj-Fb-Lm3"/>
-                        <segue destination="DUZ-qe-WKW" kind="relationship" relationship="viewControllers" id="msW-Zp-AvP"/>
+                        <segue destination="swz-ys-AnP" kind="relationship" relationship="viewControllers" id="msW-Zp-AvP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcC-ZB-tMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1789,6 +1789,25 @@
             </objects>
             <point key="canvasLocation" x="2058.7786259541986" y="534.50704225352115"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="kH4-NL-nz5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="swz-ys-AnP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle" catalog="system" id="obM-z9-kZH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Ea7-SV-ec1">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DUZ-qe-WKW" kind="relationship" relationship="rootViewController" id="FI9-Ju-jCU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRg-mX-S2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4237.4045801526718" y="534.50704225352115"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hd1-Zt-6Sz"/>
@@ -1813,28 +1832,28 @@
         <image name="storefront.fill" catalog="system" width="128" height="116"/>
         <image name="tree" catalog="system" width="128" height="118"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
