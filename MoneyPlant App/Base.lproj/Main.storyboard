@@ -1194,10 +1194,41 @@
             </objects>
             <point key="canvasLocation" x="502" y="2800"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="ZxQ-4h-ZSf">
+            <objects>
+                <viewController id="lI2-HP-uGy" customClass="ViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hjv-lV-fN9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uQP-th-TTe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1Kt-rr-rLP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UIe-Tt-KVV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1407" y="-2198"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8bG-pz-01g">
+            <objects>
+                <viewController id="mOo-Gb-nDH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wme-0V-aI0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5JX-zQ-2e3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="olo-o8-eHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097" y="-2199"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="uoJ-KG-ZxJ">
             <objects>
-                <viewController id="e1F-ht-ZfM" customClass="loginViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e1F-ht-ZfM" customClass="LoginViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Ar-Gm-Pzv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1220,17 +1251,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opm-aT-lTO">
-                                <rect key="frame" x="50" y="551" width="278" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Sign in" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="signinButtonTapped:" destination="e1F-ht-ZfM" eventType="touchUpInside" id="EFY-qG-nIR"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYT-bV-rfO">
                                 <rect key="frame" x="50" y="437" width="278" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1270,6 +1290,17 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="25" bottom="0.0" trailing="0.0"/>
                                 </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opm-aT-lTO">
+                                <rect key="frame" x="50" y="551" width="278" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign in" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="signinButtonTapped:" destination="e1F-ht-ZfM" eventType="touchUpInside" id="EFY-qG-nIR"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uc3-Qd-hhB">
                                 <rect key="frame" x="80" y="669" width="25" height="25"/>
@@ -1319,12 +1350,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRX-gD-wcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2332" y="-928"/>
+            <point key="canvasLocation" x="-216" y="-1952"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="rsB-WM-xe1">
             <objects>
-                <viewController id="cGI-kb-E1G" sceneMemberID="viewController">
+                <viewController id="cGI-kb-E1G" customClass="SignUpViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2jW-9a-aW2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1397,10 +1428,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="UgK-Dn-0QH"/>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="AHl-68-SsE" id="3db-EL-d5z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UF-MJ-duE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1503" y="-928"/>
+            <point key="canvasLocation" x="-216" y="-2755"/>
         </scene>
         <!--Visualise-->
         <scene sceneID="AfX-O4-awC">
@@ -1808,9 +1842,27 @@
             </objects>
             <point key="canvasLocation" x="4237.4045801526718" y="534.50704225352115"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Frf-h8-ut9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LYG-I9-PvU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g3A-dK-NkF">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lI2-HP-uGy" kind="relationship" relationship="rootViewController" id="bUK-qe-bB2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WGW-T7-eju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2332" y="-2198"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hd1-Zt-6Sz"/>
+        <segue reference="XcQ-Xe-PZO"/>
         <segue reference="3st-tX-gaV"/>
         <segue reference="DSX-HG-RHp"/>
     </inferredMetricsTieBreakers>
