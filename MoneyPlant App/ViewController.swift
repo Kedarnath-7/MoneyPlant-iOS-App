@@ -10,8 +10,11 @@ import UIKit
 class ViewController: UIViewController{
     
     
+    @IBOutlet weak var loginButton: UIButton!
     
-//    @IBOutlet weak var bottomSheetView: UIView!
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    //    @IBOutlet weak var bottomSheetView: UIView!
 //    
 //    @IBOutlet weak var bottomSheetHeightConstraint: NSLayoutConstraint!
 //    
@@ -34,10 +37,18 @@ class ViewController: UIViewController{
        
        override func viewDidLoad() {
            super.viewDidLoad()
+           
+           setUpElements()
+           
 //           setupBottomSheet()
 //           setupGrabber()
 //           setupTableView() // Initialize TableView
        }
+    
+    func setUpElements() {
+        Utilities.styleFilledButton(loginButton)
+        Utilities.styleHollowButton(signUpButton)
+    }
        
 //       func setupBottomSheet() {
 //           bottomSheetHeightConstraint.constant = originalHeight
