@@ -16,22 +16,15 @@ class ProfileViewController: UIViewController {
     
     var profileCells = [Profile(name: "Account", symbol: UIImage(systemName: "wallet.bifold")!), Profile(name: "Settings", symbol: UIImage(systemName: "gearshape")!), Profile(name: "Help & Support", symbol: UIImage(systemName: "questionmark")!), Profile(name: "Log Out", symbol: UIImage(systemName: "rectangle.portrait.and.arrow.right")!)]
     
+    
+    @IBOutlet weak var profileTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

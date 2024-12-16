@@ -10,18 +10,18 @@ import SceneKit
 
 class GardenViewController: UIViewController{
     
-    
-  
     @IBOutlet weak var sceneView: SCNView!
    // var sceneView: SCNView!
     var scene: SCNScene!
+    
+    lazy var bottomSheetVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BottomVC") as? BottomSheetViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
+       Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
         
-        
+        loadBottomSheetVC()
         
         var scene = SCNScene()
         
@@ -55,5 +55,20 @@ class GardenViewController: UIViewController{
         segue.source.modalTransitionStyle = .coverVertical
     }
     
+    func loadBottomSheetVC(){
+        guard let sheetVC = bottomSheetVC else { return }
+        
+        if let sheet = sheetVC.sheetPresentationController{
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false // Inside Scrolling
+            sheet.prefersGrabberVisible = true // Grabber button
+            sheet.preferredCornerRadius = 30 // Radius
+            sheet.largestUndimmedDetentIdentifier = .medium //Avoid dismiss
+            self.present(sheetVC, animated: true)
+        }
+    }
+    
+    
+
 }
     
