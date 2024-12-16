@@ -10,6 +10,8 @@ import SceneKit
 
 class GardenViewController: UIViewController{
     
+    @IBOutlet weak var todayDate: UILabel!
+    
     @IBOutlet weak var sceneView: SCNView!
    // var sceneView: SCNView!
     var scene: SCNScene!
@@ -19,7 +21,9 @@ class GardenViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
+        showTodayDate()
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
         
         loadBottomSheetVC()
         
@@ -68,7 +72,12 @@ class GardenViewController: UIViewController{
         }
     }
     
-    
+    func showTodayDate(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd yyyy"
+        let date = dateFormatter.string(from: Date())
+        todayDate.text = "Today, \(date)"
+    }
 
 }
     

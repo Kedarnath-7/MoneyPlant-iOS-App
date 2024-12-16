@@ -39,7 +39,6 @@ class ViewController: UIViewController{
        
        override func viewDidLoad() {
            super.viewDidLoad()
-           loadBottomSheetVC()
            setUpElements()
            
 //           setupBottomSheet()
@@ -125,14 +124,4 @@ class ViewController: UIViewController{
 //           return cell
 //       }
     
-    func loadBottomSheetVC(){
-        if let sheet = bottomSheetVC?.sheetPresentationController{
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = false // Inside Scrolling
-            sheet.prefersGrabberVisible = true // Grabber button
-            sheet.preferredCornerRadius = 24 // Radius
-            sheet.largestUndimmedDetentIdentifier = .medium //Avoid dismiss
-            self.navigationController?.present(bottomSheetVC!, animated: true)
-        }
-    }
 }
