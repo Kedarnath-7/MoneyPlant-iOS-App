@@ -8,27 +8,26 @@
 import Foundation
 import CoreData
 
-class PersistenceController {
+final class PersistenceController {
+    
+    private init() {}
     static let shared = PersistenceController()
 
-    let container: NSPersistentContainer
-
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "MoneyPlant_App") // Replace with the name of your .xcdatamodeld file
-        
-        if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
-        }
-        
-        container.loadPersistentStores { (storeDescription, error) in
+    // MARK: - Core Data stack
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "MoneyPlant_App")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        }
-    }
+        })
+        return container
+    }()
     
-    func saveContext() {
-        let context = container.viewContext
+    // MARK: - Core Data Saving support
+    lazy var context = persistentContainer.viewContext
+    func saveContext () {
         if context.hasChanges {
             do {
                 try context.save()
@@ -39,3 +38,8 @@ class PersistenceController {
         }
     }
 }
+
+
+
+
+
