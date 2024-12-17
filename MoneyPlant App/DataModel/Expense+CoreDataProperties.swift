@@ -2,7 +2,7 @@
 //  Expense+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 02/11/24.
+//  Created by admin86 on 17/12/24.
 //
 //
 
@@ -18,10 +18,8 @@ extension Expense {
 
     @NSManaged public var amount: Double
     @NSManaged public var category: String?
-    @NSManaged public var date: Date?
-    @NSManaged public var descriptionExpense: String?
-    @NSManaged public var budget: Budget?
-    @NSManaged public var history: History?
+    @NSManaged public var name: String?
+    @NSManaged public var symbol: String?
 
 }
 

@@ -13,7 +13,7 @@ class TransactionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Document Directoy: ", URL.documentsDirectory)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -26,8 +26,46 @@ class TransactionsViewController: UIViewController {
               let sourceViewController = segue.source as? AddNewRecordTableViewController,
               let transaction = sourceViewController.transaction else { return }
         
-        transactions.insert(transaction, at: 0)
-        transactionsTableView.reloadData()
+        let context = PersistenceController.shared.context
+        
+        let expenseEntity = Expense(context: context)
+        expenseEntity.amount = transaction.amount
+        expenseEntity.category = transaction.category
+       // expenseEntity.symbol = transaction.symbol
+        expenseEntity.name = transaction.name
+        
+        do{
+            try context.save()
+            print("Document Directoy: ", URL.documentsDirectory)
+        }catch {
+            print("Trasaction save error:", error)
+        }
+        
+        
+        do {
+            let insertedTransactions = try context.fetch(Expense.fetchRequest())
+            
+            let newTransactions = insertedTransactions.map { expense in
+                let symbolImage = UIImage(systemName: expense.symbol ?? "") ?? UIImage()
+                
+                return Transactions(
+                    symbol: symbolImage,
+                    name: expense.name ?? "",
+                    amount: expense.amount,
+                    category: expense.category ?? ""
+                )
+            }
+            
+            
+            transactions.insert(contentsOf: newTransactions, at: 0)
+            
+            transactionsTableView.reloadData()
+            
+        } catch {
+            print("Fetch request failed:", error)
+        }
+        // transactions.insert(transaction, at: 0)
+//        transactionsTableView.reloadData()
         
 //            if category.type == "Expense"{
 //                expenseCategories.insert(category, at: expenseCategories.count - 1)

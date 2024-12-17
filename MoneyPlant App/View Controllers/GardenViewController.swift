@@ -34,7 +34,7 @@ class GardenViewController: UIViewController{
         scene.rootNode.addChildNode(camerNode)
         
         //let sceneView = self.view as! SCNView
-        scene = SCNScene(named: "Garden.scn")!
+        scene = SCNScene(named: "Village.scn")!
         sceneView.scene = scene
         // sceneView.scene = scene
         

@@ -31,12 +31,14 @@ class AddNewRecordTableViewController: UITableViewController {
         
         if let expenceCategory = selectedExpenseCategory {
             selectedCategory = expenceCategory
+            selectedCategory?.type = expenceCategory.type
             print("selectedExpenseCategory Data passed")
             selectedCategoryImage.image = expenceCategory.symbol
             navigationItem.title = "Add New Expense Record"
         }
          if let incomeCategory = selectedIncomeCategory {
              selectedCategory = incomeCategory
+             selectedCategory?.type = incomeCategory.type
              print("selectedIncomeCategory Data passed")
              selectedCategoryImage.image = incomeCategory.symbol
              navigationItem.title = "Add New Income Record"
@@ -66,6 +68,7 @@ class AddNewRecordTableViewController: UITableViewController {
         let amount = selectedCategoryAmount.text ?? ""
         let date = selectedCategoryDate.text ?? ""
         let note = selectedCategoryNote.text ?? ""
+        
         
         transaction = Transactions(symbol: image!, name: name!, amount: Double(amount)!, category: category!)
     }
@@ -130,15 +133,7 @@ class AddNewRecordTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     
 
     

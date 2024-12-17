@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-final class PersistenceController {
+class PersistenceController {
     
     private init() {}
     static let shared = PersistenceController()
@@ -17,13 +17,29 @@ final class PersistenceController {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "MoneyPlant_App")
+        
+        if let storeURL = container.persistentStoreDescriptions.first?.url {
+            let fileManager = FileManager.default
+            do {
+                if fileManager.fileExists(atPath: storeURL.path) {
+                    try fileManager.removeItem(at: storeURL) // Delete the store file
+                    print("Old persistent store deleted.")
+                }
+            } catch {
+                print("Failed to delete persistent store: \(error)")
+            }
+        }
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
         return container
     }()
+
+
     
     // MARK: - Core Data Saving support
     lazy var context = persistentContainer.viewContext
