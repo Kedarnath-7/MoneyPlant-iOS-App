@@ -9,10 +9,10 @@ import UIKit
 
 class AddNewRecordTableViewController: UITableViewController {
     
-    var transaction: Transactions?
-    var selectedCategory: Categories?
-    var selectedExpenseCategory: Categories?
-    var selectedIncomeCategory: Categories?
+    var transaction: Transaction?
+    var selectedCategory: Category?
+    var selectedExpenseCategory: Category?
+    var selectedIncomeCategory: Category?
     
     @IBOutlet weak var selectedCategoryImage: UIImageView!
 
@@ -21,6 +21,8 @@ class AddNewRecordTableViewController: UITableViewController {
     @IBOutlet weak var selectedCategoryAmount: UITextField!
     
     @IBOutlet weak var selectedCategoryDate: UITextField!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var selectedCategoryNote: UITextField!
     
@@ -33,24 +35,33 @@ class AddNewRecordTableViewController: UITableViewController {
             selectedCategory = expenceCategory
             selectedCategory?.type = expenceCategory.type
             print("selectedExpenseCategory Data passed")
-            selectedCategoryImage.image = expenceCategory.symbol
+            //selectedCategoryImage.image = expenceCategory.icon
             navigationItem.title = "Add New Expense Record"
         }
-         if let incomeCategory = selectedIncomeCategory {
+        else if let incomeCategory = selectedIncomeCategory {
              selectedCategory = incomeCategory
              selectedCategory?.type = incomeCategory.type
              print("selectedIncomeCategory Data passed")
-             selectedCategoryImage.image = incomeCategory.symbol
+             //selectedCategoryImage.image = incomeCategory.icon
              navigationItem.title = "Add New Income Record"
+        }else if let transactionToEdit = transaction{
+            selectedCategory = transactionToEdit.category
+            selectedCategory?.type = transactionToEdit.category.type
+            selectedCategoryName.text = transactionToEdit.paidTo
+            selectedCategoryAmount.text = String(transactionToEdit.amount)
+            datePicker.date = transactionToEdit.date
+            selectedCategoryNote.text = transactionToEdit.note
+            print("editTransaction Data passed")
+            navigationItem.title = "Edit Transaction"
         }
         updateSaveButtonState()
     }
     
     func updateSaveButtonState() {
+        let paidTo = selectedCategoryName.text ?? ""
         let categoryAmount = selectedCategoryAmount.text ?? ""
-        let categoryDate = selectedCategoryDate.text ?? ""
-        let categoryNote = selectedCategoryNote.text ?? ""
-        saveRecordButton.isEnabled = !categoryAmount.isEmpty && !categoryDate.isEmpty && selectedCategoryImage.image != nil
+
+        saveRecordButton.isEnabled = !paidTo.isEmpty && !categoryAmount.isEmpty
     }
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
@@ -62,79 +73,40 @@ class AddNewRecordTableViewController: UITableViewController {
         
         let destinationVC = segue.destination as! TransactionsViewController
         
-        let name = selectedCategoryName?.text
-        let category = selectedCategory?.name
-        let image = selectedCategoryImage.image ?? nil
-        let amount = selectedCategoryAmount.text ?? ""
-        let date = selectedCategoryDate.text ?? ""
+        let paidTo = (selectedCategoryName?.text)!
+        let category = selectedCategory!
+        
+        guard let amount = Double(selectedCategoryAmount.text ?? "") else {
+            showError("Invalid amount")
+            return
+        }
+        let dateAndTime = datePicker.date
         let note = selectedCategoryNote.text ?? ""
+        let type = (selectedCategory?.type)!
+        let id = UUID()
+        
+        transaction = Transaction(context: PersistenceController.shared.context)
+        transaction?.id = id
+        transaction?.amount = amount
+        transaction?.date = dateAndTime
+        transaction?.paidTo = paidTo
+        transaction?.note = note
+        transaction?.category = category
+        transaction?.type = type
+        
+       // PersistenceController.shared.addTransaction(id: id, amount: amount, date: dateAndTime, paidTo: paidTo, note: note, category: category, type: type)
         
         
-        transaction = Transactions(symbol: image!, name: name!, amount: Double(amount)!, category: category!)
     }
-
-    
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 1
-//    }
-
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "selectedCategoryImageCell", for: indexPath) as? AddNewRecordTableViewCell else{return UITableViewCell()}
-//        
-//        cell.
-//        // Configure the cell...
-//
-//        return cell
-//    }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     
-
+    @IBAction func editCoverTapped(_ sender: Any) {
+    }
+    
+    func showError(_ message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
     
 }

@@ -6,21 +6,24 @@
 //
 
 import UIKit
+import CoreData
 
 class AddRecordCollectionViewController: UIViewController {
     
     @IBOutlet weak var expenseCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var incomeCategoriesCollectionView: UICollectionView!
     
+    var expenseCategories: [Category] = []
+    var incomeCategories: [Category] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchCategories()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let selectedCategory = sender as? Categories else { return }
+        guard let selectedCategory = sender as? Category else { return }
         if segue.identifier == "addNewExpenseRecord" || segue.identifier == "addNewIncomeRecord"{
             if let navController = segue.destination as? UINavigationController {
                 if let addVC = navController.topViewController as? AddNewRecordTableViewController {
@@ -51,12 +54,12 @@ class AddRecordCollectionViewController: UIViewController {
                 let newIndexPath = IndexPath(row: expenseCategories.count - 2, section: 0)
                 print("Inserting new item at indexPath: \(newIndexPath)")
                  
-                if let collectionView = expenseCategoriesCollectionView {
+                if let collectionView = expenseCategoriesCollectionView{
                     collectionView.reloadData()
-                    
                 } else {
                     print("expenseCategoriesCollectionView is nil!")
                 }
+                
                 print("New Expense Category Inserted: \(category.name)")
                 
             }else{
@@ -75,6 +78,26 @@ class AddRecordCollectionViewController: UIViewController {
                 
             }
     }
+    
+    func fetchCategories() {
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        
+        do {
+            let categories = try PersistenceController.shared.context.fetch(fetchRequest)
+            
+            // Filter categories by type
+            expenseCategories = categories.filter { $0.type == "Expense" }
+            incomeCategories = categories.filter { $0.type == "Income" }
+            
+//            // Reload the collection views after fetching
+//            expenseCategoriesCollectionView.reloadData()
+//            incomeCategoriesCollectionView.reloadData()
+        } catch {
+            print("Failed to fetch categories: \(error)")
+        }
+    }
+
+    
 }
 
 extension AddRecordCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -97,16 +120,12 @@ extension AddRecordCollectionViewController: UICollectionViewDataSource, UIColle
             let expenseCell = expenseCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "expenseCollectionViewCell", for: indexPath) as? AddRecordCollectionViewCell
             let expenseCategory = expenseCategories[indexPath.item]
             expenseCell?.update(with: expenseCategory)
-//            expenseCell?.cateogryNameLabel.text = expenseCategories[indexPath.row].name
-//            expenseCell?.categorySymbolLabel.image = expenseCategories[indexPath.row].symbol
             return expenseCell!
         }
         else{
             let incomeCell = incomeCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "incomeCollectionViewCell", for: indexPath) as? AddRecordCollectionViewCell
             let incomeCategory = incomeCategories[indexPath.item]
             incomeCell?.update(with: incomeCategory)
-//            incomeCell!.cateogryNameLabel.text = incomeCategories[indexPath.row].name
-//            incomeCell!.categorySymbolLabel.image = incomeCategories[indexPath.row].symbol
             return incomeCell!
         }
     }

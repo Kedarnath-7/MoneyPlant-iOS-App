@@ -1,6 +1,6 @@
 //
 //  TransactionsTableViewCell.swift
-//  MoneyPlant App
+//  SavingTransactions
 //
 //  Created by admin86 on 05/11/24.
 //
@@ -10,17 +10,15 @@ import UIKit
 class TransactionsTableViewCell: UITableViewCell {
     
     
-    @IBOutlet weak var recordImageView: UIImageView!
+    @IBOutlet weak var paidToLabel: UILabel!
     
-    @IBOutlet weak var recordNameLabel: UILabel!
-     
-    @IBOutlet weak var recordCategoryLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var recordAmountLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    
+    @IBOutlet weak var symbolLabel: UIImageView!
     
     
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

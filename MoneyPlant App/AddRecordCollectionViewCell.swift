@@ -19,8 +19,13 @@ class AddRecordCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func update(with category: Categories) {
-        categorySymbolLabel.image = category.symbol
+    func update(with category: Category) {
+        if !category.icon.isEmpty {
+            categorySymbolLabel.image = UIImage(data: category.icon)
+        } else {
+            categorySymbolLabel.image = UIImage(systemName: "questionmark.circle")
+        }
+
         cateogryNameLabel.text = category.name
     }
     
