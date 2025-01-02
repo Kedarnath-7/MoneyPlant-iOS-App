@@ -10,9 +10,9 @@ import UIKit
 class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryNameLabel: UILabel!
-       @IBOutlet weak var categoryAmountLabel: UILabel!
-       @IBOutlet weak var progressView: UIProgressView!
-       @IBOutlet weak var categoryImageView: UIImageView!
+    @IBOutlet weak var categoryAmountLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var categoryImageView: UIImageView!
 
        override func awakeFromNib() {
            super.awakeFromNib()

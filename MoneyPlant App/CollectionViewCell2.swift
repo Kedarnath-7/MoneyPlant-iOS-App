@@ -1,6 +1,7 @@
 import UIKit
 
 class CollectionViewCell2: UICollectionViewCell {
+    
     @IBOutlet weak var imageView2: UIImageView!
     
     @IBOutlet weak var nameLabel2: UILabel!
