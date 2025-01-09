@@ -23,7 +23,6 @@ extension PersistenceController{
                 account.type = "Savings" // Adjust as needed
                 account.initialBalance = 0.0
                 account.balance = 0.0 // Set initial balance
-                
                 saveContext()
                 print("Preloaded default account with balance 0.0.")
             } else {
@@ -93,15 +92,33 @@ extension PersistenceController{
         saveContext()
     }
     
+    func updateTransaction(transaction: Transaction, paidTo: String?, amount: Double?, date: Date?, note: String?) {
+        if let paidTo = paidTo {
+            transaction.paidTo = paidTo
+            print("Updated paidTo for \(transaction): \(paidTo)")
+        }
+        if let amount = amount {
+            transaction.amount = amount
+            print("Updated amount for \(transaction): \(amount)")
+        }
+        if let date = date {
+            transaction.date = date
+            print("Updated date for \(transaction): \(date)")
+        }
+        if let note = note {
+            transaction.note = note
+            print("Updated date for \(transaction): \(note)")
+        }
+        saveContext()
+    }
+    
     func addCategory(id: UUID,name: String, type: String, icon: UIImage, description: String?) {
         let category = Category(context: context)
         category.id = id
         category.name = name
         category.type = type
-        let categoryIcon = icon
         let imageData = icon.pngData() 
         category.icon = imageData!
-        
         category.descriptionOfCategory = description
         
         saveContext()
@@ -139,34 +156,163 @@ extension PersistenceController{
     }
     
     // MARK: - Budget Operations
-    func createBudget(monthYear: String, income: Double, budgetAmount: Double) {
+
+    func addBudget(income: Double, budgetAmount: Double, monthYear: String) -> Budget? {
+        if let existingBudget = fetchBudget(for: monthYear) {
+            print("Budget for \(monthYear) already exists: \(existingBudget)")
+            return existingBudget
+        }
+        
         let budget = Budget(context: context)
         budget.id = UUID()
+        budget.totalIncome = income
+        budget.budgetedAmount = budgetAmount
         budget.monthYear = monthYear
-        budget.income = income
-        budget.budgetAmount = budgetAmount
         budget.totalExpenses = 0.0
-        
         saveContext()
         print("Budget created for \(monthYear).")
+        return budget
     }
-    
+
+
     func fetchBudget(for monthYear: String) -> Budget? {
         let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "monthYear == %@", monthYear)
-        
         do {
             return try context.fetch(fetchRequest).first
         } catch {
-            print("Error fetching budget: \(error)")
+            print("Error fetching budget for \(monthYear): \(error.localizedDescription)")
             return nil
         }
     }
-    
-    func deleteBudget(_ budget: Budget) {
+
+    func fetchBudgets() -> [Budget] {
+        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching budgets: \(error.localizedDescription)")
+            return []
+        }
+    }
+
+    func updateBudget(budget: Budget, income: Double?, budgetAmount: Double?, totalExpenses: Double?) {
+        if let income = income {
+            budget.totalIncome = income
+            print("Updated income for \(budget.monthYear): \(income)")
+        }
+        if let budgetAmount = budgetAmount {
+            budget.budgetedAmount = budgetAmount
+            print("Updated budget amount for \(budget.monthYear): \(budgetAmount)")
+        }
+        if let totalExpenses = totalExpenses {
+            budget.totalExpenses = totalExpenses
+            print("Updated total expenses for \(budget.monthYear): \(totalExpenses)")
+        }
+        saveContext()
+    }
+
+    func deleteBudget(budget: Budget) {
         context.delete(budget)
         saveContext()
-        print("Budget deleted for \(budget.monthYear).")
+    }
+
+    func addCategoryBudget(for budget: Budget, category: Category, budgetedAmount: Double) -> CategoryBudget? {
+        // Check if a category budget already exists for this category in the given budget
+        let existingBudgets = fetchCategoryBudgets(for: budget).filter { $0.category == category }
+        if let existingBudget = existingBudgets.first {
+            print("Category budget for \(category.name) already exists in \(budget.monthYear).")
+            return existingBudget
+        }
+        
+        let categoryBudget = CategoryBudget(context: context)
+        categoryBudget.id = UUID()
+        categoryBudget.spentAmount = 0.0
+        categoryBudget.budgetedAmount = budgetedAmount
+        categoryBudget.budget = budget
+        categoryBudget.category = category
+        saveContext()
+        print("Category budget added for \(category.name) in \(budget.monthYear).")
+        return categoryBudget
+    }
+
+
+    func fetchCategoryBudgets(for budget: Budget?) -> [CategoryBudget] {
+        guard let budget = budget else {
+            print("No budget provided to fetch category budgets.")
+            return []
+        }
+        
+        let fetchRequest: NSFetchRequest<CategoryBudget> = CategoryBudget.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "budget == %@", budget)
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching category budgets for \(budget.monthYear): \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    func fetchCategoryBudget(for category: Category, monthYear: String) -> CategoryBudget? {
+        let fetchRequest: NSFetchRequest<CategoryBudget> = CategoryBudget.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "category == %@ AND monthYear == %@", category, monthYear)
+        do {
+            return try context.fetch(fetchRequest).first
+        }catch {
+            print("Error fetching category budget for \(category.name) \(monthYear): \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    func updateCategoryBudget(categoryBudget: CategoryBudget, spentAmount: Double?, budgetedAmount: Double?) {
+        if let spentAmount = spentAmount {
+            categoryBudget.spentAmount = spentAmount
+        }
+        if let budgetedAmount = budgetedAmount {
+            categoryBudget.budgetedAmount = budgetedAmount
+        }
+        saveContext()
+    }
+
+    func deleteCategoryBudget(categoryBudget: CategoryBudget) {
+        context.delete(categoryBudget)
+        saveContext()
+    }
+
+    func validateCategoryBudgets(for budget: Budget) -> Bool {
+        let categoryBudgets = fetchCategoryBudgets(for: budget)
+        let totalCategoryBudget = categoryBudgets.reduce(0) { $0 + $1.budgetedAmount }
+        
+        if totalCategoryBudget > budget.budgetedAmount {
+            print("Total category budgets (\(totalCategoryBudget)) exceed the total budget (\(budget.budgetedAmount)).")
+            return false
+        }
+        print("Category budgets are valid.")
+        return true
+    }
+
+    
+    func addDailyTarget(budget: Budget, date: Date, targetExpense: Double) {
+        let dailyTarget = DailyTarget(context: context)
+        dailyTarget.id = UUID()
+        dailyTarget.date = date
+        dailyTarget.actualExpense = 0.0
+        dailyTarget.isCompleted = false
+        dailyTarget.savingsAchieved = 0.0
+        dailyTarget.targetExpense = targetExpense
+        //dailyTarget.budget = budget
+        saveContext()
+    }
+        
+    func fetchDailyTargets(for budget: Budget) -> [DailyTarget] {
+        let fetchRequest: NSFetchRequest<DailyTarget> = DailyTarget.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "budget == %@", budget)
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching daily targets: \(error)")
+            return []
+        }
     }
     
     func generateDailyTargets(for budget: Budget) {
@@ -177,12 +323,12 @@ extension PersistenceController{
             let dailyTarget = DailyTarget(context: context)
             dailyTarget.id = UUID()
             dailyTarget.date = createDate(from: day, monthYear: monthYear)!
-            dailyTarget.targetExpense = budget.budgetAmount / Double(daysInMonth)
+            dailyTarget.targetExpense = budget.budgetedAmount / Double(daysInMonth)
             dailyTarget.actualExpense = 0.0
             dailyTarget.savingsAchieved = dailyTarget.targetExpense
-            dailyTarget.budget = budget
+           // dailyTarget.budget = budget
             
-            budget.addToDailyTargets(dailyTarget)
+        //budget.addToDailyTargets(dailyTarget)
         }
         
         saveContext()
@@ -221,6 +367,12 @@ extension PersistenceController{
         let calendar = Calendar.current
         let range = calendar.range(of: .day, in: .month, for: date)
         return range?.count
+    }
+    
+    func daysLeftInMonth(from monthYear: String) -> Int? {
+        guard let totalDays = getDaysInMonth(from: monthYear) else { return nil }
+        let today = Calendar.current.dateComponents([.day], from: Date()).day ?? 0
+        return totalDays - today
     }
 
     func createDate(from day: Int, monthYear: String) -> Date? {

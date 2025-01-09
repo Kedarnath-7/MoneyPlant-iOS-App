@@ -2,7 +2,7 @@
 //  DailyTarget+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 02/01/25.
+//  Created by admin86 on 10/01/25.
 //
 //
 
@@ -17,8 +17,8 @@ extension DailyTarget {
     }
 
     @NSManaged public var actualExpense: Double
-    @NSManaged public var date: Date
-    @NSManaged public var id: UUID
+    @NSManaged public var date: Date?
+    @NSManaged public var id: UUID?
     @NSManaged public var isCompleted: Bool
     @NSManaged public var savingsAchieved: Double
     @NSManaged public var targetExpense: Double

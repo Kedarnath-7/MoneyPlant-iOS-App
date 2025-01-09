@@ -2,7 +2,7 @@
 //  Budget+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 02/01/25.
+//  Created by admin86 on 10/01/25.
 //
 //
 
@@ -16,29 +16,29 @@ extension Budget {
         return NSFetchRequest<Budget>(entityName: "Budget")
     }
 
+    @NSManaged public var budgetedAmount: Double
     @NSManaged public var id: UUID
-    @NSManaged public var income: Double
+    @NSManaged public var totalIncome: Double
     @NSManaged public var monthYear: String
     @NSManaged public var totalExpenses: Double
-    @NSManaged public var budgetAmount: Double
-    @NSManaged public var dailyTargets: NSSet?
+    @NSManaged public var categoryBudgets: NSSet?
 
 }
 
-// MARK: Generated accessors for dailyTargets
+// MARK: Generated accessors for categoryBudgets
 extension Budget {
 
-    @objc(addDailyTargetsObject:)
-    @NSManaged public func addToDailyTargets(_ value: DailyTarget)
+    @objc(addCategoryBudgetsObject:)
+    @NSManaged public func addToCategoryBudgets(_ value: CategoryBudget)
 
-    @objc(removeDailyTargetsObject:)
-    @NSManaged public func removeFromDailyTargets(_ value: DailyTarget)
+    @objc(removeCategoryBudgetsObject:)
+    @NSManaged public func removeFromCategoryBudgets(_ value: CategoryBudget)
 
-    @objc(addDailyTargets:)
-    @NSManaged public func addToDailyTargets(_ values: NSSet)
+    @objc(addCategoryBudgets:)
+    @NSManaged public func addToCategoryBudgets(_ values: NSSet)
 
-    @objc(removeDailyTargets:)
-    @NSManaged public func removeFromDailyTargets(_ values: NSSet)
+    @objc(removeCategoryBudgets:)
+    @NSManaged public func removeFromCategoryBudgets(_ values: NSSet)
 
 }
 

@@ -2,7 +2,7 @@
 //  Transaction+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 02/01/25.
+//  Created by admin86 on 10/01/25.
 //
 //
 
@@ -23,8 +23,8 @@ extension Transaction {
     @NSManaged public var paidTo: String
     @NSManaged public var paymentMethod: String?
     @NSManaged public var type: String
-    @NSManaged public var category: Category
     @NSManaged public var account: Account?
+    @NSManaged public var category: Category
 
 }
 

@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 02/01/25.
+//  Created by admin86 on 10/01/25.
 //
 //
 
@@ -16,11 +16,11 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
+    @NSManaged public var descriptionOfCategory: String?
+    @NSManaged public var icon: Data
     @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var type: String
-    @NSManaged public var icon: Data
-    @NSManaged public var descriptionOfCategory: String?
     @NSManaged public var transactions: NSSet?
 
 }

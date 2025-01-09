@@ -2,7 +2,7 @@
 //  Account+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 02/01/25.
+//  Created by admin86 on 10/01/25.
 //
 //
 
@@ -18,8 +18,8 @@ extension Account {
 
     @NSManaged public var balance: Double
     @NSManaged public var id: UUID
-    @NSManaged public var name: String
     @NSManaged public var initialBalance: Double
+    @NSManaged public var name: String
     @NSManaged public var type: String
     @NSManaged public var transactions: Transaction?
 
