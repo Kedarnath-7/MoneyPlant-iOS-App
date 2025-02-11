@@ -162,7 +162,7 @@ extension PersistenceController{
         category.id = id
         category.name = name
         category.type = type
-        let imageData = icon.pngData() 
+        let imageData = icon.pngData()
         category.icon = imageData!
         category.descriptionOfCategory = description
         
@@ -461,9 +461,9 @@ extension PersistenceController{
     
     func fetchAllNotFinalizedWeeklyBudgets(date: Date) -> [WeeklyBudget] {
         let fetchRequest: NSFetchRequest<WeeklyBudget> = WeeklyBudget.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "(isWeekFinalized == %@) AND (weekEndDate < %@)", false, date as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "(isWeekFinalized == 0) AND (weekEndDate < %@)", date as CVarArg)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "weekEndDate", ascending: false)]
-
+        
         do {
             return try context.fetch(fetchRequest)
         } catch {

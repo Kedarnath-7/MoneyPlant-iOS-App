@@ -35,11 +35,14 @@ class GardenViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setVisibleWeekIndex()
+        loadBudgetsForMonth(date: selectedDate)
+        updateUIForVisibleWeek()
         
-        let currentMonth = formatDateToMonthYear(date: Date())
-        if finalizedPastWeeks && finalizedPastMonths && currentMonth == formatDateToMonthYear(date: selectedDate) {
-            return
-        }
+//        let currentMonth = formatDateToMonthYear(date: Date())
+//        if finalizedPastWeeks && finalizedPastMonths && currentMonth == formatDateToMonthYear(date: selectedDate) {
+//            return
+//        }
         
         finalizedPastWeeks = false
         finalizedPastMonths = false
@@ -49,12 +52,11 @@ class GardenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setVisibleWeekIndex()
+        
         setupUI()
         setupBottomSheet()
         setupSceneKitView()
-        loadBudgetsForMonth(date: selectedDate)
-        updateUIForVisibleWeek()
+        
     }
 
     // MARK: - Setup UI
@@ -170,7 +172,9 @@ class GardenViewController: UIViewController {
         let today = Calendar.current.startOfDay(for: Date())
         let pastWeeks = PersistenceController.shared.fetchAllNotFinalizedWeeklyBudgets(date: today)
 
+        print("Weeks found: \(pastWeeks.count)")
         for week in pastWeeks where !week.isWeekFinalized {
+            print("Week isWeekFinalized: \(week.isWeekFinalized), Week ID: \(week.id), week growth: \(week.weeklyGrowth)")
             week.isWeekFinalized = true
             PersistenceController.shared.updateWeeklyGrowth(for: week)
         }
@@ -307,7 +311,7 @@ extension GardenViewController: UICollectionViewDelegate, UICollectionViewDataSo
             let isFutureDate = date > today
 
             if let dailyAllocation = PersistenceController.shared.fetchDailyAllocations(for: currentWeek).first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
-                print("Daily allocation found for date: \(PersistenceController.shared.formatToLocalDate(date)), growth: \(dailyAllocation.dailyGrowth)")
+//                print("Daily allocation found for date: \(PersistenceController.shared.formatToLocalDate(date)), growth: \(dailyAllocation.dailyGrowth)")
                 let dailyGrowth = dailyAllocation.dailyGrowth
                 cell.configure(dailyGrowth: dailyGrowth, maxGrowth: 3.0, day: formatDate(date: date), isFutureDate: isFutureDate)
             } else {
