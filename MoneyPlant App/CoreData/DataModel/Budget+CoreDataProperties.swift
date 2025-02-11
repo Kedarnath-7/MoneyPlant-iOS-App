@@ -2,7 +2,7 @@
 //  Budget+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 10/01/25.
+//  Created by admin86 on 11/02/25.
 //
 //
 
@@ -18,10 +18,15 @@ extension Budget {
 
     @NSManaged public var budgetedAmount: Double
     @NSManaged public var id: UUID
-    @NSManaged public var totalIncome: Double
     @NSManaged public var monthYear: String
     @NSManaged public var totalExpenses: Double
+    @NSManaged public var totalIncome: Double
+    @NSManaged public var isMonthFinalized: Bool
+    @NSManaged public var monthEndDate: Date
+    @NSManaged public var monthlyGrowth: Double
     @NSManaged public var categoryBudgets: NSSet?
+    @NSManaged public var weeklyBudgets: NSSet?
+    @NSManaged public var plant: Plant?
 
 }
 
@@ -39,6 +44,23 @@ extension Budget {
 
     @objc(removeCategoryBudgets:)
     @NSManaged public func removeFromCategoryBudgets(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for weeklyBudgets
+extension Budget {
+
+    @objc(addWeeklyBudgetsObject:)
+    @NSManaged public func addToWeeklyBudgets(_ value: WeeklyBudget)
+
+    @objc(removeWeeklyBudgetsObject:)
+    @NSManaged public func removeFromWeeklyBudgets(_ value: WeeklyBudget)
+
+    @objc(addWeeklyBudgets:)
+    @NSManaged public func addToWeeklyBudgets(_ values: NSSet)
+
+    @objc(removeWeeklyBudgets:)
+    @NSManaged public func removeFromWeeklyBudgets(_ values: NSSet)
 
 }
 
