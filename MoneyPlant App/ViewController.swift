@@ -14,7 +14,7 @@ class ViewController: UIViewController{
     
     @IBOutlet weak var signUpButton: UIButton!
     
-    lazy var bottomSheetVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BottomVC") as? BottomSheetViewController
+   // lazy var bottomSheetVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BottomVC") as? BottomSheetViewController
     
     //    @IBOutlet weak var bottomSheetView: UIView!
 //    
