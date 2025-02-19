@@ -38,12 +38,6 @@ class GardenViewController: UIViewController {
         setVisibleWeekIndex()
         loadBudgetsForMonth(date: selectedDate)
         updateUIForVisibleWeek()
-        
-//        let currentMonth = formatDateToMonthYear(date: Date())
-//        if finalizedPastWeeks && finalizedPastMonths && currentMonth == formatDateToMonthYear(date: selectedDate) {
-//            return
-//        }
-        
         finalizedPastWeeks = false
         finalizedPastMonths = false
         checkForWeeksAndMonthsFinalization()
@@ -56,7 +50,7 @@ class GardenViewController: UIViewController {
         setupUI()
         setupBottomSheet()
         setupSceneKitView()
-        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
     }
 
     // MARK: - Setup UI
@@ -65,6 +59,21 @@ class GardenViewController: UIViewController {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 4
         }
+    }
+    
+    @objc func changeVC(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
+        vc.modalPresentationStyle = .automatic
+        vc.modalTransitionStyle = .coverVertical
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToGardenViewController(segue: UIStoryboardSegue) {
+        guard segue.identifier == "continueUnwind",
+              let _ = segue.source as? OnboardingViewController else{return}
+        segue.source.modalPresentationStyle = .automatic
+        segue.source.modalTransitionStyle = .coverVertical
     }
     
     func setupSceneKitView() {

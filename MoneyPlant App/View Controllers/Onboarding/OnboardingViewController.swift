@@ -11,10 +11,10 @@ class OnboardingViewController: UIViewController {
 
     
     var cells: [OnboardingCell] = [
-        OnboardingCell(title: "Effortless Record-Keeping", description: "Add income or expense records in just a few taps with an intuitive interface.", image: UIImage(systemName: "square.and.pencil.circle.fill")!),
-        OnboardingCell(title: "Smart Categorization", description: "Organize transactions into pre-defined or custom categories for better clarity.", image: UIImage(systemName: "rectangle.grid.2x2.fill")!),
-        OnboardingCell(title: "Track Your Growth", description: "Watch your interactive plant flourish as you manage your finances effectively.", image: UIImage(systemName: "leaf.circle.fill")!),
-        OnboardingCell(title: "Meaningful Insights", description: "Visual summaries help you understand your spending and saving habits.", image: UIImage(systemName: "chart.pie.fill")!)
+        OnboardingCell(title: "Plant Metaphor For Savings", description: "Watch your interactive plant flourish as you manage your finances effectively.", image: UIImage(systemName: "tree.fill")!),
+        OnboardingCell(title: "Income & Expense Tracking", description: "Add income or expense records in just a few taps with an intuitive interface.", image: UIImage(systemName: "list.bullet.rectangle.portrait.fill")!),
+        OnboardingCell(title: "Personalised Budgets", description: "Set and track daily, weekly, & monthly budgets to stay on track.", image: UIImage(systemName: "chart.pie.fill")!),
+        OnboardingCell(title: "Gamification & Rewards", description: "Earn rewards and unlock special features to keep your savings journey exciting.", image: UIImage(systemName: "storefront.fill")!)
     ]
     
     override func viewDidLoad() {

@@ -147,7 +147,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5W-uR-knd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="dF3-Vd-zYc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1292" y="-1590"/>
+            <point key="canvasLocation" x="-2535" y="-780"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ZxQ-4h-ZSf">
@@ -218,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIe-Tt-KVV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4302" y="-2199"/>
+            <point key="canvasLocation" x="-1292" y="-2456"/>
         </scene>
         <!--Bottom Sheet View Controller-->
         <scene sceneID="8bG-pz-01g">
@@ -442,6 +442,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginTapped:" destination="e1F-ht-ZfM" eventType="touchUpInside" id="59L-Ee-bIp"/>
+                                    <segue destination="HfB-aO-1tF" kind="custom" identifier="" id="L5p-7v-6GC"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uc3-Qd-hhB">
@@ -498,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRX-gD-wcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3158" y="-1878"/>
+            <point key="canvasLocation" x="-2118" y="-1665"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="rsB-WM-xe1">
@@ -556,6 +557,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="signUpTapped:" destination="cGI-kb-E1G" eventType="touchUpInside" id="rxI-ZS-4kQ"/>
+                                    <segue destination="HfB-aO-1tF" kind="custom" id="Paz-MV-SLG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkV-x5-fo2">
@@ -594,7 +596,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UF-MJ-duE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3158" y="-2535"/>
+            <point key="canvasLocation" x="-524" y="-1665"/>
         </scene>
         <!--Visualise-->
         <scene sceneID="AfX-O4-awC">
@@ -999,7 +1001,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGW-T7-eju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5389" y="-2199"/>
+            <point key="canvasLocation" x="-1292" y="-3234"/>
         </scene>
         <!--Records-->
         <scene sceneID="Q2N-xn-HNy">
@@ -1458,7 +1460,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WuJ-e0-RIj" userLabel="No Budget View">
-                                <rect key="frame" x="0.0" y="419" width="393" height="350"/>
+                                <rect key="frame" x="0.0" y="431" width="393" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="393" id="5Ob-pK-hwJ"/>
                                     <constraint firstAttribute="height" constant="350" id="RBw-ol-Wy9"/>
@@ -1468,7 +1470,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nqd-n5-YJr" userLabel="Budgets View">
-                                <rect key="frame" x="0.0" y="419" width="393" height="350"/>
+                                <rect key="frame" x="0.0" y="431" width="393" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="393" id="T2I-X1-bqE"/>
                                     <constraint firstAttribute="height" constant="350" id="jQt-Uw-EVn"/>
@@ -1478,10 +1480,10 @@
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RQE-jC-XvC" userLabel="Search Bar and Filter">
-                                <rect key="frame" x="6" y="379" width="385" height="32"/>
+                                <rect key="frame" x="6" y="379" width="385" height="44"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Budgets" translatesAutoresizingMaskIntoConstraints="NO" id="28I-vb-WIY">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="340" id="wcW-8b-SE7"/>
                                             <constraint firstAttribute="height" constant="44" id="yjx-cx-y9a"/>
@@ -1489,7 +1491,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0t-Ht-2ow">
-                                        <rect key="frame" x="341" y="0.0" width="44" height="32"/>
+                                        <rect key="frame" x="341" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="QYV-hG-bos"/>
                                             <constraint firstAttribute="width" constant="44" id="RfJ-8p-bIh"/>
@@ -1505,7 +1507,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPf-Qd-pG1">
-                                <rect key="frame" x="166.66666666666666" y="705" width="60" height="60"/>
+                                <rect key="frame" x="166.66666666666666" y="717" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="8jz-i9-IZU"/>
                                     <constraint firstAttribute="height" constant="60" id="KbS-q1-bgb"/>
@@ -2618,6 +2620,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="HfB-aO-1tF" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xbd-jY-5bf"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Pe-2n-Aiu">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -5898,6 +5901,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2cv-g1-noO"/>
+        <segue reference="L5p-7v-6GC"/>
         <segue reference="Fsd-xk-xeb"/>
         <segue reference="Qck-56-Hsk"/>
         <segue reference="Ia6-Gf-em7"/>

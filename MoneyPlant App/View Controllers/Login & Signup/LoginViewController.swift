@@ -53,8 +53,8 @@ class LoginViewController: UIViewController {
                     self.errorLabel.text = error!.localizedDescription
                     self.errorLabel.alpha = 1.0
                 }else{
-                    // Transition to the Home Screen
-                    self.transitionToHome()
+                    print("Logged in successfully, user: \(String(describing: Auth.auth().currentUser?.email))")
+                   // self.performSegue(withIdentifier: "LoginToTabBar", sender: Any?.self)
                 }
             }
         }
@@ -74,10 +74,14 @@ class LoginViewController: UIViewController {
         errorLabel.text = message
         errorLabel.alpha = 1.0
     }
-    func transitionToHome() {
-        let gardenViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.gardenViewController) as? GardenViewController
-        
-        view.window?.rootViewController = gardenViewController
-        view.window?.makeKeyAndVisible()
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginToTabBar" {
+            if let tabBarController = segue.destination as? UITabBarController {
+                tabBarController.selectedIndex = 0
+            }
+        }
     }
+
 }
