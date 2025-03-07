@@ -21,10 +21,15 @@ class ProgressCircleCollectionViewCell: UICollectionViewCell {
         
         if isFutureDate {
             progressView.progressColor = UIColor.systemBlue
-        } else if dailyGrowth == 0.0 {
-            progressView.progressColor = UIColor.systemRed
-        } else {
-            progressView.progressColor = UIColor.systemGreen
+            print("Future Date")
+        } else{
+            if dailyGrowth != 0.0 {
+                progressView.progressColor = UIColor.systemGreen
+                print("Positive Growth")
+            }else{
+                progressView.progressColor = UIColor.systemGreen
+                print("No Growth")
+            }
         }
     }
 }

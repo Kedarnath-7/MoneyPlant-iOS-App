@@ -89,8 +89,9 @@ class ProfileViewController: UIViewController, ProfileUpdateDelegate {
         imageView.clipsToBounds = true
         
         nameLabel.text = UserDefaults.standard.string(forKey: "profileName") ?? "Arthur Morgan"
-               if let imageData = UserDefaults.standard.data(forKey: "profileImage") {
+               if let imageData = UserDefaults.standard.data(forKey: "prof_img") {
                    imageView.image = UIImage(data: imageData)
+                   imageView.tintColor = .darkGray
                } else {
                    imageView.image = UIImage(systemName: "person.circle.fill")
                }

@@ -320,7 +320,7 @@ extension GardenViewController: UICollectionViewDelegate, UICollectionViewDataSo
             let isFutureDate = date > today
 
             if let dailyAllocation = PersistenceController.shared.fetchDailyAllocations(for: currentWeek).first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
-//                print("Daily allocation found for date: \(PersistenceController.shared.formatToLocalDate(date)), growth: \(dailyAllocation.dailyGrowth)")
+                print("Daily allocation found for date: \(PersistenceController.shared.formatToLocalDate(date)), growth: \(dailyAllocation.dailyGrowth)")
                 let dailyGrowth = dailyAllocation.dailyGrowth
                 cell.configure(dailyGrowth: dailyGrowth, maxGrowth: 3.0, day: formatDate(date: date), isFutureDate: isFutureDate)
             } else {

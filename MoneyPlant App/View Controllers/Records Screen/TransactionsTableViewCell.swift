@@ -27,8 +27,11 @@ class TransactionsTableViewCell: UITableViewCell {
     func update(with transaction: Transaction){
         paidToLabel.text = transaction.paidTo
         let category = transaction.category
-        if !category.icon.isEmpty, let iconImage = UIImage(data: category.icon) {
+        if !category.icon.isEmpty, let iconImage = UIImage(systemName: "fork.knife") {
             symbolLabel.image = iconImage
+            
+            
+            
         } else {
             symbolLabel.image = UIImage(named: "default_icon")
         }
