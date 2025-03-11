@@ -1018,7 +1018,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Vw-OS-EMh" userLabel="Month Stack View">
-                                <rect key="frame" x="95" y="155" width="200" height="40"/>
+                                <rect key="frame" x="96.666666666666686" y="155" width="200" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2be-l4-t2n">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -1061,10 +1061,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jum-lG-3cf" userLabel="Account Balance Stack View">
-                                <rect key="frame" x="-1.6666666666666572" y="215" width="393.33333333333326" height="64"/>
+                                <rect key="frame" x="0.0" y="215" width="393" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Account Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3j-M7-T0e">
-                                        <rect key="frame" x="0.0" y="0.0" width="393.33333333333331" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="k4g-Lj-mP6"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="393" id="yi5-Oc-ZBG"/>
@@ -1074,7 +1074,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="₹ 50,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzE-V8-RlW">
-                                        <rect key="frame" x="0.0" y="24" width="393.33333333333331" height="40"/>
+                                        <rect key="frame" x="0.0" y="24" width="393" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="393" id="cla-GO-FWp"/>
                                             <constraint firstAttribute="height" constant="40" id="wrU-9y-tn2"/>
@@ -1090,7 +1090,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="eK9-Wz-fRw" userLabel="Income &amp; Expense View">
-                                <rect key="frame" x="13" y="299" width="364" height="67"/>
+                                <rect key="frame" x="14.666666666666657" y="299" width="364" height="67"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kJx-QB-VtM">
                                         <rect key="frame" x="8" y="8" width="348" height="51"/>
@@ -1237,7 +1237,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="wAU-vp-UMP" userLabel="Search &amp; Filter Stack View">
-                                <rect key="frame" x="3" y="378" width="384" height="44"/>
+                                <rect key="frame" x="4.6666666666666572" y="378" width="384" height="44"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Transactions" translatesAutoresizingMaskIntoConstraints="NO" id="cO5-eJ-lYj">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
@@ -1294,7 +1294,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="an2-mS-hRk" userLabel="Add New Button">
-                                <rect key="frame" x="165" y="714" width="60" height="60"/>
+                                <rect key="frame" x="166.66666666666666" y="705" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="9bb-ky-Pph"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="osE-xD-DAO"/>
@@ -1714,7 +1714,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expenseCollectionViewCell" id="FQu-nK-7Sa" customClass="AddRecordCollectionViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expenseCollectionViewCell" id="FQu-nK-7Sa" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5Nz-gM-cZF">
@@ -1841,7 +1841,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="incomeCollectionViewCell" id="0gj-Me-BNg" customClass="AddRecordCollectionViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="incomeCollectionViewCell" id="0gj-Me-BNg" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o7c-yw-7vU">
@@ -2040,7 +2040,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="2fd-Mr-mgk" customClass="TransactionsTableViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="2fd-Mr-mgk" customClass="TransactionsTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2fd-Mr-mgk" id="SWQ-2l-VTz">
@@ -2227,7 +2227,7 @@
                                         <rect key="frame" x="20" y="334" width="356" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dU8-oK-reD" id="A05-56-PK5">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Paid to" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XXw-KP-SPI">
@@ -2243,7 +2243,7 @@
                                         <rect key="frame" x="20" y="382" width="356" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nmu-Yi-ccL" id="1su-Yj-Zhi">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="₹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRb-Py-QqT">
@@ -2266,7 +2266,7 @@
                                         <rect key="frame" x="20" y="430" width="356" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dXq-4L-u7j" id="WvX-oL-6pa">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlf-ec-KW6">
@@ -2277,7 +2277,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4gu-2P-eV0">
-                                                    <rect key="frame" x="106" y="4" width="220" height="40"/>
+                                                    <rect key="frame" x="106" y="4" width="240" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 </datePicker>
                                             </subviews>
@@ -2287,7 +2287,7 @@
                                         <rect key="frame" x="20" y="478" width="356" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Ht-cL-sm7" id="QP0-FR-F2E">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Note(Optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hRL-3N-jsY">
@@ -2450,7 +2450,7 @@
                                     <constraint firstAttribute="width" constant="393" id="qMM-Tz-VL6"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="budgetCell" rowHeight="120" id="qNT-Td-AId" customClass="BudgetsTableViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="budgetCell" rowHeight="120" id="qNT-Td-AId" customClass="BudgetsTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qNT-Td-AId" id="io4-mx-fV8">
@@ -2564,7 +2564,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6X-YD-F5Q" customClass="CircularProgressView" customModule="SavingTransactions" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6X-YD-F5Q" customClass="CircularProgressView" customModule="MoneyPlant_App" customModuleProvider="target">
                                                     <rect key="frame" x="287" y="30" width="60" height="60"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -2647,7 +2647,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expenseCategoryCell" id="IEL-Fw-Vqg" customClass="AddRecordCollectionViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expenseCategoryCell" id="IEL-Fw-Vqg" customClass="AddRecordCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="niu-n1-sul">
@@ -3019,7 +3019,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="eyw-f0-BUX" customClass="TransactionsTableViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="eyw-f0-BUX" customClass="TransactionsTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eyw-f0-BUX" id="TXe-uW-9G4">
@@ -4558,7 +4558,7 @@
         <!--Garden View Controller-->
         <scene sceneID="Y7e-4s-s9F">
             <objects>
-                <viewController id="Ju1-cl-cUH" customClass="GardenViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ju1-cl-cUH" customClass="GardenViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pye-ZG-RBd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4607,7 +4607,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsU-ro-nRz" customClass="CircularProgressView" customModule="SavingTransactions" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsU-ro-nRz" customClass="CircularProgressView" customModule="MoneyPlant_App" customModuleProvider="target">
                                                 <rect key="frame" x="88" y="0.0" width="70" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xky-2w-1b6">
@@ -4828,7 +4828,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProgressCircleCell" id="klo-fE-MZx" customClass="ProgressCircleCollectionViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProgressCircleCell" id="klo-fE-MZx" customClass="ProgressCircleCollectionViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="5" width="50" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XL7-Kl-iUv">
@@ -4939,7 +4939,7 @@
         <!--Daily Allocation-->
         <scene sceneID="EEv-Jc-BUS">
             <objects>
-                <viewController id="7Ri-Vv-zsz" customClass="DailyAllocationViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7Ri-Vv-zsz" customClass="DailyAllocationViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RYe-ZC-C5F">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4947,7 +4947,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1D-b5-yc5">
                                 <rect key="frame" x="16" y="162" width="361" height="140"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h26-iy-zrQ" customClass="CircularProgressView" customModule="SavingTransactions" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h26-iy-zrQ" customClass="CircularProgressView" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="125.66666666666666" y="15" width="110" height="110"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sFN-58-Dom">
@@ -4984,7 +4984,7 @@
                                             <constraint firstAttribute="height" constant="110" id="zQ2-eQ-pAo"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXq-1W-qEX" customClass="CircularProgressView" customModule="SavingTransactions" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXq-1W-qEX" customClass="CircularProgressView" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="239" y="15" width="110" height="110"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z6X-cI-fdV">
@@ -5072,7 +5072,7 @@
                                     <constraint firstAttribute="width" constant="393" id="oeR-eW-ABR"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DailyAllocationCell" rowHeight="120" id="Pn7-xa-Se3" customClass="DailyAllocationTableViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DailyAllocationCell" rowHeight="120" id="Pn7-xa-Se3" customClass="DailyAllocationTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pn7-xa-Se3" id="Gwm-Nt-BKx">
@@ -5245,7 +5245,7 @@
         <!--Add New Record-->
         <scene sceneID="VGo-Yn-zng">
             <objects>
-                <tableViewController id="cR7-25-M6F" customClass="AddNewRecordTableViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="cR7-25-M6F" customClass="AddNewRecordTableViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="sWl-03-Nd8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="593"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5263,7 +5263,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAz-KQ-5Wk">
                                                     <rect key="frame" x="76.666666666666686" y="12" width="200" height="200"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍽️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2c-Rw-Tr4">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍽️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2c-Rw-Tr4">
                                                             <rect key="frame" x="40" y="40" width="120" height="120"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="120" id="HvZ-Bl-8AW"/>
@@ -5425,7 +5425,7 @@
         <!--Add New Category-->
         <scene sceneID="UVV-sm-j7A">
             <objects>
-                <tableViewController id="BPa-GF-F1E" customClass="AddNewCategoryTableViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="BPa-GF-F1E" customClass="AddNewCategoryTableViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="A58-Eh-wQj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5601,7 +5601,7 @@
         <!--Category Budget Details-->
         <scene sceneID="Zey-Ua-yrw">
             <objects>
-                <viewController id="YTo-Cb-Yxi" customClass="BudgetDetailsViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YTo-Cb-Yxi" customClass="BudgetDetailsViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fQd-tl-pLM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5829,13 +5829,13 @@
         <!--Review Transactions-->
         <scene sceneID="NrD-9s-gKy">
             <objects>
-                <tableViewController title="Review Transactions" id="qBl-yN-ENB" customClass="TransactionReviewViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Review Transactions" id="qBl-yN-ENB" customClass="TransactionReviewViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="EX2-2c-wGB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="Fq7-29-aTO" customClass="TransactionsTableViewCell" customModule="SavingTransactions" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="90" id="Fq7-29-aTO" customClass="TransactionsTableViewCell" customModule="MoneyPlant_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fq7-29-aTO" id="5Qd-vb-zow">
@@ -5964,7 +5964,7 @@
         <!--Add New Record-->
         <scene sceneID="hdW-qK-H9W">
             <objects>
-                <tableViewController id="86F-3p-nez" customClass="AddNewRecordTableViewController" customModule="SavingTransactions" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="86F-3p-nez" customClass="AddNewRecordTableViewController" customModule="MoneyPlant_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="PD7-9n-kDO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
