@@ -10,7 +10,7 @@ import UIKit
 class BudgetDetailsViewController: UIViewController {
 
     @IBOutlet weak var categoryNameLbl: UILabel!
-    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var categoryIcon: UILabel!
     @IBOutlet weak var daysLeftLbl: UILabel!
     @IBOutlet weak var amountLeftLbl: UILabel!
     @IBOutlet weak var amountLeftForEachDayLbl: UILabel!
@@ -38,7 +38,7 @@ class BudgetDetailsViewController: UIViewController {
 
         // Set category name and image
         categoryNameLbl.text = categoryBudget.category.name
-        categoryImage.image = UIImage(data: categoryBudget.category.icon)
+        categoryIcon.text = categoryBudget.category.icon
 
         // Calculate days left
         let budget = categoryBudget.budget

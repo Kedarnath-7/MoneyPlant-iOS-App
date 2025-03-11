@@ -9,11 +9,10 @@ import UIKit
 
 class TransactionsTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var paidToLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var symbolLabel: UIImageView!
+    @IBOutlet weak var symbolLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,13 +26,10 @@ class TransactionsTableViewCell: UITableViewCell {
     func update(with transaction: Transaction){
         paidToLabel.text = transaction.paidTo
         let category = transaction.category
-        if !category.icon.isEmpty, let iconImage = UIImage(systemName: "fork.knife") {
-            symbolLabel.image = iconImage
-            
-            
-            
+        if !category.icon.isEmpty{
+            symbolLabel.text = category.icon
         } else {
-            symbolLabel.image = UIImage(named: "default_icon")
+            symbolLabel.text = "❓"
         }
         if transaction.category.type == "Expense" {
             amountLabel.text = "- ₹\(transaction.amount)"

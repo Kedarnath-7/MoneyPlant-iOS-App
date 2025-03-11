@@ -15,33 +15,37 @@ class AddNewRecordTableViewController: UITableViewController {
     var selectedExpenseCategory: Category?
     var selectedIncomeCategory: Category?
     
-    @IBOutlet weak var selectedCategoryImage: UIImageView!
+    @IBOutlet weak var selectedCategoryLabel: UILabel!
     @IBOutlet weak var selectedCategoryName: UITextField!
     @IBOutlet weak var selectedCategoryAmount: UITextField!
-    @IBOutlet weak var selectedCategoryDate: UITextField!
+    @IBOutlet weak var categoryUIView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var selectedCategoryNote: UITextField!
     @IBOutlet weak var saveRecordButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoryUIView.layer.cornerRadius = 100
+        categoryUIView.layer.borderWidth = 8
+        categoryUIView.layer.borderColor = UIColor.systemGray4.cgColor
+        
         
         if let expenceCategory = selectedExpenseCategory {
             selectedCategory = expenceCategory
             selectedCategory?.type = expenceCategory.type
             print("selectedExpenseCategory Data passed")
-            selectedCategoryImage.image = UIImage(data: expenceCategory.icon)
+            selectedCategoryLabel.text = expenceCategory.icon
             navigationItem.title = "Add New Expense Record"
         }
         else if let incomeCategory = selectedIncomeCategory {
              selectedCategory = incomeCategory
              selectedCategory?.type = incomeCategory.type
              print("selectedIncomeCategory Data passed")
-            selectedCategoryImage.image = UIImage(data: incomeCategory.icon)
+            selectedCategoryLabel.text = incomeCategory.icon
              navigationItem.title = "Add New Income Record"
         }else if let transactionToEdit = transactionToEdit{
             selectedCategory = transactionToEdit.category
-            selectedCategoryImage.image = UIImage(data: transactionToEdit.category.icon)
+            selectedCategoryLabel.text = transactionToEdit.category.icon
             selectedCategory?.type = transactionToEdit.category.type
             selectedCategoryName.text = transactionToEdit.paidTo
             selectedCategoryAmount.text = String(transactionToEdit.amount)
@@ -64,8 +68,6 @@ class AddNewRecordTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "saveUnwind" else { return }
-
         let paidTo = selectedCategoryName.text ?? ""
         let category = selectedCategory!
         guard let amount = Double(selectedCategoryAmount.text ?? "") else {
@@ -80,7 +82,13 @@ class AddNewRecordTableViewController: UITableViewController {
         if let transactionToEdit = transactionToEdit {
             PersistenceController.shared.updateTransaction(transaction: transactionToEdit, paidTo: paidTo, amount: amount, date: dateAndTime, note: note)
         } else {
-            addedTransaction = PersistenceController.shared.addTransaction(paidTo: paidTo, amount: amount, date: dateAndTime, note: note, category: category)
+            addedTransaction = PersistenceController.shared.addTransaction(paidTo: paidTo, amount: amount, date: dateAndTime, note: note, categoryID: category.objectID)
+        }
+        if segue.identifier == "saveUnwind" {
+            print("✅ Unwinding to TransactionsViewController")
+        }
+        else if segue.identifier == "saveToReview" {
+            print("✅ Unwinding to TransactionReviewViewController")
         }
     }
 

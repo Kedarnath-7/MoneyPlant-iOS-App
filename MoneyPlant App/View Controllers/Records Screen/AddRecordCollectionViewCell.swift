@@ -10,9 +10,9 @@ import UIKit
 class AddRecordCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var categorySymbolLabel: UIImageView!
+    @IBOutlet weak var categoryIconLabel: UILabel!
     
-    @IBOutlet weak var cateogryNameLabel: UILabel!
+    @IBOutlet weak var categoryNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,13 +20,8 @@ class AddRecordCollectionViewCell: UICollectionViewCell {
     }
     
     func update(with category: Category) {
-        if !category.icon.isEmpty {
-            categorySymbolLabel.image = UIImage(data: category.icon)
-        } else {
-            categorySymbolLabel.image = UIImage(systemName: "questionmark.circle")
-        }
-
-        cateogryNameLabel.text = category.name
+        categoryIconLabel.text = category.icon
+        categoryNameLabel.text = category.name
     }
     
 

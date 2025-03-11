@@ -155,12 +155,19 @@ class TransactionsViewController: UIViewController, UISearchBarDelegate{
     }
     
     @IBAction func unwindToTransactionsTableView(segue: UIStoryboardSegue){
-        guard segue.identifier == "saveUnwind",
-              let sourceVC = segue.source as? AddNewRecordTableViewController else { return }
+        if segue.identifier == "saveUnwind"{
+            print("Unwound from AddNewRecordTableViewController")
+        } else if segue.identifier == "saveUnwindFromReview" {
+            print("Unwound from TransactionReviewViewController")
+        } else {
+            print("Unknown unwind segue identifier: \(segue.identifier ?? "nil")")
+            return
+        }
         
-        print("unWindToTransactionsTableView called...")
+        print("Updating TransactionsViewController...")
         loadTransactions()
         updateForCurrentMonth()
         print("Update for current month called.....")
     }
+    
 }

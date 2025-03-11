@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 11/02/25.
+//  Created by admin86 on 11/03/25.
 //
 //
 
@@ -17,7 +17,7 @@ extension Category {
     }
 
     @NSManaged public var descriptionOfCategory: String?
-    @NSManaged public var icon: Data
+    @NSManaged public var icon: String
     @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var type: String

@@ -11,7 +11,7 @@ class BudgetsTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var categoryNameLbl: UILabel!
-    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var categoryIcon: UILabel!
     @IBOutlet weak var dayLeftLbl: UILabel!
     @IBOutlet weak var amountLeftLbl: UILabel!
     @IBOutlet weak var amountSpentLbl: UILabel!
@@ -40,7 +40,7 @@ class BudgetsTableViewCell: UITableViewCell {
         }
         budget.spentAmount = spentAmount.reduce(0.0) { $0 + $1.amount }
         categoryNameLbl.text = budget.category.name
-        categoryImage.image = UIImage(data: budget.category.icon)
+        categoryIcon.text = budget.category.icon
         amountLeftLbl.text = String(budget.budgetedAmount - budget.spentAmount)
         amountSpentLbl.text = String(budget.spentAmount)
         amtSpentPercentLbl.text = String(format: "%.2f%% spent", budget.spentAmount.isZero ? 0 : (budget.spentAmount / budget.budgetedAmount) * 100)

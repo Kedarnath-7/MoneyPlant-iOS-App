@@ -40,13 +40,52 @@ extension PersistenceController{
             let count = try context.count(for: fetchRequest)
             if count == 0 {
                 let defaultCategories = [
-                    (name: "Food", type: "Expense", icon: UIImage(systemName: "fork.knife")),
-                    (name: "Rent", type: "Expense", icon: UIImage(systemName: "house")),
-                    (name: "Medical", type: "Expense", icon: UIImage(systemName: "cross.case.fill")!),
-                    (name: "Party", type: "Expense", icon: UIImage(systemName: "party.popper.fill")!), (name: "Add New", type: "Expense", icon: UIImage(systemName: "plus")!),
-                    
-                    (name: "Salary", type: "Income", icon: UIImage(systemName: "dollarsign.circle")),
-                    (name: "Freelance", type: "Income", icon: UIImage(systemName: "briefcase")), (name: "Add New",  type: "Income", icon: UIImage(systemName: "plus")!)
+                    (name: "Food", type: "Expense", icon: "🍽️"),
+                    (name: "Groceries", type: "Expense", icon: "🛒"),
+                    (name: "Coffee/Tea", type: "Expense", icon: "☕️"),
+                    (name: "Snacks", type: "Expense", icon: "🍿"),
+                    (name: "Clothing", type: "Expense", icon: "👔"),
+                    (name: "Shoes", type: "Expense", icon: "👟"),
+                    (name: "Accessories", type: "Expense", icon: "👓"),
+                    (name: "Electronics", type: "Expense", icon: "🎧"),
+                    (name: "Gifts", type: "Expense", icon: "🎁"),
+                    (name: "Education", type: "Expense", icon: "🎓"),
+                    (name: "Movies", type: "Expense", icon: "🎥"),
+                    (name: "Subscriptions", type: "Expense", icon: "📅"),
+                    (name: "Books", type: "Expense", icon: "📚"),
+                    (name: "Gas/Fuel", type: "Expense", icon: "⛽️"),
+                    (name: "Car Insurance", type: "Expense", icon: "🚗"),
+                    (name: "Home Insurance", type: "Expense", icon: "🏚️"),
+                    (name: "Health Insurance", type: "Expense", icon: "😷"),
+                    (name: "Life Insurance", type: "Expense", icon: "❤️"),
+                    (name: "Haircuts", type: "Expense", icon: "💇"),
+                    (name: "Cosmetics", type: "Expense", icon: "💄"),
+                    (name: "Gym", type: "Expense", icon: "🏋️"),
+                    (name: "Pharmacy", type: "Expense", icon: "💊"),
+                    (name: "Pizza", type: "Expense", icon: "🍕"),
+                    (name: "Game", type: "Expense", icon: "🎮"),
+                    (name: "Phone", type: "Expense", icon: "📱"),
+                    (name: "Beauty", type: "Expense", icon: "💅"),
+                    (name: "Sports", type: "Expense", icon: "⚽️"),
+                    (name: "Social", type: "Expense", icon: "🗣️"),
+                    (name: "Transportation", type: "Expense", icon: "🚆"),
+                    (name: "Car", type: "Expense", icon: "🚘"),
+                    (name: "Travel", type: "Expense", icon: "🛫"),
+                    (name: "Health", type: "Expense", icon: "🏥"),
+                    (name: "Pets", type: "Expense", icon: "🐾"),
+                    (name: "Repairs", type: "Expense", icon: "🔧"),
+                    (name: "Housing", type: "Expense", icon: "🏠"),
+                    (name: "Rent", type: "Expense", icon: "🏠"),
+                    (name: "Vegetables", type: "Expense", icon: "🥕"),
+                    (name: "Fruits", type: "Expense", icon: "🍎"),
+                    (name: "Add New",  type: "Expense", icon: "➕"),
+
+                    (name: "Salary", type: "Income", icon: "💰"),
+                    (name: "Investments", type: "Income", icon: "📈"),
+                    (name: "Bonus", type: "Income", icon: "🎉"),
+                    (name: "Freelance", type: "Income", icon: "🧑‍💻"),
+                    (name: "Others", type: "Income", icon: "💡"),
+                    (name: "Add New",  type: "Income", icon: "➕")
                 ]
                 
                 for categoryData in defaultCategories {
@@ -54,11 +93,7 @@ extension PersistenceController{
                     category.id = UUID()
                     category.name = categoryData.name
                     category.type = categoryData.type
-                    
-                    if let icon = categoryData.icon,
-                       let imageData = icon.pngData() { // Convert UIImage to Data
-                        category.icon = imageData
-                    }
+                    category.icon = categoryData.icon
                 }
                 
                 try context.save()
@@ -88,15 +123,22 @@ extension PersistenceController{
     }
     
     // MARK: - CRUD Operations
-    func addTransaction(paidTo: String, amount: Double, date: Date, note: String?, category: Category) -> Transaction? {
+    func addTransaction(paidTo: String, amount: Double, date: Date, note: String?, categoryID: NSManagedObjectID) -> Transaction? {
+        let context = PersistenceController.shared.context
+            
+        guard let categoryInContext = context.object(with: categoryID) as? Category else {
+            print("❌ Failed to retrieve category in current context!")
+            return nil
+        }
+        
         let transaction = Transaction(context: context)
         transaction.id = UUID()
         transaction.paidTo = paidTo
         transaction.amount = amount
         transaction.date = date
         transaction.note = note
-        transaction.category = category
-        transaction.type = category.type
+        transaction.category = categoryInContext
+        transaction.type = categoryInContext.type
 
         saveContext()
 
@@ -157,16 +199,16 @@ extension PersistenceController{
         updateDailyAllocationSpent(for: dailyAllocation)
     }
 
-    func addCategory(id: UUID,name: String, type: String, icon: UIImage, description: String?) {
+    func addCategory(id: UUID,name: String, type: String, icon: String, description: String?) -> Category {
         let category = Category(context: context)
         category.id = id
         category.name = name
         category.type = type
-        let imageData = icon.pngData()
-        category.icon = imageData!
+        category.icon = icon
         category.descriptionOfCategory = description
         
         saveContext()
+        return category
     }
     
     // MARK: - Fetch Operations
@@ -221,7 +263,32 @@ extension PersistenceController{
         }
     }
     
+    func fetchOrCreateCategory(name: String, type: String) -> Category {
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            if let existingCategory = try context.fetch(fetchRequest).first {
+                return existingCategory  // ✅ Return existing category if found
+            }
+        } catch {
+            print("Error fetching category: \(error)")
+        }
+        
+        // ✅ If not found, create a new category
+        let newCategory = Category(context: context)
+        newCategory.id = UUID()
+        newCategory.name = name
+        newCategory.type = type
+        return newCategory
+    }
+    
     func deleteTransaction(transaction: Transaction) {
+        guard let context = transaction.managedObjectContext else {
+            print("⚠️ Skipping deletion: Transaction not in Core Data")
+            return
+        }
+        
         let transactionDate = transaction.date // Save date before deletion
         let transactionAmount = transaction.amount
 
@@ -912,5 +979,4 @@ extension PersistenceController{
         print("📅 Created date: \(formatToLocalDate(createdDate!))")
         return createdDate
     }
-
 }

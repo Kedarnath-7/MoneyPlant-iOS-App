@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Vision
+import VisionKit
 import CoreData
 
 class CategoriesCollectionViewController: UIViewController {
@@ -13,6 +15,7 @@ class CategoriesCollectionViewController: UIViewController {
     @IBOutlet weak var expenseCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var incomeCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var expenseCategoriesForBudgetVC: UICollectionView!
+    @IBOutlet weak var scanReceiptButton: UIButton!
     
     var expenseCategories: [Category] = []
     var incomeCategories: [Category] = []
@@ -113,7 +116,7 @@ class CategoriesCollectionViewController: UIViewController {
 
 }
 
-extension CategoriesCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CategoriesCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
@@ -145,7 +148,7 @@ extension CategoriesCollectionViewController: UICollectionViewDataSource, UIColl
             cell?.update(with: expenseCategory)
             return cell!
         }
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -181,10 +184,94 @@ extension CategoriesCollectionViewController: UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: 90, height: 90)
-        
     }
     
+    @IBAction func didTapScanReceipt(_ sender: Any) {
+            let actionSheet = UIAlertController(title: "Scan Receipt", message: "Choose an option", preferredStyle: .actionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+                self.presentCamera()
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Choose from Library", style: .default, handler: { _ in
+                self.presentPhotoLibrary()
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            present(actionSheet, animated: true)
+        }
+
+        func presentCamera() {
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = self
+            present(picker, animated: true)
+        }
+
+        func presentPhotoLibrary() {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            present(picker, animated: true)
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                processReceiptImage(image)
+            }
+            picker.dismiss(animated: true)
+        }
+
+        func processReceiptImage(_ image: UIImage) {
+            guard let cgImage = image.cgImage else { return }
+            
+            let request = VNRecognizeTextRequest { (request, error) in
+                guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+                
+                let extractedText = observations
+                    .compactMap { $0.topCandidates(1).first?.string }
+                    .joined(separator: "\n")
+                
+                print("\n=========== Extracted Text ===========")
+                print(extractedText)
+                print("======================================\n")
+                
+                self.sendTextToGemini(extractedText)
+            }
+            
+            request.recognitionLevel = .accurate
+            request.usesLanguageCorrection = true
+            
+            let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+            try? requestHandler.perform([request])
+        }
+
+        func sendTextToGemini(_ text: String) {
+            APIManager.shared.processReceiptText(receiptText: text) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let transactions):
+                        self.presentTransactionReview(transactions)
+                    case .failure(let error):
+                        print("❌ API Error: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+
+    func presentTransactionReview(_ transactions: [Transaction]) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let navVC = storyboard.instantiateViewController(withIdentifier: "TransactionReviewVCNavigationController") as? UINavigationController {
+            if let reviewVC = navVC.topViewController as? TransactionReviewViewController{
+                reviewVC.transactions = transactions
+            }
+            navVC.modalPresentationStyle = .automatic
+            navVC.modalTransitionStyle = .coverVertical
+            self.present(navVC, animated: true)
+        }
     
+    }
 }

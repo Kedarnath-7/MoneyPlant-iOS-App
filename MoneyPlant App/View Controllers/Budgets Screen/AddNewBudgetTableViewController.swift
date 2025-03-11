@@ -9,7 +9,7 @@ import UIKit
 
 class AddNewBudgetTableViewController: UITableViewController {
 
-    @IBOutlet weak var selectedCategoryImage: UIImageView!
+    @IBOutlet weak var selectedCategoryIcon: UILabel!
     @IBOutlet weak var selectedCategoryName: UILabel!
     @IBOutlet weak var categoryBudgetTextField: UITextField!
     @IBOutlet weak var saveBudgetButton: UIBarButtonItem!
@@ -33,21 +33,18 @@ class AddNewBudgetTableViewController: UITableViewController {
             print("Total budget data received from BudgetsViewController: \(budget.description)")
             // Adding/Editing the total budget
             selectedCategoryName.text = "Total Budget"
-            selectedCategoryImage.image = UIImage(named: "indianrupeesign.circle")
+            selectedCategoryIcon.text = "₹"
             categoryBudgetTextField.text = String(format: "%.2f", budget.budgetedAmount)
             navigationItem.title = "Add/Edit Total Budget"
         }else{
-//            if let selectedCategory = selectedCategory{
-//                newCategoryBudget = PersistenceController.shared.fetchCategoryBudget(for: selectedCategory, monthYear: <#T##String#>)
-//            }
             if let categoryBudget = existingCategoryBudget{
                 selectedCategoryName.text = categoryBudget.category.name
-                selectedCategoryImage.image = UIImage(data: categoryBudget.category.icon)
+                selectedCategoryIcon.text = categoryBudget.category.icon
                 categoryBudgetTextField.text = String(format: "%.2f", categoryBudget.budgetedAmount)
                 navigationItem.title = "Edit \(categoryBudget.category.name) Budget"
             }else if let newCategoryBudget = newCategoryBudget{
                 selectedCategoryName.text = newCategoryBudget.category.name
-                selectedCategoryImage.image = UIImage(data: newCategoryBudget.category.icon)
+                selectedCategoryIcon.text = newCategoryBudget.category.icon
                 categoryBudgetTextField.text = String(format: "%.2f", newCategoryBudget.budgetedAmount)
                 navigationItem.title = "Add New \(newCategoryBudget.category.name) Budget"
             }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 class MonthOverviewViewController: UIViewController {
 

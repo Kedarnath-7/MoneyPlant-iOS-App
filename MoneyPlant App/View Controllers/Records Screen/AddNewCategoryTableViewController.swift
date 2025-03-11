@@ -11,7 +11,7 @@ class AddNewCategoryTableViewController: UITableViewController, UIImagePickerCon
     
     var addNewCategory: Category?
     
-    @IBOutlet weak var addNewCategoryImage: UIImageView!
+    @IBOutlet weak var addNewCategoryLabel: UILabel!
     
     @IBOutlet weak var categoryNameTextField: UITextField!
     
@@ -27,7 +27,7 @@ class AddNewCategoryTableViewController: UITableViewController, UIImagePickerCon
         super.viewDidLoad()
         
         if let newCategory = addNewCategory {
-            addNewCategoryImage.image = UIImage(named: "plus")
+            addNewCategoryLabel.text = "➕"
         }
         
         updateSaveButtonState()
@@ -48,13 +48,14 @@ class AddNewCategoryTableViewController: UITableViewController, UIImagePickerCon
         guard segue.identifier == "saveUnwind" else { return }
         
         let id = UUID()
-        let image = (addNewCategoryImage.image ?? UIImage(systemName: "plus"))!
+        let icon = addNewCategoryLabel.text ?? "❓"
         let name = categoryNameTextField.text ?? ""
         let type = categoryTypeTextField.text ?? ""
         let regular = categoryIsRegular.text ?? ""
         let description = categoryDescriptionTextField.text ?? ""
         
-        PersistenceController.shared.addCategory(id: id, name: name, type: type, icon: image, description: description)
+        let addedNewCategory = PersistenceController.shared.addCategory(id: id, name: name, type: type, icon: icon, description: description)
+        print("Added new category: \(addedNewCategory.name)")
     }
     
     
