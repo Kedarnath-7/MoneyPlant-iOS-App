@@ -21,9 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         PersistenceController.shared.preloadData()
         print(URL.documentsDirectory)
+        requestNotificationPermission()
         return true
     }
-
+    private func requestNotificationPermission() {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+                if let error = error {
+                    print("Notification permission error: \(error.localizedDescription)")
+                }
+                print("Notification permission granted: \(granted)")
+            }
+        }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
