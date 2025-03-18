@@ -51,7 +51,7 @@ class AddNewCategoryTableViewController: UITableViewController, UIImagePickerCon
         let icon = addNewCategoryLabel.text ?? "❓"
         let name = categoryNameTextField.text ?? ""
         let type = categoryTypeTextField.text ?? ""
-        let regular = categoryIsRegular.text ?? ""
+        _ = categoryIsRegular.text ?? ""
         let description = categoryDescriptionTextField.text ?? ""
         
         let addedNewCategory = PersistenceController.shared.addCategory(id: id, name: name, type: type, icon: icon, description: description)

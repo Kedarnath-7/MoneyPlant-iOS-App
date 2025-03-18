@@ -92,12 +92,11 @@ class TransactionsViewController: UIViewController, UISearchBarDelegate{
                                               .reduce(0.0) { $0 + $1.amount }
         let totalExpenses = filteredTransactions.filter { $0.type == "Expense" }
                                                 .reduce(0.0) { $0 + $1.amount }
-        guard let account = PersistenceController.shared.fetchAccount() else {
-            print("No account found. Cannot calculate financial summary.")
+        guard let user = PersistenceController.shared.fetchUser() else {
+            print("No user found. Cannot calculate financial summary.")
             return
         }
-        let initialBalance = account.initialBalance
-        let accountBalance = initialBalance + totalIncome - totalExpenses
+        let accountBalance =  totalIncome - totalExpenses
         
         accountBalanceLabel.text = String(format: "₹ %.2f", accountBalance)
         incomeLabel.text = String(format: "₹ %.2f", totalIncome)

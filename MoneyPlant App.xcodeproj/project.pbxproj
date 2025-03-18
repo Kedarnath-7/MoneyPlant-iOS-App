@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7867011B2D892B1500251AA9 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7867011A2D892B1500251AA9 /* DGCharts */; };
 		78F1011F2D0EF17000FD5774 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78F1011E2D0EF17000FD5774 /* FirebaseAnalytics */; };
 		78F101212D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 78F101202D0EF17000FD5774 /* FirebaseAnalyticsOnDeviceConversion */; };
 		78F101232D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 78F101222D0EF17000FD5774 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7867011B2D892B1500251AA9 /* DGCharts in Frameworks */,
 				78F101442D0F305500FD5774 /* FirebaseDatabase in Frameworks */,
 				78F101252D0EF17000FD5774 /* FirebaseAppCheck in Frameworks */,
 				78F1011F2D0EF17000FD5774 /* FirebaseAnalytics in Frameworks */,
@@ -139,6 +141,7 @@
 				78F101432D0F305500FD5774 /* FirebaseDatabase */,
 				78F101452D0F305500FD5774 /* FirebaseFirestore */,
 				78F101472D0F305500FD5774 /* FirebaseStorage */,
+				7867011A2D892B1500251AA9 /* DGCharts */,
 			);
 			productName = "MoneyPlant App";
 			productReference = 786254322CD68662003A668A /* MoneyPlant App.app */;
@@ -171,6 +174,7 @@
 			packageReferences = (
 				78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				78F101372D0F277900FD5774 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				786701192D892B1500251AA9 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786254332CD68662003A668A /* Products */;
@@ -422,6 +426,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		786701192D892B1500251AA9 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -441,6 +453,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7867011A2D892B1500251AA9 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 786701192D892B1500251AA9 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
 		78F1011E2D0EF17000FD5774 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 78F1011D2D0EF17000FD5774 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

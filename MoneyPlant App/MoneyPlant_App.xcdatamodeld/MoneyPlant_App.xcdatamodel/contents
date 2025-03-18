@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D70" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Account" representedClassName="Account" syncable="YES">
-        <attribute name="balance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="initialBalance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <attribute name="type" attributeType="String"/>
-        <relationship name="transactions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Budget" representedClassName="Budget" syncable="YES">
         <attribute name="budgetedAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isMonthFinalized" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="monthEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="monthlyGrowth" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="monthEndDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="monthlyGrowth" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="monthYear" attributeType="String"/>
         <attribute name="totalExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="totalIncome" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalIncome" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="categoryBudgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryBudget" inverseName="budget" inverseEntity="CategoryBudget"/>
         <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="budget" inverseEntity="Plant"/>
         <relationship name="weeklyBudgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeeklyBudget" inverseName="budget" inverseEntity="WeeklyBudget"/>
@@ -37,27 +29,34 @@
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category"/>
     </entity>
     <entity name="DailyAllocation" representedClassName="DailyAllocation" syncable="YES">
-        <attribute name="allocatedAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="dailyGrowth" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="spentAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="allocatedAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dailyGrowth" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="spentAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="weeklyBudget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeeklyBudget" inverseName="dailyAllocations" inverseEntity="WeeklyBudget"/>
     </entity>
-    <entity name="DailyTarget" representedClassName="DailyTarget" syncable="YES">
-        <attribute name="actualExpense" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="savingsAchieved" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="targetExpense" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget"/>
+    <entity name="Environment" representedClassName="Environment" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isUnlocked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="requiredCoins" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="plant" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Plant" inverseName="environment" inverseEntity="Plant"/>
     </entity>
     <entity name="Plant" representedClassName="Plant" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="stage" optional="YES" attributeType="String"/>
-        <attribute name="totalGrowth" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="stage" attributeType="String"/>
+        <attribute name="totalGrowth" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="plant" inverseEntity="Budget"/>
+        <relationship name="environment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Environment" inverseName="plant" inverseEntity="Environment"/>
+        <relationship name="plantSpecie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlantSpecie" inverseName="plant" inverseEntity="PlantSpecie"/>
+    </entity>
+    <entity name="PlantSpecie" representedClassName="PlantSpecie" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isUnlocked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="requiredCoins" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="plant" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Plant" inverseName="plantSpecie" inverseEntity="Plant"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -67,17 +66,25 @@
         <attribute name="paidTo" attributeType="String"/>
         <attribute name="paymentMethod" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
-        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="transactions" inverseEntity="Account"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="transactions" inverseEntity="UserAccount"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="transactions" inverseEntity="Category"/>
     </entity>
+    <entity name="UserAccount" representedClassName="UserAccount" syncable="YES">
+        <attribute name="email" attributeType="String"/>
+        <attribute name="firstName" attributeType="String"/>
+        <attribute name="lastName" attributeType="String"/>
+        <attribute name="onBoardingRequired" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="plantCoins" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="transactions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction"/>
+    </entity>
     <entity name="WeeklyBudget" representedClassName="WeeklyBudget" syncable="YES">
-        <attribute name="allocatedAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="allocatedAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isWeekFinalized" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="spentAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="weekEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="weeklyGrowth" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="weekStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="spentAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weekEndDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="weeklyGrowth" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weekStartDate" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="weeklyBudgets" inverseEntity="Budget"/>
         <relationship name="dailyAllocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DailyAllocation" inverseName="weeklyBudget" inverseEntity="DailyAllocation"/>
     </entity>

@@ -12,17 +12,17 @@ extension PersistenceController{
     
     // MARK: - Preloading Data
     func preloadAccount() {
-        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+        let fetchRequest: NSFetchRequest<UserAccount> = UserAccount.fetchRequest()
         
         do {
             let count = try context.count(for: fetchRequest)
             if count == 0 {
-                let account = Account(context: context)
-                account.id = UUID()
-                account.name = "Default Account"
-                account.type = "Savings" // Adjust as needed
-                account.initialBalance = 0.0
-                account.balance = 0.0 // Set initial balance
+                let user = UserAccount(context: context)
+                user.firstName = ""
+                user.lastName = ""
+                user.email = ""
+                user.plantCoins = 10000
+                user.onBoardingRequired = true
                 saveContext()
                 print("Preloaded default account with balance 0.0.")
             } else {
@@ -106,15 +106,72 @@ extension PersistenceController{
         }
     }
     
+    func preloadStoreData() {
+        let specieFetch: NSFetchRequest<PlantSpecie> = PlantSpecie.fetchRequest()
+        let environmentFetch: NSFetchRequest<Environment> = Environment.fetchRequest()
+        
+        do {
+            let specieCount = try context.count(for: specieFetch)
+            let environmentCount = try context.count(for: environmentFetch)
+
+            if specieCount == 0 && environmentCount == 0 {
+                print("Preloading default Plant Species and Environments...")
+
+                let defaultSpecieName = "Flower"
+                let defaultEnvironmentName = "Cliff_House"
+
+                let plantSpecies = [
+                    ("Tuple", "Tuple.png", 100),
+                    ("Palm", "Palm.png", 150),
+                    ("Flower", "Flower.png", 200),
+                    ("Banana", "Banana.png", 250),
+                    ("Mushroom", "Mushroom.png", 300)
+                ]
+
+                let environments = [
+                    ("Cliff_House", "Cliff_House.png", 100),
+                    ("Forest_House", "Forest_House.png", 150),
+                    ("Mountain_House", "Mountain_House.png", 200),
+                    ("Low_Poly_Mill", "Low_Poly_Mill.png", 250),
+                    ("Low_Poly_House", "Low_Poly_House.png", 300)
+                ]
+
+                for (name, image, requiredCoins) in plantSpecies {
+                    let specie = PlantSpecie(context: context)
+                    specie.name = name
+                    specie.image = image
+                    specie.requiredCoins = Int64(requiredCoins)
+                    specie.isUnlocked = (name == defaultSpecieName)
+                }
+
+                for (name, image, requiredCoins) in environments {
+                    let environment = Environment(context: context)
+                    environment.name = name
+                    environment.image = image
+                    environment.requiredCoins = Int64(requiredCoins)
+                    environment.isUnlocked = (name == defaultEnvironmentName)
+                }
+
+                try context.save()
+                print("Default Plant Species and Environments preloaded successfully.")
+            } else {
+                print("Default Plant Species and Environments already exist.")
+            }
+        } catch {
+            print("Error preloading store data: \(error)")
+        }
+    }
+
+    
     func preloadData() {
         preloadAccount()
         preloadCategories()
+        preloadStoreData()
     }
     
-    func fetchAccount() -> Account? {
-        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+    func fetchUser() -> UserAccount? {
+        let fetchRequest: NSFetchRequest<UserAccount> = UserAccount.fetchRequest()
         do {
-            // Assuming there's only one account; fetch the first one
             return try context.fetch(fetchRequest).first
         } catch {
             print("Error fetching account: \(error)")
@@ -252,6 +309,39 @@ extension PersistenceController{
         }
     }
     
+    func fetchTransactions(for timeFilter: String, selectedDate: Date) -> [Transaction] {
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        
+        let calendar = Calendar.current
+        var startDate: Date
+        var endDate: Date
+
+        switch timeFilter {
+        case "Weekly":
+            startDate = calendar.dateInterval(of: .weekOfMonth, for: selectedDate)!.start
+            endDate = calendar.dateInterval(of: .weekOfMonth, for: selectedDate)!.end
+        case "Monthly":
+            startDate = calendar.dateInterval(of: .month, for: selectedDate)!.start
+            endDate = calendar.dateInterval(of: .month, for: selectedDate)!.end
+        case "Yearly":
+            startDate = calendar.dateInterval(of: .year, for: selectedDate)!.start
+            endDate = calendar.dateInterval(of: .year, for: selectedDate)!.end
+        default:
+            return []
+        }
+
+        let datePredicate = NSPredicate(format: "date >= %@ AND date <= %@", startDate as NSDate, endDate as NSDate)
+        fetchRequest.predicate = datePredicate
+
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch transactions: \(error)")
+            return []
+        }
+    }
+
+    
     func fetchCategories(for type: String) -> [Category] {
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "type == %@", type)
@@ -323,8 +413,14 @@ extension PersistenceController{
         budget.monthYear = monthYear
         budget.totalExpenses = 0.0
         budget.monthEndDate = monthEndDate(from: monthYear)!
+        budget.isMonthFinalized = false
         saveContext()
+        
         print("Budget created for \(monthYear).")
+        
+        let plant = fetchOrCreatePlant(for: budget)
+        print("Plant \(plant.plantSpecie.name) created for budget \(budget.monthYear).")
+        
         return budget
     }
 
@@ -799,7 +895,27 @@ extension PersistenceController{
         newPlant.stage = "Seedling"
         newPlant.totalGrowth = 0
         newPlant.budget = budget
+
+        // Fetch default PlantSpecie
+        let plantSpecieFetchRequest: NSFetchRequest<PlantSpecie> = PlantSpecie.fetchRequest()
+        plantSpecieFetchRequest.predicate = NSPredicate(format: "name == %@", "Flower")
         
+        if let defaultPlantSpecie = try? context.fetch(plantSpecieFetchRequest).first {
+            newPlant.plantSpecie = defaultPlantSpecie
+        } else {
+            print("❌ Default PlantSpecie not found!")
+        }
+
+        // Fetch default Environment
+        let environmentFetchRequest: NSFetchRequest<Environment> = Environment.fetchRequest()
+        environmentFetchRequest.predicate = NSPredicate(format: "name == %@", "Cliff_House")
+        
+        if let defaultEnvironment = try? context.fetch(environmentFetchRequest).first {
+            newPlant.environment = defaultEnvironment
+        } else {
+            print("❌ Default Environment not found!")
+        }
+
         saveContext()
         return newPlant
     }

@@ -12,7 +12,6 @@ class GardenViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var calendarButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var weeklyProgressCollectionView: UICollectionView!
     @IBOutlet weak var sceneKitView: SCNView!
     @IBOutlet weak var bottomSheetView: UIView!
@@ -20,7 +19,7 @@ class GardenViewController: UIViewController {
     @IBOutlet weak var totalSpentLabel: UILabel!
     @IBOutlet weak var remainingBudgetLabel: UILabel!
     @IBOutlet weak var plantStageLbl: UILabel!
-    @IBOutlet weak var plantGrowth: CircularProgressView!
+    @IBOutlet weak var plantGrowth: VerticalProgressBarView!
     @IBOutlet weak var plantGrowthPercentageLbl: UILabel!
     @IBOutlet weak var editDailyLimitButton: UIButton!
     
@@ -31,95 +30,143 @@ class GardenViewController: UIViewController {
     var scene: SCNScene!
     var finalizedPastWeeks: Bool = false
     var finalizedPastMonths: Bool = false
-    
+   
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setVisibleWeekIndex()
+        //setVisibleWeekIndex()
         loadBudgetsForMonth(date: selectedDate)
-        updateUIForVisibleWeek()
+        //updateUIForVisibleWeek()
         finalizedPastWeeks = false
         finalizedPastMonths = false
         checkForWeeksAndMonthsFinalization()
+        setupSceneKitView()
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupUI()
-        setupBottomSheet()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateScene), name: NSNotification.Name("UpdateGardenScene"), object: nil)
+    }
+    
+    @objc func updateScene() {
+        print("🔄 Garden screen updating environment & plant...")
+        scene.rootNode.enumerateChildNodes { node, _ in
+            node.removeFromParentNode()
+        }
         setupSceneKitView()
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeVC), userInfo: nil, repeats: false)
     }
 
-    // MARK: - Setup UI
-    func setupUI() {
-        if let layout = weeklyProgressCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 4
-        }
-    }
-    
-    @objc func changeVC(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
-        vc.modalPresentationStyle = .automatic
-        vc.modalTransitionStyle = .coverVertical
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func unwindToGardenViewController(segue: UIStoryboardSegue) {
-        guard segue.identifier == "continueUnwind",
-              let _ = segue.source as? OnboardingViewController else{return}
-        segue.source.modalPresentationStyle = .automatic
-        segue.source.modalTransitionStyle = .coverVertical
-    }
-    
     func setupSceneKitView() {
-        scene = SCNScene(named: "art.scnassets/Cliff_House.scn")
-        sceneKitView.scene = scene
-        sceneKitView.allowsCameraControl = true
-        
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
-        
-        if let budget = PersistenceController.shared.fetchBudget(for: formatDateToMonthYear(date: selectedDate)),
-            let plant = budget.plant {
-            updatePlantModel(for: plant.stage)
-        }
-    }
-    
-    func updatePlantModel(for stage: String) {
-        scene.rootNode.childNode(withName: "plant", recursively: true)?.removeFromParentNode()
-        
-        guard let plantScene = SCNScene(named: "art.scnassets/\(stage).scn"),
-              let plantNode = plantScene.rootNode.childNode(withName: "plant", recursively: true) else {
-            print("❌ Failed to load plant model for stage: \(stage)")
+        guard let budget = PersistenceController.shared.fetchBudget(for: formatDateToMonthYear(date: selectedDate)),
+              let plant = budget.plant else {
+            print("❌ No budget or plant found for the selected month.")
             return
         }
 
-        plantNode.position = SCNVector3(2.389, 699.617, -227.645)
-//        plantNode.scale = SCNVector3(10, 10, 10)
+        let plantSpecie = plant.plantSpecie.name.isEmpty ? "Flower" : plant.plantSpecie.name
+        let environment = plant.environment.name.isEmpty ? "Cliff_House" : plant.environment.name
+        
+        print("Plant Specie: \(plantSpecie), Environment: \(environment)")
 
+        scene = SCNScene()
+        sceneKitView.scene = scene
+        sceneKitView.allowsCameraControl = true
+
+        let environmentSceneName = "art.scnassets/\(environment).scn"
+        print("🏡 Loading Environment: \(environmentSceneName)")
+
+        if let newScene = SCNScene(named: environmentSceneName) {
+            scene = newScene
+            sceneKitView.scene = scene
+        } else {
+            print("❌ Failed to load environment: \(environmentSceneName)")
+        }
+
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        scene.rootNode.addChildNode(cameraNode)
+
+        updatePlantModel(for: plantSpecie, stage: plant.stage, environment: environment)
+    }
+
+    func updatePlantModel(for plantName: String, stage: String, environment: String) {
+        guard let rootNode = scene?.rootNode else {
+            print("❌ Scene root node is nil")
+            return
+        }
+
+        rootNode.enumerateChildNodes { (node, _) in
+            if node.name == plantName {
+                node.removeFromParentNode()
+            }
+        }
+
+        let plantSceneName = "art.scnassets/\(plantName)_\(stage).scn"
+        print("🌱 Loading Plant: \(plantSceneName)")
+
+        guard let plantScene = SCNScene(named: plantSceneName),
+            let plantNode = plantScene.rootNode.childNode(withName: plantName, recursively: true) else {
+            print("❌ Failed to load plant model: \(plantSceneName)")
+            return
+        }
+
+        let plantScale: SCNVector3
+        switch (plantName, environment) {
+        case ("Tuple", "Mountain_House"): plantScale = SCNVector3(10, 10, 10) //Done
+        case ("Tuple", "Low_Poly_Mill"): plantScale = SCNVector3(0.5, 0.5, 0.5) //Done
+        case ("Tuple", "Low_Poly_House"): plantScale = SCNVector3(4, 4, 4) //Done
+        case ("Tuple", "Cliff_House"): plantScale = SCNVector3(15, 15, 15) //Done
+        case ("Tuple", "Forest_House"): plantScale = SCNVector3(0.75, 0.75, 0.75) //Done
+        
+        case ("Palm", "Mountain_House"): plantScale = SCNVector3(0.5, 0.5, 0.5) //Done
+        case ("Palm", "Low_Poly_Mill"): plantScale = SCNVector3(0.03, 0.03, 0.03) //Done
+        case ("Palm", "Low_Poly_House"): plantScale = SCNVector3(0.25, 0.25, 0.25) //Done
+        case ("Palm", "Cliff_House"): plantScale = SCNVector3(1, 1, 1) //Done
+        case ("Palm", "Forest_House"): plantScale = SCNVector3(0.05, 0.05, 0.05) //Done
+
+        case ("Flower", "Mountain_House"): plantScale = SCNVector3(20, 20, 20) //Done
+        case ("Flower", "Low_Poly_Mill"): plantScale = SCNVector3(1, 1, 1) //Done
+        case ("Flower", "Low_Poly_House"): plantScale = SCNVector3(8, 8, 8) //Done
+        case ("Flower", "Cliff_House"): plantScale = SCNVector3(40, 40, 40) //Done
+        case ("Flower", "Forest_House"): plantScale = SCNVector3(2, 2, 2) //Done
+
+        case ("Banana", "Mountain_House"): plantScale = SCNVector3(0.15, 0.15, 0.15) //Done
+        case ("Banana", "Low_Poly_Mill"): plantScale = SCNVector3(0.006, 0.006, 0.006) //Done
+        case ("Banana", "Low_Poly_House"): plantScale = SCNVector3(0.05, 0.05, 0.05) //Done
+        case ("Banana", "Cliff_House"): plantScale = SCNVector3(0.25, 0.25, 0.25) //Done
+        case ("Banana", "Forest_House"): plantScale = SCNVector3(0.01, 0.01, 0.01) //Done
+
+        case ("Mushroom", "Mountain_House"): plantScale = SCNVector3(0.05, 0.05, 0.05) 
+        case ("Mushroom", "Low_Poly_Mill"): plantScale = SCNVector3(0.007, 0.007, 0.007)
+        case ("Mushroom", "Low_Poly_House"): plantScale = SCNVector3(0.07, 0.07, 0.07)
+        case ("Mushroom", "Cliff_House"): plantScale = SCNVector3(0.05, 0.05, 0.05)
+        case ("Mushroom", "Forest_House"): plantScale = SCNVector3(0.003, 0.003, 0.003)
+
+        default:
+            plantScale = SCNVector3(0.1, 0.1, 0.1)
+        }
+        
+        let plantPosition: SCNVector3
+        switch environment {
+        case "Cliff_House": plantPosition = SCNVector3(2.389, 699.617, -227.645)
+        case "Forest_House": plantPosition = SCNVector3(11.442, 1.479, -2.095)
+        case "Mountain_House": plantPosition = SCNVector3(43.455, 272.453, 0.941)
+        case "Low_Poly_Mill": plantPosition = SCNVector3(-2.175, 5.208, 0.155)
+        case "Low_Poly_House": plantPosition = SCNVector3(0, 0, -15.134)
+        default:
+            plantPosition = SCNVector3(0, 0, 0)
+        }
+        
+        plantNode.scale = plantScale
+        plantNode.position = plantPosition
+        
+        print("Plant scale set to: \(plantScale), plant position set to: \(plantPosition)")
+        
         scene.rootNode.addChildNode(plantNode)
 
-        print("🌱 Updated plant model to stage: \(stage)")
+        print("🌱 Updated plant model to: \(plantName) at stage: \(stage)")
     }
 
-    
-    func setupBottomSheet() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleBottomSheetPan))
-        bottomSheetView.addGestureRecognizer(panGesture)
-    }
-    
-    @objc func handleBottomSheetPan(_ gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: self.view)
-        let newHeight = max(min(bottomSheetView.frame.height - translation.y, self.view.frame.height * 0.8), 100)
-        bottomSheetView.frame.size.height = newHeight
-        gesture.setTranslation(.zero, in: self.view)
-    }
     
     // MARK: - Load Budgets
     func loadBudgetsForMonth(date: Date) {
@@ -173,6 +220,7 @@ class GardenViewController: UIViewController {
             let progress = Float(plant.totalGrowth) / 100.0
             updateGrowthProgress(to: progress)
             plantStageLbl.text = plant.stage
+            plantStageLbl.textColor = .black
         }
         weeklyProgressCollectionView.reloadData()
     }
@@ -181,7 +229,7 @@ class GardenViewController: UIViewController {
         let today = Calendar.current.startOfDay(for: Date())
         let pastWeeks = PersistenceController.shared.fetchAllNotFinalizedWeeklyBudgets(date: today)
 
-        print("Weeks found: \(pastWeeks.count)")
+        print("Not finalized Weeks found: \(pastWeeks.count)")
         for week in pastWeeks where !week.isWeekFinalized {
             print("Week isWeekFinalized: \(week.isWeekFinalized), Week ID: \(week.id), week growth: \(week.weeklyGrowth)")
             week.isWeekFinalized = true
@@ -213,16 +261,19 @@ class GardenViewController: UIViewController {
     }
     
     func updateGrowthProgress(to newProgress: Float) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
+        print("Called updateGrowthProgress.....")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
+            UIView.animate(withDuration: 1.0) {
                 self.plantGrowth.progress = newProgress
                 self.plantGrowthPercentageLbl.text = "\(Int(newProgress * 100))%"
-            }, completion: { _ in
+            } completion: { _ in
                 if let budget = PersistenceController.shared.fetchBudget(for: self.formatDateToMonthYear(date: self.selectedDate)),
                    let plant = budget.plant {
-                    self.updatePlantModel(for: plant.stage)
+                    print("Updating plant model...")
+                    self.updatePlantModel(for: plant.plantSpecie.name, stage: plant.stage, environment: plant.environment.name)
                 }
-            })
+            }
         }
     }
     
@@ -320,7 +371,6 @@ extension GardenViewController: UICollectionViewDelegate, UICollectionViewDataSo
             let isFutureDate = date > today
 
             if let dailyAllocation = PersistenceController.shared.fetchDailyAllocations(for: currentWeek).first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
-                print("Daily allocation found for date: \(PersistenceController.shared.formatToLocalDate(date)), growth: \(dailyAllocation.dailyGrowth)")
                 let dailyGrowth = dailyAllocation.dailyGrowth
                 cell.configure(dailyGrowth: dailyGrowth, maxGrowth: 3.0, day: formatDate(date: date), isFutureDate: isFutureDate)
             } else {
@@ -336,4 +386,3 @@ extension GardenViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return String(day)
     }
 }
-

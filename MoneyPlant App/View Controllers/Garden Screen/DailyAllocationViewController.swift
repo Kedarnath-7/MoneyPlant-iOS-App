@@ -42,7 +42,7 @@ class DailyAllocationViewController: UIViewController {
     
     func loadSegmentControl() {
         weeksSegmentControl.removeAllSegments()
-        for (index, budget) in weeklyBudgets.enumerated() {
+        for (index, _) in weeklyBudgets.enumerated() {
             let weekLabel = "Week \(index + 1)"
             weeksSegmentControl.insertSegment(withTitle: weekLabel, at: index, animated: false)
         }

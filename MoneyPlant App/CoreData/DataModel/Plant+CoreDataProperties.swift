@@ -2,7 +2,7 @@
 //  Plant+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 11/02/25.
+//  Created by admin86 on 18/03/25.
 //
 //
 
@@ -19,7 +19,9 @@ extension Plant {
     @NSManaged public var id: UUID
     @NSManaged public var stage: String
     @NSManaged public var totalGrowth: Int64
-    @NSManaged public var budget: Budget?
+    @NSManaged public var budget: Budget
+    @NSManaged public var environment: Environment
+    @NSManaged public var plantSpecie: PlantSpecie
 
 }
 

@@ -2,7 +2,7 @@
 //  Budget+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 11/02/25.
+//  Created by admin86 on 18/03/25.
 //
 //
 
@@ -18,15 +18,15 @@ extension Budget {
 
     @NSManaged public var budgetedAmount: Double
     @NSManaged public var id: UUID
-    @NSManaged public var monthYear: String
-    @NSManaged public var totalExpenses: Double
-    @NSManaged public var totalIncome: Double
     @NSManaged public var isMonthFinalized: Bool
     @NSManaged public var monthEndDate: Date
     @NSManaged public var monthlyGrowth: Double
+    @NSManaged public var monthYear: String
+    @NSManaged public var totalExpenses: Double
+    @NSManaged public var totalIncome: Double
     @NSManaged public var categoryBudgets: NSSet?
-    @NSManaged public var weeklyBudgets: NSSet?
     @NSManaged public var plant: Plant?
+    @NSManaged public var weeklyBudgets: NSSet
 
 }
 

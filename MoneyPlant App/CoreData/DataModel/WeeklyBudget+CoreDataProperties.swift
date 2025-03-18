@@ -2,7 +2,7 @@
 //  WeeklyBudget+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 11/02/25.
+//  Created by admin86 on 18/03/25.
 //
 //
 
@@ -16,15 +16,15 @@ extension WeeklyBudget {
         return NSFetchRequest<WeeklyBudget>(entityName: "WeeklyBudget")
     }
 
-    @NSManaged public var id: UUID
     @NSManaged public var allocatedAmount: Double
+    @NSManaged public var id: UUID
     @NSManaged public var isWeekFinalized: Bool
     @NSManaged public var spentAmount: Double
     @NSManaged public var weekEndDate: Date
     @NSManaged public var weeklyGrowth: Double
     @NSManaged public var weekStartDate: Date
-    @NSManaged public var dailyAllocations: NSSet
     @NSManaged public var budget: Budget
+    @NSManaged public var dailyAllocations: NSSet
 
 }
 

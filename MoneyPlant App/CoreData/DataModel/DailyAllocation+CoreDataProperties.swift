@@ -2,7 +2,7 @@
 //  DailyAllocation+CoreDataProperties.swift
 //  MoneyPlant App
 //
-//  Created by admin86 on 11/02/25.
+//  Created by admin86 on 18/03/25.
 //
 //
 
