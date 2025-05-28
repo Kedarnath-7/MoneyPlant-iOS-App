@@ -12,21 +12,19 @@ class ProfileViewController: UIViewController, ProfileUpdateDelegate {
 
     struct Profile {
         var name: String
-        var symbol: UIImage
     }
     
     var profileCells = [
-        Profile(name: "Account", symbol: UIImage(systemName: "person")!),
-        Profile(name: "Settings", symbol: UIImage(systemName: "gearshape")!),
-        Profile(name: "Help & Support", symbol: UIImage(systemName: "questionmark")!),
-        Profile(name: "Log Out", symbol: UIImage(systemName: "rectangle.portrait.and.arrow.right")!)
+        Profile(name: "Account"),
+        Profile(name: "Settings"),
+        Profile(name: "Help & Support"),
+        Profile(name: "Log Out")
     ]
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
-    
     @IBOutlet weak var accLabel: UILabel!
     
     override func viewDidLoad() {
@@ -39,13 +37,13 @@ class ProfileViewController: UIViewController, ProfileUpdateDelegate {
         imageView.clipsToBounds = true
         
         // Load profile name from UserDefaults
-        nameLabel.text = UserDefaults.standard.string(forKey: "profileName") ?? "Arthur Morgan"
+        nameLabel.text = UserDefaults.standard.string(forKey: "profileName") ?? "LogIn Or SignUp"
         
         // Load profile image from UserDefaults
         if let imageData = UserDefaults.standard.data(forKey: "profileImage") {
             imageView.image = UIImage(data: imageData)
         } else {
-            imageView.image = UIImage(systemName: "person.circle.fill")
+            imageView.image = UIImage(systemName: "person.crop.circle.fill")
         }
         updateEmailLabel()
     }
@@ -54,7 +52,7 @@ class ProfileViewController: UIViewController, ProfileUpdateDelegate {
             if let userEmail = Auth.auth().currentUser?.email {
                 accLabel.text = userEmail
             } else {
-                accLabel.text = "Not Logged In"
+                accLabel.text = "Not User Found"
             }
         }
     
@@ -97,7 +95,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as? ProfileTableViewCell else { return UITableViewCell() }
-        cell.cellImage.image = profileCells[indexPath.section].symbol
         cell.cellTitle.text = profileCells[indexPath.section].name
         return cell
     }
@@ -111,15 +108,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             // Navigate to Account screen
             let accountVC = storyboard?.instantiateViewController(identifier: "AccountViewController") as! AccountViewController
-            navigationController?.pushViewController(accountVC, animated: true)
+            navigationController?.present(accountVC, animated: true)
         case 1:
             // Navigate to Settings screen
             let settingsVC = storyboard?.instantiateViewController(identifier: "SettingsTableViewController") as! SettingsTableViewController
-            navigationController?.pushViewController(settingsVC, animated: true)
+            navigationController?.present(settingsVC, animated: true)
         case 2:
             // Navigate to Help & Support screen
             let helpVC = storyboard?.instantiateViewController(identifier: "HelpViewController") as! HelpViewController
-            navigationController?.pushViewController(helpVC, animated: true)
+            navigationController?.present(helpVC, animated: true)
         case 3:
             // Log out confirmation
             showLogoutConfirmation()

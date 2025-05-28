@@ -133,13 +133,21 @@ extension CategoriesCollectionViewController: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == incomeCategoriesCollectionView{
+            let sortedIncomeCategories = incomeCategories.filter { $0.name != "Add New" }
+            let addNewIncomeCategory = incomeCategories.filter { $0.name == "Add New" }
+            let updatedIncomeCategories = sortedIncomeCategories + addNewIncomeCategory
+            
             let incomeCell = incomeCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "incomeCollectionViewCell", for: indexPath) as? AddRecordCollectionViewCell
-            let incomeCategory = incomeCategories[indexPath.item]
+            let incomeCategory = updatedIncomeCategories[indexPath.item]
             incomeCell?.update(with: incomeCategory)
             return incomeCell!
         }else if collectionView == expenseCategoriesCollectionView{
+            let sortedExpenseCategories = expenseCategories.filter { $0.name != "Add New" }
+            let addNewExpenseCategory = expenseCategories.filter { $0.name == "Add New" }
+            let updatedExpenseCategories = sortedExpenseCategories + addNewExpenseCategory
+            
             let expenseCell = expenseCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "expenseCollectionViewCell", for: indexPath) as? AddRecordCollectionViewCell
-            let expenseCategory = expenseCategories[indexPath.item]
+            let expenseCategory = updatedExpenseCategories[indexPath.item]
             expenseCell?.update(with: expenseCategory)
             return expenseCell!
         }else{

@@ -10,7 +10,7 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
 
     let sectionTitles = [
-           ["Currency Format", "Daily Reminder Notification", "Security Lock", "Appearance"],
+           ["Appearance"],
            ["App Version", "Terms & Conditions", "Privacy Policy"]
        ]
     
@@ -67,12 +67,6 @@ class SettingsTableViewController: UITableViewController {
            case 0: // App Settings
                switch indexPath.row {
                case 0: // Currency Format
-                   showCurrencyFormatScreen()
-               case 1: // Daily Reminder Notification
-                   toggleDailyReminder()
-               case 2: // Security Lock
-                   enableSecurityLock()
-               case 3: // Theme Selection
                    showThemeSelection()
                default:
                    break

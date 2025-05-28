@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var cellImage: UIImageView!
     
     @IBOutlet weak var cellTitle: UILabel!
     
