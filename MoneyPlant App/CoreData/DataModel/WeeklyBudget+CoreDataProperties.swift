@@ -25,7 +25,7 @@ extension WeeklyBudget {
     @NSManaged public var weekStartDate: Date
     @NSManaged public var budget: Budget
     @NSManaged public var dailyAllocations: NSSet
-
+    @NSManaged public var isLocked: Bool
 }
 
 // MARK: Generated accessors for dailyAllocations

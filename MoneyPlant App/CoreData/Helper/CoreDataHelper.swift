@@ -60,7 +60,7 @@ extension PersistenceController{
                     (name: "Vegetables", type: "Expense", icon: "🥕"),
                     (name: "Fruits", type: "Expense", icon: "🍎"),
                     (name: "Add New",  type: "Expense", icon: "➕"),
-
+                    
                     (name: "Pay Check", type: "Income", icon: "💰"),
                     (name: "Investments", type: "Income", icon: "📈"),
                     (name: "Bonus", type: "Income", icon: "🎉"),
@@ -94,13 +94,13 @@ extension PersistenceController{
         do {
             let specieCount = try context.count(for: specieFetch)
             let environmentCount = try context.count(for: environmentFetch)
-
+            
             if specieCount == 0 && environmentCount == 0 {
                 print("Preloading default Plant Species and Environments...")
-
+                
                 let defaultSpecieName = "Flower"
                 let defaultEnvironmentName = "Cliff_House"
-
+                
                 let plantSpecies = [
                     ("Tuple", "Tuple.png", 100),
                     ("Palm", "Palm.png", 150),
@@ -108,7 +108,7 @@ extension PersistenceController{
                     ("Banana", "Banana.png", 250),
                     ("Mushroom", "Mushroom.png", 300)
                 ]
-
+                
                 let environments = [
                     ("Cliff_House", "Cliff_House.png", 100),
                     ("Forest_House", "Forest_House.png", 150),
@@ -116,7 +116,7 @@ extension PersistenceController{
                     ("Low_Poly_Mill", "Low_Poly_Mill.png", 250),
                     ("Low_Poly_House", "Low_Poly_House.png", 300)
                 ]
-
+                
                 for (name, image, requiredCoins) in plantSpecies {
                     let specie = PlantSpecie(context: context)
                     specie.name = name
@@ -124,7 +124,7 @@ extension PersistenceController{
                     specie.requiredCoins = Int64(requiredCoins)
                     specie.isUnlocked = (name == defaultSpecieName)
                 }
-
+                
                 for (name, image, requiredCoins) in environments {
                     let environment = Environment(context: context)
                     environment.name = name
@@ -132,7 +132,7 @@ extension PersistenceController{
                     environment.requiredCoins = Int64(requiredCoins)
                     environment.isUnlocked = (name == defaultEnvironmentName)
                 }
-
+                
                 try context.save()
                 print("Default Plant Species and Environments preloaded successfully.")
             } else {
@@ -142,7 +142,7 @@ extension PersistenceController{
             print("Error preloading store data: \(error)")
         }
     }
-
+    
     
     func preloadData() {
         preloadAccount()
@@ -161,14 +161,15 @@ extension PersistenceController{
     }
     
     // MARK: - CRUD Operations
-    func addTransaction(paidTo: String, amount: Double, date: Date, note: String?, categoryID: NSManagedObjectID) -> Transaction? {
+    func addTransaction(paidTo: String, amount: Double, date: Date, note: String?, categoryID: NSManagedObjectID, recurrence: String = "none") -> Transaction? {
         let context = PersistenceController.shared.context
-            
+        
         guard let categoryInContext = context.object(with: categoryID) as? Category else {
             print("❌ Failed to retrieve category in current context!")
             return nil
         }
         
+        // Create the initial transaction
         let transaction = Transaction(context: context)
         transaction.id = UUID()
         transaction.paidTo = paidTo
@@ -177,22 +178,30 @@ extension PersistenceController{
         transaction.note = note
         transaction.category = categoryInContext
         transaction.type = categoryInContext.type
-
+        transaction.recurrence = recurrence
+        transaction.parentTransactionID = nil // This is the parent transaction
+        
         saveContext()
-
-        print("✅ Added Transaction: \(formatToLocalDate(date)), Amount: \(amount)")
-
+        
+        print("✅ Added Transaction: \(formatToLocalDate(date)), Amount: \(amount), Recurrence: \(recurrence)")
+        
+        // If the transaction has a recurrence, generate future transactions
+        if recurrence != "none" {
+            generateRecurringTransactions(for: transaction)
+        }
+        
         if transaction.type == "Expense" {
             updateRelatedBudgetData(for: transaction)
         }
-
+        
         return transaction
     }
     
-    func updateTransaction(transaction: Transaction, paidTo: String?, amount: Double?, date: Date?, note: String?) {
+    func updateTransaction(transaction: Transaction, paidTo: String?, amount: Double?, date: Date?, note: String?, recurrence: String?) {
         let previousDate = transaction.date
         let previousAmount = transaction.amount
-
+        let previousRecurrence = transaction.recurrence
+        
         if let paidTo = paidTo {
             transaction.paidTo = paidTo
         }
@@ -205,38 +214,51 @@ extension PersistenceController{
         if let note = note {
             transaction.note = note
         }
-
+        if let recurrence = recurrence {
+            transaction.recurrence = recurrence
+        }
+        
         saveContext()
-
-        print("🔄 Updated Transaction: \(formatToLocalDate(transaction.date)), Amount: \(transaction.amount)")
-
+        
+        print("🔄 Updated Transaction: \(formatToLocalDate(transaction.date)), Amount: \(transaction.amount), Recurrence: \(transaction.recurrence)")
+        
+        // If recurrence has changed, update the recurring series
+        if recurrence != nil && recurrence != previousRecurrence {
+            // Delete existing recurring transactions linked to this parent
+            deleteRecurringTransactions(forParentID: transaction.id)
+            // Generate new recurring transactions if recurrence is not "none"
+            if transaction.recurrence != "none" {
+                generateRecurringTransactions(for: transaction)
+            }
+        }
+        
         if transaction.type == "Expense" && (transaction.date != previousDate || transaction.amount != previousAmount) {
             print("🔄 Recalculating budgets due to transaction update")
-
+            
             if let oldDailyAllocation = fetchDailyAllocation(for: transaction, on: previousDate) {
                 print("🔄 Adjusting old DailyAllocation spent for: \(formatToLocalDate(previousDate))")
                 oldDailyAllocation.spentAmount -= previousAmount
             }
-
+            
             updateRelatedBudgetData(for: transaction)
         }
     }
-
+    
     func updateRelatedBudgetData(for transaction: Transaction) {
         let calendar = Calendar.current
         let transactionDate = calendar.startOfDay(for: transaction.date)
-
+        
         print("🔄 Updating budget data for transaction on \(formatToLocalDate(transactionDate))")
-
+        
         guard let dailyAllocation = fetchDailyAllocation(for: transaction) else {
             print("❌ No matching DailyAllocation found for transaction on \(formatToLocalDate(transactionDate))")
             return
         }
-
+        
         print("✅ Found DailyAllocation for date: \(formatToLocalDate(dailyAllocation.date))")
         updateDailyAllocationSpent(for: dailyAllocation)
     }
-
+    
     func addCategory(id: UUID,name: String, type: String, icon: String, description: String?) -> Category {
         let category = Category(context: context)
         category.id = id
@@ -247,6 +269,81 @@ extension PersistenceController{
         
         saveContext()
         return category
+    }
+    
+    // MARK: - Recurring Transaction Operations
+    func generateRecurringTransactions(for transaction: Transaction) {
+        let calendar = Calendar.current
+        var currentDate = transaction.date
+        let endDate = calendar.date(byAdding: .year, value: 1, to: currentDate)! // Generate for 1 year into the future
+        
+        while currentDate < endDate {
+            // Calculate the next date based on recurrence type
+            switch transaction.recurrence {
+            case "daily":
+                currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+            case "weekly":
+                currentDate = calendar.date(byAdding: .day, value: 7, to: currentDate)!
+            case "monthly":
+                currentDate = calendar.date(byAdding: .month, value: 1, to: currentDate)!
+                // Adjust for months with fewer days (e.g., transaction on the 31st in a 30-day month)
+                if calendar.component(.day, from: currentDate) != calendar.component(.day, from: transaction.date) {
+                    // Set to the last day of the month if the original day doesn't exist
+                    let range = calendar.range(of: .day, in: .month, for: currentDate)!
+                    currentDate = calendar.date(bySetting: .day, value: range.upperBound - 1, of: currentDate)!
+                }
+            default:
+                return // Shouldn't happen, but exit if recurrence is invalid
+            }
+            
+            // Create a new transaction for the future date
+            let recurringTransaction = Transaction(context: context)
+            recurringTransaction.id = UUID()
+            recurringTransaction.paidTo = transaction.paidTo
+            recurringTransaction.amount = transaction.amount
+            recurringTransaction.date = currentDate
+            recurringTransaction.note = transaction.note
+            recurringTransaction.category = transaction.category
+            recurringTransaction.type = transaction.type
+            recurringTransaction.recurrence = "none" // Recurring transactions themselves are not recurring
+            recurringTransaction.parentTransactionID = transaction.id
+            
+            print("✅ Generated recurring transaction on \(formatToLocalDate(currentDate))")
+            
+            if transaction.type == "Expense" {
+                updateRelatedBudgetData(for: recurringTransaction)
+            }
+        }
+        
+        saveContext()
+    }
+    
+    func deleteRecurringTransactions(forParentID parentID: UUID) {
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "parentTransactionID == %@", parentID as CVarArg)
+        
+        do {
+            let recurringTransactions = try context.fetch(fetchRequest)
+            for transaction in recurringTransactions {
+                context.delete(transaction)
+                print("🗑 Deleted recurring transaction on \(formatToLocalDate(transaction.date))")
+            }
+            saveContext()
+        } catch {
+            print("Error deleting recurring transactions: \(error)")
+        }
+    }
+    
+    func fetchRecurringTransactions(forParentID parentID: UUID) -> [Transaction] {
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "parentTransactionID == %@", parentID as CVarArg)
+        
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching recurring transactions: \(error)")
+            return []
+        }
     }
     
     // MARK: - Fetch Operations
@@ -264,7 +361,7 @@ extension PersistenceController{
         let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         var predicates: [NSPredicate] = []
         let calendar = Calendar.current
-
+        
         if let date = date {
             let startOfDay = calendar.startOfDay(for: date)
             print("Start of Day: \(formatToLocalDate(startOfDay))")
@@ -279,7 +376,7 @@ extension PersistenceController{
         }
         predicates.append(NSPredicate(format: "type == %@", "Expense"))
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-
+        
         do {
             let transactions = try context.fetch(fetchRequest)
             print("✅ Found \(transactions.count) transactions for date: \(formatToLocalDate(((date) ?? (weekStartDate))!))")
@@ -296,7 +393,7 @@ extension PersistenceController{
         let calendar = Calendar.current
         var startDate: Date
         var endDate: Date
-
+        
         switch timeFilter {
         case "Weekly":
             startDate = calendar.dateInterval(of: .weekOfMonth, for: selectedDate)!.start
@@ -310,10 +407,10 @@ extension PersistenceController{
         default:
             return []
         }
-
+        
         let datePredicate = NSPredicate(format: "date >= %@ AND date <= %@", startDate as NSDate, endDate as NSDate)
         fetchRequest.predicate = datePredicate
-
+        
         do {
             return try context.fetch(fetchRequest)
         } catch {
@@ -321,7 +418,7 @@ extension PersistenceController{
             return []
         }
     }
-
+    
     
     func fetchCategories(for type: String) -> [Category] {
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
@@ -362,25 +459,30 @@ extension PersistenceController{
         
         let transactionDate = transaction.date // Save date before deletion
         let transactionAmount = transaction.amount
-
+        
+        // If this is a parent transaction, delete its recurring transactions
+        if transaction.recurrence != "none" || transaction.parentTransactionID == nil {
+            deleteRecurringTransactions(forParentID: transaction.id)
+        }
+        
         // Update DailyAllocation before deleting
         if let dailyAllocation = fetchDailyAllocation(for: transaction) {
             print("🗑 Adjusting spentAmount before deleting transaction on \(formatToLocalDate(transactionDate))")
             dailyAllocation.spentAmount -= transactionAmount
-
+            
             // Update WeeklyBudget spent amount
             updateWeeklyBudgetSpent(for: dailyAllocation.weeklyBudget)
         } else {
             print("⚠️ No DailyAllocation found for transaction before deletion!")
         }
-
+        
         context.delete(transaction)
         saveContext()
         print("🗑 Deleted Transaction: \(formatToLocalDate(transactionDate))")
     }
     
     // MARK: - Budget Operations
-
+    
     func addBudget(income: Double, budgetAmount: Double, monthYear: String) -> Budget? {
         if let existingBudget = fetchBudget(for: monthYear) {
             print("Budget for \(monthYear) already exists: \(existingBudget)")
@@ -404,8 +506,8 @@ extension PersistenceController{
         
         return budget
     }
-
-
+    
+    
     func fetchBudget(for monthYear: String) -> Budget? {
         let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "monthYear == %@", monthYear)
@@ -416,7 +518,7 @@ extension PersistenceController{
             return nil
         }
     }
-
+    
     func fetchBudgets() -> [Budget] {
         let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
         do {
@@ -431,7 +533,7 @@ extension PersistenceController{
         let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "(isMonthFinalized == %@) AND (monthEndDate < %@)", false, date as CVarArg)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "monthEndDate", ascending: false)]
-
+        
         do {
             return try context.fetch(fetchRequest)
         } catch {
@@ -439,15 +541,26 @@ extension PersistenceController{
             return []
         }
     }
-
+    
     func updateBudget(budget: Budget, income: Double?, budgetAmount: Double?, totalExpenses: Double?) {
         if let income = income {
             budget.totalIncome = income
             print("Updated income for \(budget.monthYear): \(income)")
         }
         if let budgetAmount = budgetAmount {
+            // Validate that the new budget amount can accommodate locked weekly budgets
+            let weeklyBudgets = fetchWeeklyBudgets(for: budget)
+            let lockedTotal = weeklyBudgets.filter { $0.isLocked }.reduce(0.0) { $0 + $1.allocatedAmount }
+            if budgetAmount < lockedTotal {
+                print("❌ Cannot reduce monthly budget below \(lockedTotal) due to locked weekly budgets")
+                return
+            }
+            
             budget.budgetedAmount = budgetAmount
             print("Updated budget amount for \(budget.monthYear): \(budgetAmount)")
+            
+            // Redistribute weekly budgets to fit the new monthly budget
+            redistributeWeeklyBudgets(for: budget)
         }
         if let totalExpenses = totalExpenses {
             budget.totalExpenses = totalExpenses
@@ -455,12 +568,12 @@ extension PersistenceController{
         }
         saveContext()
     }
-
+    
     func deleteBudget(budget: Budget) {
         context.delete(budget)
         saveContext()
     }
-
+    
     func addCategoryBudget(for budget: Budget, category: Category, budgetedAmount: Double) -> CategoryBudget? {
         let existingBudgets = fetchCategoryBudgets(for: budget).filter { $0.category == category }
         if let existingBudget = existingBudgets.first {
@@ -478,7 +591,7 @@ extension PersistenceController{
         print("Category budget added for \(category.name) in \(budget.monthYear).")
         return categoryBudget
     }
-
+    
     func fetchCategoryBudgets(for budget: Budget?) -> [CategoryBudget] {
         guard let budget = budget else {
             print("No budget provided to fetch category budgets.")
@@ -505,7 +618,7 @@ extension PersistenceController{
             return nil
         }
     }
-
+    
     func updateCategoryBudget(categoryBudget: CategoryBudget, spentAmount: Double?, budgetedAmount: Double?) {
         if let spentAmount = spentAmount {
             categoryBudget.spentAmount = spentAmount
@@ -515,12 +628,12 @@ extension PersistenceController{
         }
         saveContext()
     }
-
+    
     func deleteCategoryBudget(categoryBudget: CategoryBudget) {
         context.delete(categoryBudget)
         saveContext()
     }
-
+    
     func validateCategoryBudgets(for budget: Budget) -> Bool {
         let categoryBudgets = fetchCategoryBudgets(for: budget)
         let totalCategoryBudget = categoryBudgets.reduce(0) { $0 + $1.budgetedAmount }
@@ -544,27 +657,27 @@ extension PersistenceController{
         
         saveContext()
     }
-
+    
     
     // MARK: - Weekly Budget Operations
-
+    
     func addWeeklyBudget(for budget: Budget, weekStartDate: Date, weekEndDate: Date, allocatedAmount: Double) -> WeeklyBudget? {
         let calendar = Calendar(identifier: .gregorian)
         let normalizedStartDate = calendar.startOfDay(for: weekStartDate) // 00:00:00
         let normalizedEndDate = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: weekEndDate)! // 23:59:59
-
+        
         print("addWeeklyBudget method - weekStart date: \(formatToLocalDate(normalizedStartDate)), weekEnd date: \(formatToLocalDate(normalizedEndDate)), allocated amount: \(allocatedAmount)")
-
+        
         let existingBudgets = fetchWeeklyBudgets(for: budget).filter {
             calendar.isDate($0.weekStartDate, inSameDayAs: normalizedStartDate) && calendar.isDate($0.weekEndDate, inSameDayAs: normalizedEndDate)
         }
-
+        
         if let existingBudget = existingBudgets.first {
             print("✅ Weekly budget already exists for \(formatToLocalDate(normalizedStartDate)) - \(formatToLocalDate(normalizedEndDate))")
             existingBudget.allocatedAmount = allocatedAmount
             return existingBudget
         }
-
+        
         let weeklyBudget = WeeklyBudget(context: context)
         weeklyBudget.id = UUID()
         weeklyBudget.weekStartDate = normalizedStartDate
@@ -572,16 +685,16 @@ extension PersistenceController{
         weeklyBudget.allocatedAmount = allocatedAmount
         weeklyBudget.spentAmount = 0.0
         weeklyBudget.budget = budget
-
+        
         saveContext()
         print("✅ Weekly budget added for \(formatToLocalDate(normalizedStartDate)) - \(formatToLocalDate(normalizedEndDate))")
         return weeklyBudget
     }
-
+    
     func fetchWeeklyBudgets(for budget: Budget) -> [WeeklyBudget] {
         let fetchRequest: NSFetchRequest<WeeklyBudget> = WeeklyBudget.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "budget == %@", budget)
-
+        
         do {
             return try context.fetch(fetchRequest)
         } catch {
@@ -594,7 +707,7 @@ extension PersistenceController{
         let fetchRequest: NSFetchRequest<WeeklyBudget> = WeeklyBudget.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "(weekStartDate <= %@) AND (weekEndDate >= %@)", date as NSDate, date as NSDate)
         fetchRequest.fetchLimit = 1
-
+        
         do {
             return try context.fetch(fetchRequest).first
         } catch {
@@ -629,22 +742,70 @@ extension PersistenceController{
     func updateWeeklyBudgetSpent(for weeklyBudget: WeeklyBudget) {
         let dailyAllocations = fetchDailyAllocations(for: weeklyBudget)
         let totalSpent = dailyAllocations.reduce(0.0) { $0 + $1.spentAmount }
-
+        
         print("📊 Updating WeeklyBudget spent for: \(formatToLocalDate(weeklyBudget.weekStartDate)) - \(formatToLocalDate(weeklyBudget.weekEndDate))")
         print("📝 Found \(dailyAllocations.count) daily allocations. Total spent: \(totalSpent)")
-
+        
         weeklyBudget.spentAmount = totalSpent
         weeklyBudget.isWeekFinalized = false
         saveContext()
     }
     
-    
+    func redistributeWeeklyBudgets(for budget: Budget) {
+        let weeklyBudgets = fetchWeeklyBudgets(for: budget)
+        guard !weeklyBudgets.isEmpty else { return }
+        
+        // Calculate total amount allocated to locked weekly budgets
+        let lockedTotal = weeklyBudgets.filter { $0.isLocked }.reduce(0.0) { $0 + $1.allocatedAmount }
+        let remainingBudget = budget.budgetedAmount - lockedTotal
+        
+        // If remaining budget is negative, this should have been caught by validation
+        guard remainingBudget >= 0 else {
+            print("❌ Remaining budget after locked allocations is negative: \(remainingBudget)")
+            return
+        }
+        
+        // Identify unlocked weekly budgets
+        let unlockedBudgets = weeklyBudgets.filter { !$0.isLocked }
+        guard !unlockedBudgets.isEmpty else {
+            print("All weekly budgets are locked; cannot redistribute")
+            return
+        }
+        
+        // Calculate total unlocked allocation to determine proportions
+        let totalUnlockedAllocation = unlockedBudgets.reduce(0.0) { $0 + $1.allocatedAmount }
+        
+        if totalUnlockedAllocation > 0 {
+            // Redistribute proportionally based on current allocations
+            for weeklyBudget in unlockedBudgets {
+                let proportion = weeklyBudget.allocatedAmount / totalUnlockedAllocation
+                let newAmount = remainingBudget * proportion
+                weeklyBudget.allocatedAmount = newAmount
+                print("Redistributed weekly budget for \(formatToLocalDate(weeklyBudget.weekStartDate)) - \(formatToLocalDate(weeklyBudget.weekEndDate)) to \(newAmount)")
+                
+                // Redistribute daily allocations within this weekly budget
+                redistributeDailyBudgets(for: weeklyBudget)
+            }
+        } else {
+            // If total unlocked allocation is 0, distribute equally
+            let equalShare = remainingBudget / Double(unlockedBudgets.count)
+            for weeklyBudget in unlockedBudgets {
+                weeklyBudget.allocatedAmount = equalShare
+                print("Redistributed weekly budget equally for \(formatToLocalDate(weeklyBudget.weekStartDate)) - \(formatToLocalDate(weeklyBudget.weekEndDate)) to \(equalShare)")
+                
+                // Redistribute daily allocations within this weekly budget
+                redistributeDailyBudgets(for: weeklyBudget)
+            }
+        }
+        
+        saveContext()
+    }
     
     // MARK: - Daily Allocation Operations
-
+    
     func addDailyAllocation(for weeklyBudget: WeeklyBudget, date: Date, allocatedAmount: Double) -> DailyAllocation? {
         let calendar = Calendar.current
-
+        
         let existingAllocations = fetchDailyAllocations(for: weeklyBudget).filter {
             calendar.isDate($0.date, inSameDayAs: date) // Compare only the day
         }
@@ -653,19 +814,19 @@ extension PersistenceController{
             print("✅ Daily allocation already exists for \(formatToLocalDate(date))")
             return existingAllocation
         }
-
+        
         let dailyAllocation = DailyAllocation(context: context)
         dailyAllocation.id = UUID()
         dailyAllocation.date = date
         dailyAllocation.allocatedAmount = allocatedAmount
         dailyAllocation.spentAmount = 0.0
         dailyAllocation.weeklyBudget = weeklyBudget
-
+        
         saveContext()
         print("✅ Daily allocation added for \(formatToLocalDate(date))")
         return dailyAllocation
     }
-
+    
     func fetchDailyAllocations(for weeklyBudget: WeeklyBudget) -> [DailyAllocation] {
         let fetchRequest: NSFetchRequest<DailyAllocation> = DailyAllocation.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "weeklyBudget == %@", weeklyBudget)
@@ -682,10 +843,10 @@ extension PersistenceController{
     func fetchDailyAllocation(for transaction: Transaction, on specificDate: Date? = nil) -> DailyAllocation? {
         let calendar = Calendar.current
         let transactionDate = calendar.startOfDay(for: specificDate ?? transaction.date)
-
+        
         let fetchRequest: NSFetchRequest<DailyAllocation> = DailyAllocation.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date == %@", transactionDate as CVarArg)
-
+        
         do {
             let dailyAllocations = try context.fetch(fetchRequest)
             if let dailyAllocation = dailyAllocations.first {
@@ -700,7 +861,7 @@ extension PersistenceController{
             return nil
         }
     }
-
+    
     func updateDailyAllocation(dailyAllocation: DailyAllocation, spentAmount: Double?, allocatedAmount: Double?) {
         if let spentAmount = spentAmount {
             dailyAllocation.spentAmount = spentAmount
@@ -714,14 +875,14 @@ extension PersistenceController{
     func updateDailyAllocationSpent(for dailyAllocation: DailyAllocation) {
         let calendar = Calendar.current
         let transactionDate = calendar.startOfDay(for: dailyAllocation.date)
-
+        
         print("🔄 Updating DailyAllocation spent for: \(formatToLocalDate(transactionDate))")
-
+        
         let transactions = fetchTransactions(date: transactionDate)
         let totalSpent = transactions.reduce(0.0) { $0 + $1.amount }
-
+        
         print("💰 Found \(transactions.count) expense transactions for date \(formatToLocalDate(transactionDate)). Total spent: \(totalSpent)")
-
+        
         dailyAllocation.spentAmount = totalSpent
         saveContext()
         
@@ -730,43 +891,87 @@ extension PersistenceController{
         updateMonthlyBudgetSpent(for: dailyAllocation.weeklyBudget.budget)
     }
     
+    func redistributeDailyBudgets(for weeklyBudget: WeeklyBudget) {
+        let dailyAllocations = fetchDailyAllocations(for: weeklyBudget)
+        guard !dailyAllocations.isEmpty else { return }
+        
+        // Calculate total amount allocated to locked daily allocations
+        let lockedTotal = dailyAllocations.filter { $0.isLocked }.reduce(0.0) { $0 + $1.allocatedAmount }
+        let remainingBudget = weeklyBudget.allocatedAmount - lockedTotal
+        
+        // If remaining budget is negative, this should have been caught by validation
+        guard remainingBudget >= 0 else {
+            print("❌ Remaining budget after locked allocations is negative: \(remainingBudget)")
+            return
+        }
+        
+        // Identify unlocked daily allocations
+        let unlockedAllocations = dailyAllocations.filter { !$0.isLocked }
+        guard !unlockedAllocations.isEmpty else {
+            print("All daily allocations are locked; cannot redistribute")
+            return
+        }
+        
+        // Calculate total unlocked allocation to determine proportions
+        let totalUnlockedAllocation = unlockedAllocations.reduce(0.0) { $0 + $1.allocatedAmount }
+        
+        if totalUnlockedAllocation > 0 {
+            // Redistribute proportionally based on current allocations
+            for dailyAllocation in unlockedAllocations {
+                let proportion = dailyAllocation.allocatedAmount / totalUnlockedAllocation
+                let newAmount = remainingBudget * proportion
+                dailyAllocation.allocatedAmount = newAmount
+                print("Redistributed daily allocation for \(formatToLocalDate(dailyAllocation.date)) to \(newAmount)")
+            }
+        } else {
+            // If total unlocked allocation is 0, distribute equally
+            let equalShare = remainingBudget / Double(unlockedAllocations.count)
+            for dailyAllocation in unlockedAllocations {
+                dailyAllocation.allocatedAmount = equalShare
+                print("Redistributed daily allocation equally for \(formatToLocalDate(dailyAllocation.date)) to \(equalShare)")
+            }
+        }
+        
+        saveContext()
+    }
+    
     func distributeBudgetAcrossWeeks(for budget: Budget) {
         guard let daysInMonth = getDaysInMonth(from: budget.monthYear), daysInMonth > 0 else {
             print("Invalid month year or days in month.")
             return
         }
-
+        
         let totalBudget = budget.budgetedAmount
         let numFullWeeks = 4
         let extraDays = daysInMonth - (numFullWeeks * 7)
-
+        
         let weeklyAllocation = totalBudget * 7.0 / Double(daysInMonth)
         let remainingBudget = totalBudget - (weeklyAllocation * Double(numFullWeeks))
         let extraDaysAllocation = remainingBudget
-
+        
         let existingWeeklyBudgets = fetchWeeklyBudgets(for: budget)
         var existingBudgetsDict = [String: WeeklyBudget]()
         for weeklyBudget in existingWeeklyBudgets {
             let key = "\(weeklyBudget.weekStartDate)-\(weeklyBudget.weekEndDate)"
             existingBudgetsDict[key] = weeklyBudget
         }
-
+        
         var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "Asia/Kolkata")!
-
+        calendar.timeZone = TimeZone.current
+        
         // Get the first day of the month
         guard let firstDayOfMonth = createDate(from: 1, monthYear: budget.monthYear) else {
             print("Failed to get the first day of the month.")
             return
         }
-
+        
         var startDate = firstDayOfMonth
         for _ in 1...numFullWeeks {
             guard let endDate = calendar.date(byAdding: .day, value: 6, to: startDate) else { break }
-
+            
             let normalizedStartDate = calendar.startOfDay(for: startDate) // 00:00:00
             let normalizedEndDate = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: endDate)! // 23:59:59
-
+            
             let key = "\(normalizedStartDate)-\(normalizedEndDate)"
             let weeklyBudget: WeeklyBudget
             if let existingWeeklyBudget = existingBudgetsDict[key] {
@@ -775,18 +980,18 @@ extension PersistenceController{
             } else {
                 weeklyBudget = addWeeklyBudget(for: budget, weekStartDate: normalizedStartDate, weekEndDate: normalizedEndDate, allocatedAmount: weeklyAllocation)!
             }
-
+            
             distributeDailyTasks(for: weeklyBudget)
             startDate = calendar.date(byAdding: .day, value: 1, to: endDate)! // Move to next week
         }
-
+        
         // Handle remaining days (5th week)
         if extraDays > 0 {
             guard let endDate = calendar.date(byAdding: .day, value: extraDays - 1, to: startDate) else { return }
-
+            
             let normalizedStartDate = calendar.startOfDay(for: startDate) // 00:00:00
             let normalizedEndDate = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: endDate)! // 23:59:59
-
+            
             let key = "\(normalizedStartDate)-\(normalizedEndDate)"
             let weeklyBudget: WeeklyBudget
             if let existingWeeklyBudget = existingBudgetsDict[key] {
@@ -797,19 +1002,30 @@ extension PersistenceController{
             }
             distributeDailyTasks(for: weeklyBudget)
         }
-
+        
         saveContext()
         print("✅ Distributed \(totalBudget) across \(numFullWeeks) full weeks and \(extraDays) extra days for \(budget.monthYear).")
     }
-
+    
     func updateWeeklyAllocation(for weeklyBudget: WeeklyBudget, newAmount: Double) {
+        // Validate that the new weekly budget can accommodate locked daily allocations
+        let dailyAllocations = fetchDailyAllocations(for: weeklyBudget)
+        let lockedTotal = dailyAllocations.filter { $0.isLocked }.reduce(0.0) { $0 + $1.allocatedAmount }
+        if newAmount < lockedTotal {
+            print("❌ Cannot reduce weekly budget below \(lockedTotal) due to locked daily allocations")
+            return
+        }
+        
         weeklyBudget.allocatedAmount = newAmount
-
+        
         // Recalculate total budget based on updated weekly allocations
         let budget = weeklyBudget.budget
         let totalAllocated = fetchWeeklyBudgets(for: budget).reduce(0.0) { $0 + $1.allocatedAmount }
         budget.budgetedAmount = totalAllocated
-
+        
+        // Redistribute daily allocations to fit the new weekly budget
+        redistributeDailyBudgets(for: weeklyBudget)
+        
         saveContext()
         print("Updated weekly allocation for \(weeklyBudget.weekStartDate) - \(weeklyBudget.weekEndDate) to \(newAmount). Total monthly budget updated to \(totalAllocated).")
     }
@@ -818,13 +1034,13 @@ extension PersistenceController{
         let calendar = Calendar(identifier: .gregorian)
         let startDate = calendar.startOfDay(for: weeklyBudget.weekStartDate) // Normalize date to 00:00:00
         let endDate = calendar.startOfDay(for: weeklyBudget.weekEndDate) // Keep consistent
-
+        
         print("📆 Distributing daily tasks from \(formatToLocalDate(startDate)) to \(formatToLocalDate(endDate))")
-
+        
         var date = startDate
         let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day! + 1
         let dailyAllocation = weeklyBudget.allocatedAmount / Double(totalDays)
-
+        
         while date <= endDate {
             let normalizedDate = calendar.startOfDay(for: date) // Normalize to avoid time mismatches
             print("📝 Creating daily allocation for: \(formatToLocalDate(normalizedDate))")
@@ -832,36 +1048,36 @@ extension PersistenceController{
             date = calendar.date(byAdding: .day, value: 1, to: date)!
         }
     }
-
+    
     func fetchWeeklySummary(for weeklyBudget: WeeklyBudget) -> (allocated: Double, spent: Double, remaining: Double) {
         let allocated = weeklyBudget.allocatedAmount
         let spent = weeklyBudget.spentAmount
         let remaining = allocated - spent
-
+        
         print("Weekly Summary: \(formatToLocalDate(weeklyBudget.weekStartDate)) - \(formatToLocalDate(weeklyBudget.weekEndDate))")
         print("Allocated: \(allocated), Spent: \(spent), Remaining: \(remaining)")
-
+        
         return (allocated, spent, remaining)
     }
-
+    
     func fetchMonthlySummary(for budget: Budget) -> (allocated: Double, spent: Double, remaining: Double) {
         let weeklyBudgets = fetchWeeklyBudgets(for: budget)
         var totalAllocated = 0.0
         var totalSpent = 0.0
-
+        
         print("Monthly Summary for \(budget.monthYear):")
         for weeklyBudget in weeklyBudgets {
             let allocated = weeklyBudget.allocatedAmount
             let spent = weeklyBudget.spentAmount
             totalAllocated += allocated
-            totalSpent += spent
+            totalSpent += allocated
             print("- Week: \(weeklyBudget.weekStartDate.description) - \(weeklyBudget.weekEndDate.description)")
             print("  Allocated: \(allocated), Spent: \(spent)")
         }
-
+        
         let totalRemaining = totalAllocated - totalSpent
         print("Total Allocated: \(totalAllocated), Total Spent: \(totalSpent), Total Remaining: \(totalRemaining)")
-
+        
         return (totalAllocated, totalSpent, totalRemaining)
     }
     
@@ -870,13 +1086,13 @@ extension PersistenceController{
         if let existingPlant = budget.plant {
             return existingPlant
         }
-
+        
         let newPlant = Plant(context: context)
         newPlant.id = UUID()
         newPlant.stage = "Seedling"
         newPlant.totalGrowth = 0
         newPlant.budget = budget
-
+        
         // Fetch default PlantSpecie
         let plantSpecieFetchRequest: NSFetchRequest<PlantSpecie> = PlantSpecie.fetchRequest()
         plantSpecieFetchRequest.predicate = NSPredicate(format: "name == %@", "Flower")
@@ -886,7 +1102,7 @@ extension PersistenceController{
         } else {
             print("❌ Default PlantSpecie not found!")
         }
-
+        
         // Fetch default Environment
         let environmentFetchRequest: NSFetchRequest<Environment> = Environment.fetchRequest()
         environmentFetchRequest.predicate = NSPredicate(format: "name == %@", "Cliff_House")
@@ -896,7 +1112,7 @@ extension PersistenceController{
         } else {
             print("❌ Default Environment not found!")
         }
-
+        
         saveContext()
         return newPlant
     }
@@ -915,7 +1131,7 @@ extension PersistenceController{
             updatePlantStage(for: plant)
             saveContext()
         }
-
+        
         print("🌱 Daily Growth Updated: \(formatToLocalDate(dailyAllocation.date)) - Growth: \(dailyAllocation.dailyGrowth)% - Savings: \(savings)")
     }
     
@@ -924,33 +1140,33 @@ extension PersistenceController{
         let totalSpent = weeklyBudget.spentAmount
         let totalAllocated = weeklyBudget.allocatedAmount
         let allDailyLimitsMet = fetchDailyAllocations(for: weeklyBudget).allSatisfy { $0.dailyGrowth == 3.0 }
-
+        
         var newGrowth: Double = 0.0
         if totalSpent <= totalAllocated { newGrowth += 2.0 }
         if allDailyLimitsMet { newGrowth += 2.0 }
-
+        
         weeklyBudget.weeklyGrowth = newGrowth
         saveContext()
-
+        
         if let plant = weeklyBudget.budget.plant {
             let growthChange = newGrowth - previousGrowth
             plant.totalGrowth = max(0, min(100, plant.totalGrowth + Int64(growthChange)))
             updatePlantStage(for: plant)
             saveContext()
         }
-
+        
         print("📅 Weekly Growth Updated: \(formatToLocalDate(weeklyBudget.weekStartDate)) - Growth Change: \(newGrowth - previousGrowth)%")
     }
     
     func updateMonthlyGrowth(for budget: Budget) {
         let previousMonthlyGrowth = budget.monthlyGrowth
-
+        
         let totalSpent = fetchWeeklyBudgets(for: budget).reduce(0.0) { $0 + $1.spentAmount }
         let newBonus: Double = (totalSpent <= budget.budgetedAmount) ? 10.0 : 0.0
-
+        
         budget.monthlyGrowth = newBonus
         saveContext()
-
+        
         print("🌱 Updated Monthly Growth for \(budget.monthYear): \(budget.monthlyGrowth)%")
         
         if let plant = budget.plant {
@@ -963,7 +1179,7 @@ extension PersistenceController{
     
     func updatePlantStage(for plant: Plant) {
         let growth = plant.totalGrowth
-
+        
         switch growth {
         case 0..<20:
             plant.stage = "Seedling"
@@ -976,10 +1192,10 @@ extension PersistenceController{
         default:
             plant.stage = "Mature"
         }
-
+        
         print("🌿 Plant Updated: Growth = \(growth)% → Stage = \(plant.stage)")
     }
-
+    
     
     // MARK: Helper functions
     
@@ -994,15 +1210,15 @@ extension PersistenceController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM yyyy"
         
-        dateFormatter.timeZone = TimeZone.current
-  
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
         guard let date = dateFormatter.date(from: monthYear) else {
             return nil // Return nil if the string can't be parsed into a date
         }
         
-        var calendar = Calendar.current
+        var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone.current
-       
+        
         if let range = calendar.range(of: .day, in: .month, for: date) {
             
             let lastDay = range.upperBound - 1
@@ -1048,31 +1264,31 @@ extension PersistenceController{
         let todayDay = calendar.component(.day, from: today)
         return totalDays - todayDay
     }
-
+    
     func createDate(from day: Int, monthYear: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM yyyy"
         formatter.locale = Locale(identifier: "en_IN_POSIX")
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
-
+        
         guard let baseDate = formatter.date(from: monthYear) else {
             print("❌ Error: Failed to parse base date from monthYear: \(monthYear)")
             return nil
         }
-
+        
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!
         let totalDays = getDaysInMonth(from: monthYear) ?? 0
-
+        
         guard day > 0 && day <= totalDays else {
             print("❌ Error: Invalid day \(day) for month \(monthYear).")
             return nil
         }
-
+        
         var components = calendar.dateComponents([.year, .month], from: baseDate)
         components.day = day
         let createdDate = calendar.date(from: components)
-
+        
         print("📅 Created date: \(formatToLocalDate(createdDate!))")
         return createdDate
     }

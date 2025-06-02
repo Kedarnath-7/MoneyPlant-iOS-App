@@ -22,6 +22,7 @@ extension DailyAllocation {
     @NSManaged public var id: UUID
     @NSManaged public var spentAmount: Double
     @NSManaged public var weeklyBudget: WeeklyBudget
+    @NSManaged public var isLocked: Bool
 
 }
 

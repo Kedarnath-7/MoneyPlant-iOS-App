@@ -10,6 +10,8 @@ import UIKit
 class DailyAllocationViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var monthlyProgressView: UIProgressView!
+    @IBOutlet weak var monthlyRemainingLabel: UILabel!
     @IBOutlet weak var spentProgressView: CircularProgressView!
     @IBOutlet weak var remainingProgressView: CircularProgressView!
     @IBOutlet weak var weeksSegmentControl: UISegmentedControl!
@@ -18,12 +20,13 @@ class DailyAllocationViewController: UIViewController {
     @IBOutlet weak var totalAllocatedButton: UIButton!
     @IBOutlet weak var totalSpentLabel: UILabel!
     @IBOutlet weak var remainingBudgetLabel: UILabel!
+    @IBOutlet weak var weeklyLockButton: UIButton!
     
     // MARK: - Variables
-    var budget: Budget? // Passed from GardenViewController
-    var weeklyBudgets: [WeeklyBudget] = [] // Array of weekly budgets for the selected month
-    var selectedWeeklyBudget: WeeklyBudget? // Currently selected weekly budget
-    var dailyAllocations: [DailyAllocation] = [] // Store daily allocation data for the selected week
+    var budget: Budget?
+    var weeklyBudgets: [WeeklyBudget] = []
+    var selectedWeeklyBudget: WeeklyBudget?
+    var dailyAllocations: [DailyAllocation] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -36,8 +39,16 @@ class DailyAllocationViewController: UIViewController {
     func setupUI() {
         weekSummaryView.layer.cornerRadius = 10
         weekSummaryView.clipsToBounds = true
-        tableView.tableFooterView = UIView() // Remove extra separators
+        tableView.tableFooterView = UIView()
+        monthlyProgressView.progress = 0.0
+        setupWeeklyLockButton()
         loadSegmentControl()
+    }
+    
+    func setupWeeklyLockButton() {
+        weeklyLockButton.setImage(UIImage(systemName: "lock.open"), for: .normal)
+        weeklyLockButton.setImage(UIImage(systemName: "lock.fill"), for: .selected)
+        weeklyLockButton.addTarget(self, action: #selector(toggleWeeklyLock(_:)), for: .touchUpInside)
     }
     
     func loadSegmentControl() {
@@ -51,11 +62,13 @@ class DailyAllocationViewController: UIViewController {
             selectedWeeklyBudget = weeklyBudgets[0]
             loadDailyAllocations()
             updateWeekSummary()
+            updateMonthlySummary()
         } else {
             selectedWeeklyBudget = nil
             dailyAllocations = []
             tableView.reloadData()
             updateWeekSummary()
+            updateMonthlySummary()
         }
     }
     
@@ -63,8 +76,27 @@ class DailyAllocationViewController: UIViewController {
         let selectedIndex = sender.selectedSegmentIndex
         guard selectedIndex < weeklyBudgets.count else { return }
         selectedWeeklyBudget = weeklyBudgets[selectedIndex]
+        
         loadDailyAllocations()
         updateWeekSummary()
+        updateMonthlySummary()
+    }
+    
+    private func isWeekEditable(_ weeklyBudget: WeeklyBudget?) -> Bool {
+        guard let weeklyBudget = weeklyBudget else { return false }
+        let today = Calendar.current.startOfDay(for: Date())
+        return weeklyBudget.weekEndDate >= today
+    }
+    
+    private func isDateEditable(_ date: Date) -> Bool {
+        let today = Calendar.current.startOfDay(for: Date())
+        return date >= today
+    }
+    
+    private func showWarning(message: String) {
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
     func updateWeekSummary() {
@@ -74,6 +106,9 @@ class DailyAllocationViewController: UIViewController {
             remainingBudgetLabel.text = "₹ 0.00"
             spentProgressView.progress = 0.0
             remainingProgressView.progress = 0.0
+            weeklyLockButton.isSelected = false
+            weeklyLockButton.isEnabled = false
+            weekSummaryView.layer.borderWidth = 0
             return
         }
         let allocated = budget.allocatedAmount
@@ -86,6 +121,22 @@ class DailyAllocationViewController: UIViewController {
         
         spentProgressView.progress = Float(spent / max(allocated, 1.0))
         remainingProgressView.progress = Float(remaining / max(allocated, 1.0))
+        
+        weeklyLockButton.isSelected = budget.isLocked
+        weeklyLockButton.isEnabled = isWeekEditable(budget)
+        weekSummaryView.layer.borderWidth = budget.isLocked ? 2.0 : 0
+        weekSummaryView.layer.borderColor = budget.isLocked ? UIColor.gray.cgColor : nil
+    }
+    
+    func updateMonthlySummary() {
+        guard let budget = budget else {
+            monthlyProgressView.progress = 0.0
+            monthlyRemainingLabel.text = "₹ 0.00"
+            return
+        }
+        let (allocated, spent, remaining) = PersistenceController.shared.fetchMonthlySummary(for: budget)
+        monthlyProgressView.progress = Float(spent / max(allocated, 1.0))
+        monthlyRemainingLabel.text = String(format: "₹ %.2f left", remaining)
     }
     
     // MARK: - Load Data
@@ -106,11 +157,10 @@ class DailyAllocationViewController: UIViewController {
             return
         }
         dailyAllocations = PersistenceController.shared.fetchDailyAllocations(for: weeklyBudget)
-        dailyAllocations.sort { ($0.date) < ($1.date) }
         let allTransactions = PersistenceController.shared.fetchTransactions(
-                weekStartDate: weeklyBudget.weekStartDate,
-                weekEndDate: weeklyBudget.weekEndDate)
-            
+            weekStartDate: weeklyBudget.weekStartDate,
+            weekEndDate: weeklyBudget.weekEndDate)
+        
         dailyAllocations.forEach { allocation in
             allocation.spentAmount = allTransactions
                 .filter { Calendar.current.isDate($0.date, inSameDayAs: allocation.date) }
@@ -120,18 +170,7 @@ class DailyAllocationViewController: UIViewController {
         tableView.reloadData()
     }
     
-    // MARK: - Save Updated Allocations
-    func saveUpdatedAllocations() {
-        for allocation in dailyAllocations {
-            PersistenceController.shared.updateDailyAllocation(
-                dailyAllocation: allocation,
-                spentAmount: allocation.spentAmount,
-                allocatedAmount: allocation.allocatedAmount
-            )
-        }
-        loadDailyAllocations() // Refresh the data
-    }
-    
+    // MARK: - Actions
     @IBAction func didTapTotalAllocatedButton(_ sender: UIButton) {
         let alert = UIAlertController(title: "Edit Weekly Budget", message: "Enter the new budget amount", preferredStyle: .alert)
         alert.addTextField { textField in
@@ -140,21 +179,68 @@ class DailyAllocationViewController: UIViewController {
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak self] _ in
-            guard let newAmountString = alert.textFields?.first?.text, let newAmount = Double(newAmountString), newAmount >= 0 else {
-                print("Invalid input")
+            guard let self = self,
+                  let newAmountString = alert.textFields?.first?.text,
+                  let newAmount = Double(newAmountString),
+                  newAmount >= 0 else {
+                self?.showWarning(message: "Invalid input. Please enter a non-negative number.")
                 return
             }
-            self?.updateWeeklyBudgetAmount(newAmount)
-            self?.loadDailyAllocations()
-            self?.updateWeekSummary()
+            
+            // Check if the new amount can accommodate locked daily allocations
+            let dailyAllocations = self.dailyAllocations
+            let lockedTotal = dailyAllocations.filter({ $0.isLocked }).reduce(0.0) { $0 + $1.allocatedAmount }
+            if newAmount < lockedTotal {
+                self.showWarning(message: "Cannot reduce the weekly budget below ₹\(String(format: "%.2f", lockedTotal)) because of locked daily allocations. Please unlock some days or reduce their amounts.")
+                return
+            }
+            
+            // Calculate new total of weekly budgets
+            let otherWeeksTotal = self.weeklyBudgets
+                .filter { $0 != self.selectedWeeklyBudget }
+                .reduce(0.0) { $0 + $1.allocatedAmount }
+            let newTotal = otherWeeksTotal + newAmount
+            
+            // Check if the new total exceeds the monthly budget
+            guard let monthlyBudget = self.budget else { return }
+            if newTotal > monthlyBudget.budgetedAmount {
+                let alert = UIAlertController(title: "Exceeds Monthly Budget", message: "The new weekly budget will cause the total to exceed the monthly budget of ₹\(String(format: "%.2f", monthlyBudget.budgetedAmount)). What would you like to do?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Increase Monthly Budget", style: .default, handler: { _ in
+                    // Navigate to BudgetsViewController to edit monthly budget
+                    // This assumes you have a navigation controller and BudgetsViewController
+                    // You'll need to implement this navigation based on your app's structure
+                    self.showWarning(message: "Please navigate to the Budgets screen to increase the monthly budget.")
+                }))
+                alert.addAction(UIAlertAction(title: "Redistribute", style: .default, handler: { _ in
+                    self.updateWeeklyBudgetAmount(newAmount)
+                    PersistenceController.shared.redistributeWeeklyBudgets(for: monthlyBudget)
+                    self.loadWeeklyBudgets()
+                    self.updateWeekSummary()
+                    self.updateMonthlySummary()
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.updateWeeklyBudgetAmount(newAmount)
+                self.loadDailyAllocations()
+                self.updateWeekSummary()
+                self.updateMonthlySummary()
+            }
         }))
         present(alert, animated: true, completion: nil)
     }
-
+    
+    @objc func toggleWeeklyLock(_ sender: UIButton) {
+        guard let budget = selectedWeeklyBudget else { return }
+        sender.isSelected.toggle()
+        budget.isLocked = sender.isSelected
+        PersistenceController.shared.saveContext()
+        updateWeekSummary()
+    }
+    
     func updateWeeklyBudgetAmount(_ newAmount: Double) {
         guard let budget = selectedWeeklyBudget else { return }
         PersistenceController.shared.updateWeeklyAllocation(for: budget, newAmount: newAmount)
-        updateWeekSummary()
     }
 }
 
@@ -169,20 +255,62 @@ extension DailyAllocationViewController: UITableViewDelegate, UITableViewDataSou
             return UITableViewCell()
         }
         let allocation = dailyAllocations[indexPath.row]
-        cell.configure(with: allocation, isEditable: isDateEditable(allocation.date))
+        
+        // Determine if the text field should be enabled
+        let otherAllocations = dailyAllocations.filter { $0 != allocation }
+        let allOthersLocked = otherAllocations.allSatisfy { $0.isLocked }
+        let weeklyTotal = selectedWeeklyBudget?.allocatedAmount ?? 0.0
+        let currentTotal = dailyAllocations.reduce(0.0) { $0 + $1.allocatedAmount }
+        let isInputEnabled = !(allOthersLocked && currentTotal >= weeklyTotal)
+        
+        cell.configure(with: allocation, isEditable: isDateEditable(allocation.date), isInputEnabled: isInputEnabled)
+        
         cell.onAllocationChanged = { [weak self] newAmount in
-            self?.dailyAllocations[indexPath.row].allocatedAmount = newAmount
-            self?.updateWeekSummary()
+            guard let self = self else { return }
+            let totalDailyBudget = self.dailyAllocations.reduce(0.0) { $0 + $1.allocatedAmount }
+            if let weeklyBudget = self.selectedWeeklyBudget, totalDailyBudget > weeklyBudget.allocatedAmount {
+                let alert = UIAlertController(title: "Exceeds Weekly Budget", message: "The new daily allocation will exceed the weekly budget of ₹\(String(format: "%.2f", weeklyBudget.allocatedAmount)). What would you like to do?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Increase Weekly Budget", style: .default, handler: { _ in
+                    self.didTapTotalAllocatedButton(self.totalAllocatedButton)
+                }))
+                alert.addAction(UIAlertAction(title: "Redistribute", style: .default, handler: { _ in
+                    PersistenceController.shared.redistributeDailyBudgets(for: weeklyBudget)
+                    self.loadDailyAllocations()
+                    self.updateWeekSummary()
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                    self.loadDailyAllocations() // Revert changes
+                }))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                PersistenceController.shared.redistributeDailyBudgets(for: selectedWeeklyBudget!)
+                self.loadDailyAllocations()
+                self.updateWeekSummary()
+            }
         }
+        
+        cell.onLockToggled = { [weak self] isLocked in
+            guard let self = self else { return }
+            // Reload the table to update the enabled state of text fields
+            self.tableView.reloadData()
+            // If all other allocations are now locked, check if we need to show a warning
+            let otherAllocations = self.dailyAllocations.filter { $0 != allocation }
+            let allOthersLocked = otherAllocations.allSatisfy { $0.isLocked }
+            let weeklyTotal = self.selectedWeeklyBudget?.allocatedAmount ?? 0.0
+            let currentTotal = self.dailyAllocations.reduce(0.0) { $0 + $1.allocatedAmount }
+            if allOthersLocked && currentTotal > weeklyTotal {
+                self.showWarning(message: "Cannot increase this allocation because all other days are locked, and the weekly budget limit is reached. Please unlock another day or increase the weekly budget.")
+                // Revert the lock state to prevent invalid state
+                allocation.isLocked = false
+                PersistenceController.shared.saveContext()
+                self.tableView.reloadData()
+            }
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-    
-    private func isDateEditable(_ date: Date) -> Bool {
-        let today = Calendar.current.startOfDay(for: Date())
-        return date >= today
+        120
     }
 }
